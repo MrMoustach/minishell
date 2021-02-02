@@ -1,0 +1,6 @@
+[submodule "gnl"]
+	path = gnl
+	url = https://github.com/MrMoustach/get_next_line.git
+[submodule "libft"]
+	path = libft
+	url = https://github.com/MrMoustach/libft.git
