@@ -6,7 +6,7 @@
 #    By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/02 11:16:24 by iharchi           #+#    #+#              #
-#    Updated: 2021/02/02 11:16:27 by iharchi          ###   ########.fr        #
+#    Updated: 2021/02/02 15:49:26 by iharchi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,5 +35,5 @@ fclean: clean
 re : fclean all
 
 test :
-			@gcc  -g main.c $(SRC) $(LIBFT)libft.a $(FLAG) $(GNL) -o $(NAME)	
+			@gcc  -g main.c $(SRC)  $(GNL) $(LIBFT)libft.a $(FLAG) -o $(NAME)	
 .PHONY: all clean fclean re
