@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 11:12:14 by iharchi           #+#    #+#             */
-/*   Updated: 2021/02/02 18:36:14 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/02/03 18:54:52 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,14 @@
 # include "libft/libft.h"
 # include "gnl/get_next_line.h"
 # include "dev.h"
+# include <dirent.h>
+# include <signal.h>
 
 char  **parse_line(char *line);
 t_list	*parse(char *line);
+void	init_shell();
+int	command_cd(char **args, int argc);
+int	command_ls(char **args, int argc);
 
 typedef struct	s_command
 {
@@ -32,7 +37,7 @@ typedef struct	s_command
 typedef struct	s_state
 {
 	char		*cwd;
-	t_list		*task;
+	t_list		*commands;
 	t_list		*vars;
 	char		*last_output;
 }				t_state;
