@@ -6,17 +6,17 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 11:15:08 by iharchi           #+#    #+#             */
-/*   Updated: 2021/02/03 19:08:44 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/02/03 22:48:02 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 void signal_handler(int sig)
 {
-	sig_t	psig;
+	// sig_t	psig;
 	
-	psig = signal(sig, SIG_IGN);
-	PRINT("f%d", *psig);
+	// psig = signal(sig, SIG_IGN);
+	// PRINT("f%d", *psig);
 	system("clear");
 }
 int main()
