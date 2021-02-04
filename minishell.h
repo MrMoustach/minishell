@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 11:12:14 by iharchi           #+#    #+#             */
-/*   Updated: 2021/02/04 11:32:34 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/02/04 11:57:36 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void    free_tab(char **tab);
 char *ft_get_env(char *env);
 int	command_env();
 int	command_echo(char **args, int argc);
+char			**ft_split_args(char const *str, char c);
 
 typedef struct	s_command
 {

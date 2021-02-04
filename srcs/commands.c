@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 17:36:37 by iharchi           #+#    #+#             */
-/*   Updated: 2021/02/04 11:40:56 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/02/04 11:55:47 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int	command_echo(char **args, int argc)
 			{
 				if (args[i][j] == '"' && escape_flag == 0)
 					escape_flag = 1;
-				else if ((args[i][j] == '"' && escape_flag == 1) || (args[i][j] && escape_flag == 2))
+				else if ((args[i][j] == '"' && escape_flag == 1) || (args[i][j] == '\'' && escape_flag == 2))
 					escape_flag = 0;
 				else if(args[i][j] == '\'' && escape_flag == 0)
 					escape_flag = 2;
