@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 11:15:08 by iharchi           #+#    #+#             */
-/*   Updated: 2021/02/04 17:04:50 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/02/04 19:03:53 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int main(int argc, char *argv[], char *envp[])
 	t_list *commands;
 	
 	killSig = 1;
-	chdir("..");
 	init_shell(envp);
 	signal(SIGINT, signal_handler);
 	(void) argc;
