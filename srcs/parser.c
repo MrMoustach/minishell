@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 11:11:49 by iharchi           #+#    #+#             */
-/*   Updated: 2021/02/02 18:47:42 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/02/02 19:03:20 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ t_command	parse_command(char *command)
 			ret.args[i - 1] = tab[i];
 			i++;
 		}
+		ret.token = -1;
 	}
 	return (ret);
 }

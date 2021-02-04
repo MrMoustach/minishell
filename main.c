@@ -6,37 +6,35 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 11:15:08 by iharchi           #+#    #+#             */
-/*   Updated: 2021/02/03 09:56:53 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/02/04 10:41:59 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-int main()
+void signal_handler(int sig)
+{
+	PRINT("%d", sig);
+}
+int main(int argc, char *argv[], char *envp[])
 {
 	int	killSig;
 	char *line;
 	t_list *commands;
-	int		i;
+	
 	killSig = 1;
-
+	chdir("..");
+	init_shell(envp);
+	signal(SIGINT, signal_handler);
+	(void) argc;
+	(void) argv;
 	while (killSig)
 	{
-		write(0,">",1);
+		PRINT("\e[44m%s \e[49m>",state.cwd);
 		get_next_line(0, &line);
+		if (*line == '\0')
+			continue;
 		commands = parse(line);
-		while (commands)
-		{
-			PRINT("Command : %s\n", ((t_command *)commands->content)->command);
-			i = 0;
-			while (i < ((t_command *)commands->content)->argc - 1)
-			{
-				PRINT("args : %s\n", ((t_command *)commands->content)->args[i++]);
-			}
-			if (!ft_strncmp(((t_command *)commands->content)->command, "exit", 4))
-				killSig = 0;
-			commands = commands->next;
-		}
+		check_commands(commands);
 	}
 	system("clear");
 	return (0);
