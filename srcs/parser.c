@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 11:11:49 by iharchi           #+#    #+#             */
-/*   Updated: 2021/02/02 19:03:20 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/02/04 16:11:58 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,21 +93,42 @@ t_command	parse_command(char *command)
 	t_command ret;
 	char **tab;
 	int	i;
-
-	tab = ft_split(command, ' ');
+	
+	//TODO : change this to ignore spaces in quotes
+	// tab = ft_split(command, ' ');
+	tab = ft_split_args(command, ' ');
+	tab = strip_quotes(tab);
 	ret.command = tab[0];
 	ret.argc = get_tab_size(tab);
 	if (ret.argc > 1)
 	{
-		ret.args = malloc(ret.argc * sizeof(char *));
-		i = 1;
+		ret.args = malloc((ret.argc + 1) * sizeof(char *));
+		i = 0;
 		while (tab[i])
 		{
-			ret.args[i - 1] = tab[i];
+			ret.args[i] = tab[i];
 			i++;
 		}
+		ret.args[i] = '\0';
 		ret.token = -1;
 	}
+	return (ret);
+}
+
+char	**strip_quotes(char **tab)
+{
+	int	i;
+	char **ret;
+
+	i = 0;
+	ret = malloc(get_tab_size(tab) * sizeof(char *));
+	while (tab[i])
+	{
+		ret[i] = ft_strtrim(tab[i], "\"'");
+		i++;
+	}
+	ret[i] = '\0';
+	free_tab(tab);
 	return (ret);
 }
 

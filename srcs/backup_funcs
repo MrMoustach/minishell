@@ -1,0 +1,71 @@
+int	check_commands(t_list *commands)
+{
+	t_list	*tmp;
+	t_command command;
+	int	i;
+
+	tmp = commands;
+	while (tmp)
+		{
+			command = *(t_command *)tmp->content;
+			PRINT("Command : %s\n", command.command);
+			i = 0;
+			if (command.argc > 1)
+			{
+				PRINT("%s", "args :");
+			}
+			while (i < command.argc - 1)
+			{
+				PRINT(" %s, ", command.args[i++]);
+			}
+			if (command.argc > 1)
+			{
+				PRINT("%s","\n");
+			}
+			tmp = tmp->next;
+			if (!ft_strncmp(command.command, "cd", 3))
+			{
+				int error_code = command_cd(command.args, command.argc);
+				if (error_code == 0)
+				{	
+					refresh_shell();
+				}
+				else
+				{
+					PRINT("Error_code : %d\n",error_code);
+				}
+			}
+			else if (!ft_strncmp(command.command, "ls", 3))
+			{
+				int error_code = command_ls(command.args, command.argc);
+				if (error_code != 0)
+				{
+					PRINT("Error_code: %d", error_code);
+				}
+			}
+			else if (!ft_strncmp(command.command, "clear", 5))
+			{
+				system("clear");
+			}
+			else if (!ft_strncmp(command.command, "env", 4))
+			{
+				command_env(command.args, command.argc);
+			}
+			else if (!ft_strncmp(command.command, "echo", 5))
+			{
+				command_echo(command.args, command.argc);
+			}
+			else if (!ft_strncmp(command.command, "pwd", 4))
+			{
+				command_pwd(command.args, command.argc);
+			}
+			else if (!ft_strncmp(command.command, "exit", 5))
+			{
+				exit(0);
+			}
+			else{
+				PRINT("%s", "Command not found\n");
+			}
+		}
+		return (0);
+}
