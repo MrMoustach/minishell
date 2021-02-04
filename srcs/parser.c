@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 11:11:49 by iharchi           #+#    #+#             */
-/*   Updated: 2021/02/04 11:57:28 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/02/04 12:01:02 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ t_command	parse_command(char *command)
 	t_command ret;
 	char **tab;
 	int	i;
+	
 	//TODO : change this to ignore spaces in quotes
 	// tab = ft_split(command, ' ');
 	tab = ft_split_args(command, ' ');

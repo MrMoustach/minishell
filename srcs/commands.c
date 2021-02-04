@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 17:36:37 by iharchi           #+#    #+#             */
-/*   Updated: 2021/02/04 11:55:47 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/02/04 12:23:24 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ int	command_env()
 	}
 	return (0);
 }
+
 int	command_echo(char **args, int argc)
 {
 	int	i;
@@ -84,6 +85,7 @@ int	command_echo(char **args, int argc)
 	int	j;
 	int	escape_flag;
 	char *env;
+	char *word;
 	
 	i = 0;
 	new_line = 1;
@@ -91,19 +93,22 @@ int	command_echo(char **args, int argc)
 	(void) argc;
 	while (args[i])
 	{
-		if (args[i][0] == '$')
-		{
-			env = ft_get_env((&args[i][1]));
-			write (0, env, ft_strlen(env));
-			free(env);
-		}
-		else if (!ft_strncmp(args[i], "-n", 3))
+		if (!ft_strncmp(args[i], "-n", 3))
 			new_line = 0;
 		else
 		{
 			j = 0;
 			while (args[i][j])
 			{
+				if (args[i][j] == '$')
+				{
+					word = get_next_word(&args[i][i + 1]);
+					env = ft_get_env(word);
+					j += ft_strlen(word + 1);
+					free(word);
+					write (0, env, ft_strlen(env));
+					free(env);
+				}
 				if (args[i][j] == '"' && escape_flag == 0)
 					escape_flag = 1;
 				else if ((args[i][j] == '"' && escape_flag == 1) || (args[i][j] == '\'' && escape_flag == 2))

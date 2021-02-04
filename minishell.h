@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 11:12:14 by iharchi           #+#    #+#             */
-/*   Updated: 2021/02/04 11:57:36 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/02/04 12:20:03 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ char *ft_get_env(char *env);
 int	command_env();
 int	command_echo(char **args, int argc);
 char			**ft_split_args(char const *str, char c);
+char *get_next_word(char *s);
 
 typedef struct	s_command
 {
