@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 11:15:08 by iharchi           #+#    #+#             */
-/*   Updated: 2021/02/02 18:50:40 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/02/03 09:56:53 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,11 @@ int main()
 			{
 				PRINT("args : %s\n", ((t_command *)commands->content)->args[i++]);
 			}
+			if (!ft_strncmp(((t_command *)commands->content)->command, "exit", 4))
+				killSig = 0;
 			commands = commands->next;
 		}
 	}
+	system("clear");
 	return (0);
 }
