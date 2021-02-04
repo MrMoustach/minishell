@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 17:36:37 by iharchi           #+#    #+#             */
-/*   Updated: 2021/02/04 16:15:51 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/02/04 16:31:19 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,7 @@ int	debug_test(char **args, int argc)
 {
 	(void) args;
 	(void) argc;
-	char *env_args[] = {(char*)0};
-	PRINT("%d", execve(args[1], &args[1], env_args));
+	PRINT("%d", execve(args[0], args, state.envp));
 	return (0);
 }
 
@@ -202,11 +201,12 @@ int	check_commands(t_list *commands)
 				}
 				tmp_built = tmp_built->next;
 			}
+			// debug_test(command.args, command.argc);
 			if (tmp_built == NULL)
 			{	
 				write (0, "Command : ", 8);
 				write (0, command.command, ft_strlen(command.command));
-				write (0, " not found\n", 15);
+				write (0, " not found\n", 11);
 			}
 		}
 		return (0);
