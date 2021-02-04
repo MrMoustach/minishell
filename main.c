@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 11:15:08 by iharchi           #+#    #+#             */
-/*   Updated: 2021/02/04 15:18:04 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/02/04 17:04:50 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,8 @@
 void signal_handler(int sig)
 {
 	(void) sig;
-	// sig_t	psig;
-	
-	// psig = signal(sig, SIG_IGN);
-	// PRINT("f%d", *psig);
-	system("clear");
+	write (0, "\n", 1);
+	refresh_shell();
 }
 int main(int argc, char *argv[], char *envp[])
 {
@@ -29,12 +26,12 @@ int main(int argc, char *argv[], char *envp[])
 	killSig = 1;
 	chdir("..");
 	init_shell(envp);
-	// signal(SIGINT, signal_handler);
+	signal(SIGINT, signal_handler);
 	(void) argc;
 	(void) argv;
 	while (killSig)
 	{
-		PRINT("\e[44m%s \e[49m>",state.cwd);
+		refresh_shell();
 		get_next_line(0, &line);
 		if (*line == '\0')
 			continue;

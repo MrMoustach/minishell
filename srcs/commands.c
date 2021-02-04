@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 17:36:37 by iharchi           #+#    #+#             */
-/*   Updated: 2021/02/04 16:31:19 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/02/04 17:03:48 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,7 +157,6 @@ int	command_pwd(char **args, int argc)
 {
 	(void) args;
 	(void) argc;
-	refresh_shell();
 	write (0, state.cwd, ft_strlen(state.cwd));
 	write (0, "\n", 1);
 	return (0);
@@ -194,7 +193,7 @@ int	check_commands(t_list *commands)
 			while (tmp_built)
 			{
 				builtin = *(t_builtin *)(tmp_built->content);
-				if (!ft_strncmp(builtin.command, command.command, ft_strlen(builtin.command)))
+				if (!ft_strncmp(builtin.command, command.command, ft_strlen(builtin.command) + 1))
 				{	
 					builtin.opt(command.args, command.argc);
 					break ;

@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 11:12:14 by iharchi           #+#    #+#             */
-/*   Updated: 2021/02/04 15:46:36 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/02/04 16:37:22 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ t_builtin	*create_builtin(char *s, int (*opt)(char **args, int argc));
 int	debug_exit(char **args, int argc);
 int	debug_clear(char **args, int argc);
 int	debug_test(char **args, int argc);
+int main(int argc, char *argv[], char *envp[]);
 
 t_state state;
 #endif

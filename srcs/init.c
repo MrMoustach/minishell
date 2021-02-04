@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 17:30:38 by iharchi           #+#    #+#             */
-/*   Updated: 2021/02/04 15:44:24 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/02/04 17:03:19 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,5 @@ void refresh_shell()
 	free(state.cwd);
 	state.cwd = NULL;
 	state.cwd = getcwd(state.cwd, 0);
+	PRINT("\e[44m%s \e[49m>",state.cwd);
 }
