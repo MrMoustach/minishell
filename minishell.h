@@ -20,6 +20,7 @@
 # include "dev.h"
 # include <dirent.h>
 # include <signal.h>
+# include <fcntl.h>
 
 typedef struct	s_command
 {

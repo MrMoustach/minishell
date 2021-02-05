@@ -28,6 +28,7 @@ int main(int argc, char *argv[], char *envp[])
 	signal(SIGINT, signal_handler);
 	(void) argc;
 	(void) argv;
+	// int fd = open("command", O_RDONLY);
 	while (killSig)
 	{
 		refresh_shell();
@@ -37,6 +38,7 @@ int main(int argc, char *argv[], char *envp[])
 		commands = parse(line);
 		check_commands(commands);
 	}
+	// close (fd);
 	system("clear");
 	return (0);
 }

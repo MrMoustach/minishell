@@ -174,7 +174,7 @@ int	check_commands(t_list *commands)
 	while (tmp)
 		{
 			command = *(t_command *)tmp->content;
-			PRINT("Command : %s\n", command.command);
+			PRINT("Command : %s | ", command.command);
 			i = 1;
 			if (command.argc > 1)
 			{

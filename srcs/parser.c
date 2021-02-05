@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 11:11:49 by iharchi           #+#    #+#             */
-/*   Updated: 2021/02/04 16:11:58 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/02/05 08:19:48 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ t_command	parse_command(char *command)
 	// tab = ft_split(command, ' ');
 	tab = ft_split_args(command, ' ');
 	tab = strip_quotes(tab);
+	// TODO: check why command doesn't append when there is multiple args
 	ret.command = tab[0];
 	ret.argc = get_tab_size(tab);
 	if (ret.argc > 1)
@@ -109,7 +110,7 @@ t_command	parse_command(char *command)
 			ret.args[i] = tab[i];
 			i++;
 		}
-		ret.args[i] = '\0';
+		ret.args[i] = NULL;
 		ret.token = -1;
 	}
 	return (ret);
@@ -121,13 +122,13 @@ char	**strip_quotes(char **tab)
 	char **ret;
 
 	i = 0;
-	ret = malloc(get_tab_size(tab) * sizeof(char *));
+	ret = malloc((get_tab_size(tab) + 1) * sizeof(char *));
 	while (tab[i])
 	{
 		ret[i] = ft_strtrim(tab[i], "\"'");
 		i++;
 	}
-	ret[i] = '\0';
+	ret[i] = NULL;
 	free_tab(tab);
 	return (ret);
 }
