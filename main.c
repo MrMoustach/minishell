@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 11:15:08 by iharchi           #+#    #+#             */
-/*   Updated: 2021/02/04 19:03:53 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/02/05 15:55:46 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ int main(int argc, char *argv[], char *envp[])
 	t_list *commands;
 	
 	killSig = 1;
+	state.argv = argv;
+	state.argc = argc;
 	init_shell(envp);
 	signal(SIGINT, signal_handler);
-	(void) argc;
-	(void) argv;
 	// int fd = open("command", O_RDONLY);
 	while (killSig)
 	{

@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 11:12:14 by iharchi           #+#    #+#             */
-/*   Updated: 2021/02/04 16:37:22 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/02/05 16:53:57 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # include <dirent.h>
 # include <signal.h>
 # include <fcntl.h>
+# include <sys/types.h>
+# include <sys/wait.h>
 
 typedef struct	s_command
 {
@@ -44,6 +46,9 @@ typedef struct	s_state
 	t_list		*vars;
 	char		*last_output;
 	t_list		*builtins;
+	char		**argv;
+	int			argc;
+	int			succes;
 }				t_state;
 
 char  **parse_line(char *line);
