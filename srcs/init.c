@@ -38,13 +38,13 @@ void	init_shell(char *envp[])
 		if (!ft_strncmp("SHELL", state.envp[i], 5))
 		{
 			tmp = ft_strdup("SHELL=");
-			state.envp[i] =	tmp;
-			state.envp[i] = ft_strjoin(state.envp[i], state.cwd);
+			state.envp[i] = ft_strjoin(tmp, state.cwd);
 			free(tmp);
 			tmp = state.envp[i];
+			// FIXME :state.args[0][1] overflows
+			state.argv[0][ft_strlen(state.argv[0])] = 0;
 			state.envp[i] = ft_strjoin(state.envp[i], &state.argv[0][1]);
 			free(tmp);
-			// free(tmp);
 			break;
 		}
 		i++;

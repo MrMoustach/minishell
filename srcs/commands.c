@@ -48,15 +48,17 @@ char	*bin_exist(char *bin, char **paths)
 					tmp =  ft_strjoin(paths[i], "/");
 					tmp2 = ft_strjoin(tmp, bin);
 					free(tmp);
+					closedir(dir);
 					return (tmp2);
 				}
 			}
+			closedir(dir);
 		}
 		i++;
 	}
 	return (NULL);
 }
-
+// TODO : rename this
 int	debug_test(char **args, int argc)
 {
 	pid_t pid;
@@ -71,10 +73,11 @@ int	debug_test(char **args, int argc)
 	paths = ft_split(path, ':');
 	free(path);
 	path = bin_exist(args[0], paths);
-	free(paths);
+	free_tab(paths);
 	if (path != NULL)
 	{
 		state.succes = 1;
+		free(args[0]);
 		args[0] = path;
 		if ((pid = fork()) ==-1)
 			perror("fork error");
@@ -88,6 +91,7 @@ int	debug_test(char **args, int argc)
 	return (ret);
 }
 
+// TODO : REMOVE THIS
 int	command_ls(char **args, int argc)
 {
 	char	*path;
@@ -140,6 +144,7 @@ int	command_env(char **args, int argc)
 	return (0);
 }
 
+// TODO : REMOVE THIS
 int	debug_exit(char **args, int argc)
 {
 	(void) argc;
@@ -148,6 +153,7 @@ int	debug_exit(char **args, int argc)
 	return (0);
 }
 
+// TODO : REMOVE THIS
 int	debug_clear(char **args, int argc)
 {
 	(void) args;
@@ -250,6 +256,7 @@ int	check_commands(t_list *commands)
 				}
 				tmp_built = tmp_built->next;
 			}
+			// TODO : Check why state.succes doesnt set when u quit command, and make it so it works with paths
 			if (!state.succes)
 				debug_test(command.args, command.argc);
 			if (!state.succes)

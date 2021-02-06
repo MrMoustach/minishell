@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 11:11:49 by iharchi           #+#    #+#             */
-/*   Updated: 2021/02/05 17:34:22 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/02/06 13:50:34 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,25 +91,11 @@ int get_tab_size(char **tab)
 t_command	parse_command(char *command)
 {
 	t_command ret;
-	char **tab;
-	int	i;
-	
-	tab = ft_split_args(command, ' ');
-	tab = strip_quotes(tab);
-	ret.command = tab[0];
-	ret.argc = get_tab_size(tab);
-	if (ret.argc > 1)
-	{
-		ret.args = malloc((ret.argc + 1) * sizeof(char *));
-		i = 0;
-		while (tab[i])
-		{
-			ret.args[i] = tab[i];
-			i++;
-		}
-		ret.args[i] = NULL;
-		ret.token = -1;
-	}
+
+	ret.args = ft_split_args(command, ' ');
+	ret.args = strip_quotes(ret.args);
+	ret.command = ret.args[0];
+	ret.argc = get_tab_size(ret.args);
 	return (ret);
 }
 
@@ -138,6 +124,7 @@ t_list	*parse(char *line)
 	int	i;
 	
 	commands = parse_line(line);
+	free(line);
 	i = 0;
 	list_of_commands = NULL;
 	while (commands[i])
@@ -146,5 +133,6 @@ t_list	*parse(char *line)
 		*command = parse_command(commands[i++]);
 		ft_lstadd_back(&list_of_commands, ft_lstnew(command));
 	}
+	free_tab(commands);
 	return (list_of_commands);
 }

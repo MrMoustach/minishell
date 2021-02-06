@@ -32,6 +32,7 @@ char *ft_get_env(char *env)
             return (home);
         }
         i++;
+        free_tab(tab);
     }
     return (ft_strdup(""));
 }
@@ -46,4 +47,13 @@ char *get_next_word(char *s)
        i++;
     ret = ft_substr(s, 0, i);
     return (ret);
+}
+
+void    free_command(void *com)
+{
+    t_command   command;
+
+    command = *(t_command *)com;
+    free_tab(command.args);
+    free(com);
 }
