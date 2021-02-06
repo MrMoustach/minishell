@@ -46,18 +46,16 @@ char	*bin_exist(char *bin, char **paths)
 		{
 			while ((dp = readdir(dir)))
 			{
-				// if (!ft_strncmp(path, "/usr/bin", ft_strlen(path)))
-				// {
-				// 	PRINT("%s\n", dp->d_name);
-				// }
 				if (!ft_strncmp(bin, dp->d_name, ft_strlen(bin) + 1) && (dp->d_type != DT_DIR))
 				{
 					tmp =  ft_strjoin(paths[i], "/");
 					tmp2 = ft_strjoin(tmp, bin);
 					free(tmp);
+					closedir(dir);
 					return (tmp2);
 				}
 			}
+			closedir(dir);
 		}
 		i++;
 	}
@@ -76,11 +74,13 @@ int	debug_test(char **args, int argc)
 	path = ft_get_env("PATH");
 	paths = ft_split(path, ':');
 	free(path);
+	// BUG : LEAKS
 	path = bin_exist(args[0], paths);
-	free(paths);
+	free_tab(paths);
 	if (path != NULL)
 	{
 		state.succes = 1;
+		free(args[0]);
 		args[0] = path;
 		if ((pid = fork()) ==-1)
 			perror("fork error");
@@ -94,6 +94,7 @@ int	debug_test(char **args, int argc)
 	return (ret);
 }
 
+// FIXME : REMOVE THIS
 int	command_ls(char **args, int argc)
 {
 	char	*path;
@@ -146,6 +147,7 @@ int	command_env(char **args, int argc)
 	return (0);
 }
 
+// FIXME : REMOVE THIS
 int	debug_exit(char **args, int argc)
 {
 	(void) argc;
@@ -154,6 +156,7 @@ int	debug_exit(char **args, int argc)
 	return (0);
 }
 
+// FIXME : REMOVE THIS
 int	debug_clear(char **args, int argc)
 {
 	(void) args;
@@ -256,6 +259,7 @@ int	check_commands(t_list *commands)
 				}
 				tmp_built = tmp_built->next;
 			}
+			// TODO : Check why state.succes doesnt set when u quit command, and make it so it works with paths
 			if (!state.succes)
 				debug_test(command.args, command.argc);
 			if (!state.succes)

@@ -55,4 +55,5 @@ void    free_command(void *com)
 
     command = *(t_command *)com;
     free_tab(command.args);
+    free(com);
 }

@@ -41,6 +41,7 @@ void	init_shell(char *envp[])
 			state.envp[i] = ft_strjoin(tmp, state.cwd);
 			free(tmp);
 			tmp = state.envp[i];
+			// FIXME :state.args[0][1] overflows
 			state.envp[i] = ft_strjoin(state.envp[i], &state.argv[0][1]);
 			free(tmp);
 			break;
