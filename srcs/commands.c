@@ -32,7 +32,7 @@ int	debug_test(char **args, int argc)
 {
 	(void) args;
 	(void) argc;
-	PRINT("%d", execve(args[0], args, state.envp));
+	PRINT("%d", execve(args[1], &args[1], state.envp));
 	return (0);
 }
 

@@ -16,6 +16,7 @@ void	init_shell(char *envp[])
 {
 	char	*cwd;
 	int		i;
+	char	*tmp;
 	
 	cwd = NULL;
 	cwd = getcwd(cwd, 0);
@@ -35,8 +36,12 @@ void	init_shell(char *envp[])
 	{
 		if (!ft_strncmp("SHELL", state.envp[i], 5))
 		{
-			//free(state.envp[i]);
-			state.envp[i] = ft_strdup("SHELL=/home/zed/Desktop/minishell/miniShell");
+			tmp = ft_strdup("SHELL=");
+			state.envp[i] = ft_strjoin(tmp, state.cwd);
+			free(tmp);
+			tmp = state.envp[i];
+			state.envp[i] = ft_strjoin(state.envp[i], "/miniShell");
+			free(tmp);
 			break;
 		}
 		i++;

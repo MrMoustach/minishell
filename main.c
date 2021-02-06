@@ -37,6 +37,7 @@ int main(int argc, char *argv[], char *envp[])
 			continue;
 		commands = parse(line);
 		check_commands(commands);
+		ft_lstclear(&commands, free_command);
 	}
 	// close (fd);
 	system("clear");

@@ -66,6 +66,7 @@ int	debug_exit(char **args, int argc);
 int	debug_clear(char **args, int argc);
 int	debug_test(char **args, int argc);
 int main(int argc, char *argv[], char *envp[]);
+void    free_command(void *com);
 
 t_state state;
 #endif
