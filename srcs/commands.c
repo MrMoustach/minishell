@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 17:36:37 by iharchi           #+#    #+#             */
-/*   Updated: 2021/02/04 17:03:48 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/02/05 17:23:29 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,70 @@ int	command_cd(char **args, int argc)
 	return (chdir(args[1]));
 }
 
+char	*bin_exist(char *bin, char **paths)
+{
+	DIR		*dir;
+	struct	dirent *dp;
+	char	*tmp;
+	char	*tmp2;
+	int		i;
+	char	*path;
+
+	i = 0;
+	while (paths[i])
+	{
+		path = paths[i];
+		(void)path;
+		if ((dir = opendir(paths[i])))
+		{
+			while ((dp = readdir(dir)))
+			{
+				// if (!ft_strncmp(path, "/usr/bin", ft_strlen(path)))
+				// {
+				// 	PRINT("%s\n", dp->d_name);
+				// }
+				if (!ft_strncmp(bin, dp->d_name, ft_strlen(bin) + 1) && (dp->d_type != DT_DIR))
+				{
+					tmp =  ft_strjoin(paths[i], "/");
+					tmp2 = ft_strjoin(tmp, bin);
+					free(tmp);
+					return (tmp2);
+				}
+			}
+		}
+		i++;
+	}
+	return (NULL);
+}
+
 int	debug_test(char **args, int argc)
 {
-	(void) args;
+	pid_t pid;
+	char	*path;
+	char	**paths;
+	int		ret;
+	
 	(void) argc;
-	PRINT("%d", execve(args[1], &args[1], state.envp));
-	return (0);
+	ret = -2;
+	path = ft_get_env("PATH");
+	paths = ft_split(path, ':');
+	free(path);
+	path = bin_exist(args[0], paths);
+	free(paths);
+	if (path != NULL)
+	{
+		state.succes = 1;
+		args[0] = path;
+		if ((pid = fork()) ==-1)
+			perror("fork error");
+		else if (pid == 0)
+		{
+			ret = execve(args[0], args, state.envp);	
+			exit(0);
+		}
+		wait(NULL);
+	}
+	return (ret);
 }
 
 int	command_ls(char **args, int argc)
@@ -184,10 +242,7 @@ int	check_commands(t_list *commands)
 					PRINT(" %s, ", command.args[i++]);
 				}
 			}
-			if (command.argc > 1)
-			{
-				PRINT("%s","\n");
-			}
+			PRINT("%s","\n");
 			tmp = tmp->next;
 			tmp_built = state.builtins;
 			while (tmp_built)
@@ -196,12 +251,14 @@ int	check_commands(t_list *commands)
 				if (!ft_strncmp(builtin.command, command.command, ft_strlen(builtin.command) + 1))
 				{	
 					builtin.opt(command.args, command.argc);
+					state.succes = 1;
 					break ;
 				}
 				tmp_built = tmp_built->next;
 			}
-			// debug_test(command.args, command.argc);
-			if (tmp_built == NULL)
+			if (!state.succes)
+				debug_test(command.args, command.argc);
+			if (!state.succes)
 			{	
 				write (0, "Command : ", 8);
 				write (0, command.command, ft_strlen(command.command));
