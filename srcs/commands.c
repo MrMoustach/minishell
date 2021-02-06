@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 17:36:37 by iharchi           #+#    #+#             */
-/*   Updated: 2021/02/05 17:29:55 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/02/06 14:27:51 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,31 @@ char	*bin_exist(char *bin, char **paths)
 	}
 	return (NULL);
 }
+
+int		get_bin(char *bin)
+{
+	char	*path;
+	char	*tmp;
+	DIR		*dir;
+	struct dirent *dp;
+	
+
+	tmp = ft_strrchr(bin, '/');
+	path = ft_substr(bin, 0, ft_strlen(bin) - ft_strlen(tmp));
+	tmp++;
+	if ((dir = opendir(path)))
+	{
+		while ((dp = readdir(dir)))
+		{
+			if (!ft_strncmp(tmp, dp->d_name, ft_strlen(tmp) + 1) && (dp->d_type != DT_DIR))
+				return (1);
+		}
+		closedir(dir);
+	}
+	free(path);
+	return (0);
+}
+
 // TODO : rename this
 int	debug_test(char **args, int argc)
 {
@@ -69,11 +94,21 @@ int	debug_test(char **args, int argc)
 	// TODO : make it so args with a path look in the path not the bins
 	(void) argc;
 	ret = -2;
-	path = ft_get_env("PATH");
-	paths = ft_split(path, ':');
-	free(path);
-	path = bin_exist(args[0], paths);
-	free_tab(paths);
+	if (ft_strchr(args[0], '/') == NULL)
+	{
+		path = ft_get_env("PATH");
+		paths = ft_split(path, ':');
+		free(path);
+		path = bin_exist(args[0], paths);
+		free_tab(paths);
+	}
+	else
+	{
+		if (get_bin(args[0]))
+			path = ft_strdup(args[0]);
+		else
+			path = NULL;
+	}
 	if (path != NULL)
 	{
 		state.succes = 1;
