@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 11:11:49 by iharchi           #+#    #+#             */
-/*   Updated: 2021/02/05 08:19:48 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/02/05 17:34:22 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,11 +94,8 @@ t_command	parse_command(char *command)
 	char **tab;
 	int	i;
 	
-	//TODO : change this to ignore spaces in quotes
-	// tab = ft_split(command, ' ');
 	tab = ft_split_args(command, ' ');
 	tab = strip_quotes(tab);
-	// TODO: check why command doesn't append when there is multiple args
 	ret.command = tab[0];
 	ret.argc = get_tab_size(tab);
 	if (ret.argc > 1)

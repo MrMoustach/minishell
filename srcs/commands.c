@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 17:36:37 by iharchi           #+#    #+#             */
-/*   Updated: 2021/02/05 17:23:29 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/02/05 17:29:55 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,21 +35,14 @@ char	*bin_exist(char *bin, char **paths)
 	char	*tmp;
 	char	*tmp2;
 	int		i;
-	char	*path;
 
 	i = 0;
 	while (paths[i])
 	{
-		path = paths[i];
-		(void)path;
 		if ((dir = opendir(paths[i])))
 		{
 			while ((dp = readdir(dir)))
 			{
-				// if (!ft_strncmp(path, "/usr/bin", ft_strlen(path)))
-				// {
-				// 	PRINT("%s\n", dp->d_name);
-				// }
 				if (!ft_strncmp(bin, dp->d_name, ft_strlen(bin) + 1) && (dp->d_type != DT_DIR))
 				{
 					tmp =  ft_strjoin(paths[i], "/");
@@ -71,6 +64,7 @@ int	debug_test(char **args, int argc)
 	char	**paths;
 	int		ret;
 	
+	// TODO : make it so args with a path look in the path not the bins
 	(void) argc;
 	ret = -2;
 	path = ft_get_env("PATH");
