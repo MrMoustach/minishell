@@ -61,7 +61,7 @@ char	*bin_exist(char *bin, char **paths)
 	}
 	return (NULL);
 }
-
+// TODO : rename this
 int	debug_test(char **args, int argc)
 {
 	pid_t pid;
@@ -74,7 +74,6 @@ int	debug_test(char **args, int argc)
 	path = ft_get_env("PATH");
 	paths = ft_split(path, ':');
 	free(path);
-	// BUG : LEAKS
 	path = bin_exist(args[0], paths);
 	free_tab(paths);
 	if (path != NULL)
@@ -94,7 +93,7 @@ int	debug_test(char **args, int argc)
 	return (ret);
 }
 
-// FIXME : REMOVE THIS
+// TODO : REMOVE THIS
 int	command_ls(char **args, int argc)
 {
 	char	*path;
@@ -147,7 +146,7 @@ int	command_env(char **args, int argc)
 	return (0);
 }
 
-// FIXME : REMOVE THIS
+// TODO : REMOVE THIS
 int	debug_exit(char **args, int argc)
 {
 	(void) argc;
@@ -156,7 +155,7 @@ int	debug_exit(char **args, int argc)
 	return (0);
 }
 
-// FIXME : REMOVE THIS
+// TODO : REMOVE THIS
 int	debug_clear(char **args, int argc)
 {
 	(void) args;
