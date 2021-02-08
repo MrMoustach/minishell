@@ -91,7 +91,6 @@ int	debug_test(char **args, int argc)
 	char	**paths;
 	int		ret;
 	
-	// TODO : make it so args with a path look in the path not the bins
 	(void) argc;
 	ret = -2;
 	if (ft_strchr(args[0], '/') == NULL)
