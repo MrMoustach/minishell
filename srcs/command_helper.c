@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 10:43:53 by iharchi           #+#    #+#             */
-/*   Updated: 2021/02/04 12:19:55 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/02/08 14:36:29 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char *get_next_word(char *s)
     char *ret;
 
     i = 0;
-    while (s[i] && s[i] != ' ' && s[i] != '"' && s[i] != '\'')
+    while (s[i] && s[i] != ' ' && s[i] != '"' && s[i] != '\'' && s[i] != '/' && s[i] != '\\')
        i++;
     ret = ft_substr(s, 0, i);
     return (ret);

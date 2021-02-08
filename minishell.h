@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 11:12:14 by iharchi           #+#    #+#             */
-/*   Updated: 2021/02/05 16:53:57 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/02/08 14:48:12 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ int	debug_clear(char **args, int argc);
 int	debug_test(char **args, int argc);
 int main(int argc, char *argv[], char *envp[]);
 void    free_command(void *com);
+char	*replace_envvars(char *var)
 
 t_state state;
 #endif

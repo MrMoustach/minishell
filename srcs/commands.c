@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 17:36:37 by iharchi           #+#    #+#             */
-/*   Updated: 2021/02/06 14:27:51 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/02/08 14:40:59 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -255,6 +255,32 @@ int	command_pwd(char **args, int argc)
 	return (0);
 }
 
+char	*replace_envvars(char *var)
+{
+	int	i;
+	char	*word;
+	char	*env;
+	char	*tmp;
+
+	i = 0;
+	while (var[i])
+	{
+		if (var[i] == '$')
+		{
+			word = get_next_word(&var[i + 1]);
+			env = ft_get_env(word);
+			i += ft_strlen(word) + 1;
+			free(word);
+			tmp = var;
+			var = ft_strjoin(env, &var[i]);
+			free(tmp);
+			break ;
+		}
+		i++;
+	}
+	return (var);
+}
+
 int	check_commands(t_list *commands)
 {
 	t_list	*tmp;
@@ -266,6 +292,7 @@ int	check_commands(t_list *commands)
 	tmp = commands;
 	while (tmp)
 		{
+			state.succes = 0;
 			command = *(t_command *)tmp->content;
 			PRINT("Command : %s | ", command.command);
 			i = 1;
@@ -274,6 +301,7 @@ int	check_commands(t_list *commands)
 				PRINT("%s", "args :");
 				while (command.args[i])
 				{
+					command.args[i] = replace_envvars(command.args[i]);
 					PRINT(" %s, ", command.args[i++]);
 				}
 			}
@@ -291,7 +319,6 @@ int	check_commands(t_list *commands)
 				}
 				tmp_built = tmp_built->next;
 			}
-			// TODO : Check why state.succes doesnt set when u quit command, and make it so it works with paths
 			if (!state.succes)
 				debug_test(command.args, command.argc);
 			if (!state.succes)
