@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 17:36:37 by iharchi           #+#    #+#             */
-/*   Updated: 2021/02/08 14:40:59 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/02/10 17:13:02 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -260,6 +260,7 @@ char	*replace_envvars(char *var)
 	char	*word;
 	char	*env;
 	char	*tmp;
+	int		j;
 
 	i = 0;
 	while (var[i])
@@ -268,11 +269,25 @@ char	*replace_envvars(char *var)
 		{
 			word = get_next_word(&var[i + 1]);
 			env = ft_get_env(word);
+			tmp = var;
+			var = malloc(i + ft_strlen(word)  + 1);
+			j = 0;
+			while (j < i)
+			{
+				var[j] = tmp[j];
+				j++;
+			}
+			var[j] = '\0';
 			i += ft_strlen(word) + 1;
 			free(word);
-			tmp = var;
-			var = ft_strjoin(env, &var[i]);
+			word = var;
+			var = ft_strjoin(var, env);
+			free(word);
+			word = var;
+			var = ft_strjoin(var, &tmp[i]);
+			free(word);
 			free(tmp);
+			free(env);
 			break ;
 		}
 		i++;

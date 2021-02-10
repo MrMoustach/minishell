@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 11:11:49 by iharchi           #+#    #+#             */
-/*   Updated: 2021/02/06 13:50:34 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/02/10 17:16:55 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ t_command	parse_command(char *command)
 
 	ret.args = ft_split_args(command, ' ');
 	ret.args = strip_quotes(ret.args);
+	ret.args[0] = replace_envvars(ret.args[0]);
 	ret.command = ret.args[0];
 	ret.argc = get_tab_size(ret.args);
 	return (ret);
