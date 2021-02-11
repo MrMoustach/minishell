@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 17:30:38 by iharchi           #+#    #+#             */
-/*   Updated: 2021/02/05 17:03:34 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/02/10 17:38:49 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void refresh_shell()
 	state.cwd = getcwd(state.cwd, 0);
 	user = ft_get_env("USER");
 	state.succes = 0;
+	write (0, "\n", 1);
 	write (0, user, ft_strlen(user));
 	free(user);
 	write (0, "\e[34m@", 6);

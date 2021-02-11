@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 17:36:37 by iharchi           #+#    #+#             */
-/*   Updated: 2021/02/10 17:13:02 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/02/11 17:09:02 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -253,7 +253,7 @@ int	command_pwd(char **args, int argc)
 	write (0, "\n", 1);
 	return (0);
 }
-
+// FIXME : Doesnt account for 2 vars in one arg
 char	*replace_envvars(char *var)
 {
 	int	i;
