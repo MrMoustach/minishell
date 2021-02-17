@@ -28,6 +28,31 @@ int	command_cd(char **args, int argc)
 	return (chdir(args[1]));
 }
 
+int	command_export(char **args, int argc)
+{
+	char	*ptr;
+	char	*env;
+	char	*env_val;
+
+	if (argc == 1)
+		return (command_env(args, argc));
+	ptr = ft_strrchr(args[1], '=');
+	if (ptr != NULL)
+	{
+		// TODO : Check if it exist or not, then act accordinly
+		env = ft_substr(args[1], 0, ft_strlen(args[1]) - ft_strlen(ptr));
+		env_val = ft_get_env(env);
+		if (*env_val != 0)
+			ft_set_env(env, args[1]);
+		else
+			ft_create_env(args[1]);
+		PRINT("%s", ft_get_env(env));
+		free(env);
+		free(env_val);
+	}
+	return (0);
+}
+
 char	*bin_exist(char *bin, char **paths)
 {
 	DIR		*dir;

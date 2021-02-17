@@ -35,5 +35,5 @@ fclean: clean
 re : fclean all
 
 test :
-			@gcc  -g main.c $(SRC)  $(GNL) $(LIBFT)libft.a $(FLAG) -o $(NAME)	
+			@gcc  -g main.c $(SRC)  $(GNL) $(LIBFT)libft.a $(FLAG) -o $(NAME) 	
 .PHONY: all clean fclean re

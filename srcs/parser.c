@@ -91,12 +91,14 @@ int get_tab_size(char **tab)
 t_command	parse_command(char *command)
 {
 	t_command ret;
-	// TODO : replace envvars before spliting
+	// TODO : 	Replace tilde with the home if its not procesded with a character
+	//			and does have something other than / or whitespace after it
 	command = replace_envvars(command);
 	ret.args = ft_split_args(command, ' ');
 	ret.args = strip_quotes(ret.args);
 	ret.command = ret.args[0];
 	ret.argc = get_tab_size(ret.args);
+	free(command);
 	return (ret);
 }
 
@@ -134,6 +136,6 @@ t_list	*parse(char *line)
 		*command = parse_command(commands[i++]);
 		ft_lstadd_back(&list_of_commands, ft_lstnew(command));
 	}
-	free_tab(commands);
+	free(commands);
 	return (list_of_commands);
 }

@@ -51,6 +51,10 @@ typedef struct	s_state
 	int			succes;
 }				t_state;
 
+/*
+*	Built-ins
+*/
+
 char  **parse_line(char *line);
 t_list	*parse(char *line);
 void	init_shell(char *envp[]);
@@ -73,6 +77,11 @@ int	debug_test(char **args, int argc);
 int main(int argc, char *argv[], char *envp[]);
 void    free_command(void *com);
 char	*replace_envvars(char *var);
+int	command_export(char **args, int argc);
+void	ft_set_env(char	*env, char *line);
+void	ft_create_env(char	*line);
+int		ft_tablen(char **tab);
+char    **dup_tab(char **src);
 
 t_state state;
 #endif

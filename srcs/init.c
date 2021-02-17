@@ -21,7 +21,8 @@ void	init_shell(char *envp[])
 	cwd = NULL;
 	cwd = getcwd(cwd, 0);
 	state.cwd = cwd;
-	state.envp = envp;
+	// TODO : TEST THIS
+	state.envp = dup_tab(envp);
 	state.builtins = NULL;
 	state.succes = 0;
 	ft_lstadd_back(&(state.builtins), ft_lstnew(create_builtin("cd", command_cd)));
@@ -30,6 +31,7 @@ void	init_shell(char *envp[])
 	// ft_lstadd_back(&(state.builtins), ft_lstnew(create_builtin("ls", command_ls)));
 	ft_lstadd_back(&(state.builtins), ft_lstnew(create_builtin("env", command_env)));
 	ft_lstadd_back(&(state.builtins), ft_lstnew(create_builtin("exit", debug_exit)));
+	ft_lstadd_back(&(state.builtins), ft_lstnew(create_builtin("export", command_export)));
 	// ft_lstadd_back(&(state.builtins), ft_lstnew(create_builtin("clear", debug_clear)));
 	// ft_lstadd_back(&(state.builtins), ft_lstnew(create_builtin("test", debug_test)));
 	i = 0;
@@ -41,7 +43,6 @@ void	init_shell(char *envp[])
 			state.envp[i] = ft_strjoin(tmp, state.cwd);
 			free(tmp);
 			tmp = state.envp[i];
-			// FIXME :state.args[0][1] overflows
 			state.argv[0][ft_strlen(state.argv[0])] = 0;
 			state.envp[i] = ft_strjoin(state.envp[i], &state.argv[0][1]);
 			free(tmp);

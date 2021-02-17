@@ -12,48 +12,83 @@
 
 #include "../minishell.h"
 
-char *ft_get_env(char *env)
+char	*ft_get_env(char *env)
 {
-    char    **tab;
-    int     i;
-    char    *home;
+	char    **tab;
+	int     i;
+	char    *home;
 
-    if (env == NULL)
-        return (NULL);
-    i = 0;
-    home = NULL;
-    while (state.envp[i])
-    {
-        tab = ft_split(state.envp[i], '=');
-        if (!ft_strncmp(tab[0], env, ft_strlen(env)))
-        {
-            home = ft_strdup(tab[1]);
-            free_tab(tab);
-            return (home);
-        }
-        i++;
-        free_tab(tab);
-    }
-    return (ft_strdup(""));
+	if (env == NULL)
+		return (NULL);
+	i = 0;
+	home = NULL;
+	while (state.envp[i])
+	{
+		tab = ft_split(state.envp[i], '=');
+		if (!ft_strncmp(tab[0], env, ft_strlen(env)))
+		{
+			home = ft_strdup(tab[1]);
+			free_tab(tab);
+			return (home);
+		}
+		i++;
+		free_tab(tab);
+	}
+	return (ft_strdup(""));
 }
 
-char *get_next_word(char *s)
+void	ft_set_env(char	*env, char *line)
 {
-    int i;
-    char *ret;
+	int		i;
 
-    i = 0;
-    while (s[i] && s[i] != ' ' && s[i] != '"' && s[i] != '\'' && s[i] != '/' && s[i] != '\\')
-       i++;
-    ret = ft_substr(s, 0, i);
-    return (ret);
+	i = 0;
+	while (state.envp[i])
+	{
+		if (!ft_strncmp(state.envp[i], env, ft_strlen(env)))
+		{
+			free(state.envp[i]);
+			state.envp[i] = ft_strdup(line);
+			break ;
+		}
+		i++;
+	}
 }
 
-void    free_command(void *com)
+void	ft_create_env(char	*line)
 {
-    t_command   command;
+	char	**tab;
+	int		i;
 
-    command = *(t_command *)com;
-    free_tab(command.args);
-    free(com);
+	tab = malloc((ft_tablen(state.envp) + 2) * sizeof(char *));
+	i = 0;
+	while (state.envp[i])
+	{
+		tab[i] = ft_strdup(state.envp[i]);
+		i++;
+	}
+	tab[i++] = ft_strdup(line);
+	tab[i] = NULL;
+	free_tab(state.envp);
+	state.envp = tab;
+}
+
+char	*get_next_word(char *s)
+{
+	int i;
+	char *ret;
+
+	i = 0;
+	while (s[i] && s[i] != ' ' && s[i] != '"' && s[i] != '\'' && s[i] != '/' && s[i] != '\\')
+	   i++;
+	ret = ft_substr(s, 0, i);
+	return (ret);
+}
+
+void	free_command(void *com)
+{
+	t_command   command;
+
+	command = *(t_command *)com;
+	free_tab(command.args);
+	free(com);
 }
