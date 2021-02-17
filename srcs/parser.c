@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 11:11:49 by iharchi           #+#    #+#             */
-/*   Updated: 2021/02/11 17:00:55 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/02/17 17:14:12 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ t_command	parse_command(char *command)
 	//			and does have something other than / or whitespace after it
 	command = replace_envvars(command);
 	ret.args = ft_split_args(command, ' ');
+	// FIXME: FT_STRTRIM doesnt work when env="stuff"
 	ret.args = strip_quotes(ret.args);
 	ret.command = ret.args[0];
 	ret.argc = get_tab_size(ret.args);

@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 17:36:37 by iharchi           #+#    #+#             */
-/*   Updated: 2021/02/11 17:09:02 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/02/17 17:17:35 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,10 @@ int	command_export(char **args, int argc)
 	ptr = ft_strrchr(args[1], '=');
 	if (ptr != NULL)
 	{
-		// TODO : Check if it exist or not, then act accordinly
 		env = ft_substr(args[1], 0, ft_strlen(args[1]) - ft_strlen(ptr));
 		env_val = ft_get_env(env);
 		if (*env_val != 0)
-			ft_set_env(env, args[1]);
+			ft_set_env(env, env_val + 1);
 		else
 			ft_create_env(args[1]);
 		PRINT("%s", ft_get_env(env));
@@ -150,43 +149,6 @@ int	debug_test(char **args, int argc)
 	return (ret);
 }
 
-// TODO : REMOVE THIS
-int	command_ls(char **args, int argc)
-{
-	char	*path;
-	DIR		*dir;
-	struct	dirent *dp;
-	
-	
-	if (argc < 2)
-		path = ft_strdup(".");
-	else
-		path = args[1];
-	if (argc > 2)
-	{
-		//free
-		return (-2);
-	}
-	if ((dir = opendir(path)))
-	{
-		while ((dp = readdir(dir)))
-		{
-			if (dp->d_type == 4)
-			{
-				PRINT(" \e[32m%s\e[39m \n", dp->d_name);
-			}
-			else
-			{
-				PRINT(" %s \n", dp->d_name);
-			}
-			
-		}
-	}
-	else
-		return (-3);
-	return (0);
-		
-}
 int	command_env(char **args, int argc)
 {
 	int	i;
@@ -203,21 +165,12 @@ int	command_env(char **args, int argc)
 	return (0);
 }
 
-// TODO : REMOVE THIS
+// TODO : 
 int	debug_exit(char **args, int argc)
 {
 	(void) argc;
 	(void) args;
 	exit(0);
-	return (0);
-}
-
-// TODO : REMOVE THIS
-int	debug_clear(char **args, int argc)
-{
-	(void) args;
-	(void) argc;
-	system("clear");
 	return (0);
 }
 

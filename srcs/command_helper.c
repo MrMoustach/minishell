@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 10:43:53 by iharchi           #+#    #+#             */
-/*   Updated: 2021/02/08 14:36:29 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/02/17 16:58:06 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,18 @@ char	*ft_get_env(char *env)
 void	ft_set_env(char	*env, char *line)
 {
 	int		i;
+	char	*tmp;
 
 	i = 0;
 	while (state.envp[i])
 	{
 		if (!ft_strncmp(state.envp[i], env, ft_strlen(env)))
 		{
-			free(state.envp[i]);
-			state.envp[i] = ft_strdup(line);
+			free(state.envp[i]);;
+			tmp = ft_strjoin("=", line); 
+			state.envp[i] = ft_strjoin(env, tmp);
+			free(tmp);
+			PRINT("%s", state.envp[i]);
 			break ;
 		}
 		i++;
