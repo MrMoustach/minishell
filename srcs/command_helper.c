@@ -25,7 +25,7 @@ char	*ft_get_env(char *env)
 	while (state.envp[i])
 	{
 		tab = ft_split(state.envp[i], '=');
-		if (!ft_strncmp(tab[0], env, ft_strlen(env)))
+		if (!ft_strncmp(tab[0], env, ft_strlen(env) + 1))
 		{
 			home = ft_strdup(tab[1]);
 			free_tab(tab);
@@ -51,7 +51,6 @@ void	ft_set_env(char	*env, char *line)
 			tmp = ft_strjoin("=", line); 
 			state.envp[i] = ft_strjoin(env, tmp);
 			free(tmp);
-			PRINT("%s", state.envp[i]);
 			break ;
 		}
 		i++;
@@ -71,7 +70,7 @@ void	ft_create_env(char	*line)
 		i++;
 	}
 	tab[i++] = ft_strdup(line);
-	tab[i] = NULL;
+	tab[i][0] = '\0';
 	free_tab(state.envp);
 	state.envp = tab;
 }

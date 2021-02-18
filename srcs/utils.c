@@ -45,6 +45,5 @@ char    **dup_tab(char **src)
         tab[i] = ft_strdup(src[i]);
         i++;
     }
-    tab[i] = '\0';
     return (tab);
 }
