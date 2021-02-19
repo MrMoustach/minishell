@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 11:12:14 by iharchi           #+#    #+#             */
-/*   Updated: 2021/02/08 15:16:29 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/02/19 10:29:44 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void    free_command(void *com);
 char	*replace_envvars(char *var);
 int	command_export(char **args, int argc);
 void	ft_set_env(char	*env, char *line);
-void	ft_create_env(char	*line);
+void	ft_create_env(char *env, char *line);
 int		ft_tablen(char **tab);
 char    **dup_tab(char **src);
 
