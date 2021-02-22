@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 11:11:49 by iharchi           #+#    #+#             */
-/*   Updated: 2021/02/17 17:14:12 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/02/22 10:18:06 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,12 @@ int get_tab_size(char **tab)
 		i++;
 	return (i);
 }
-
+// FIXME:  dyfunctional
+/*
+** this function parses the invidual command and strip its args from quotes, it 
+** it has a lot of bugs 
+** Needs to be changed
+*/
 t_command	parse_command(char *command)
 {
 	t_command ret;
