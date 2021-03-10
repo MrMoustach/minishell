@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 10:43:53 by iharchi           #+#    #+#             */
-/*   Updated: 2021/02/20 15:08:17 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/03/10 10:39:41 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,19 +61,19 @@ void	ft_create_env(char *env, char *line)
 {
 	char	**tab;
 	int		i;
-	char	*tmp;
+	// char	*tmp;
 
-	tab = malloc((ft_tablen(state.envp) + 2) * sizeof(char *));
+	tab = malloc((ft_tablen(state.envp) + 3) * sizeof(char *));
 	i = 0;
 	while (state.envp[i])
 	{
 		tab[i] = ft_strdup(state.envp[i]);
 		i++;
 	}
-	tmp = ft_strjoin("=", line);
-	tab[i++] = ft_strjoin(env, tmp);
-	free (tmp);
-	tab[i][0] = '\0';
+	// tmp = ft_strjoin("=", line);
+	tab[i++] = ft_strjoin(env, line);
+	// free (tmp);
+	tab[i] = ft_strdup("\0");
 	free_tab(state.envp);
 	state.envp = tab;
 }

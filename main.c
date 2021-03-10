@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 11:15:08 by iharchi           #+#    #+#             */
-/*   Updated: 2021/02/10 17:38:23 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/03/10 10:39:46 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int main(int argc, char *argv[], char *envp[])
 	state.argc = argc;
 	init_shell(envp);
 	signal(SIGINT, signal_handler);
-	// int fd = open("command", O_RDONLY);
+	int fd = open("command", O_RDONLY);
 	while (killSig)
 	{
 		refresh_shell();
@@ -40,7 +40,7 @@ int main(int argc, char *argv[], char *envp[])
 		ft_lstclear(&commands, free_command);
 		free(commands);
 	}
-	// close (fd);
+	close (fd);
 	system("clear");
 	return (0);
 }

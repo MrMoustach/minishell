@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 17:36:37 by iharchi           #+#    #+#             */
-/*   Updated: 2021/02/20 15:05:10 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/03/10 10:39:22 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ int	command_export(char **args, int argc)
 			ft_set_env(env, ptr);
 		else
 			ft_create_env(env, ptr);
-		PRINT("%s", ft_get_env(env));
 		free(env);
 		free(env_val);
 	}

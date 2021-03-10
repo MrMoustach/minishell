@@ -1,1 +1,1 @@
-echo $LL
+export TEST=echo
