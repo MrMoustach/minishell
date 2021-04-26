@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 11:11:49 by iharchi           #+#    #+#             */
-/*   Updated: 2021/02/22 10:18:06 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/03/10 12:03:46 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,21 @@ int get_tab_size(char **tab)
 		i++;
 	return (i);
 }
+
+int			get_type_command(char *command)
+{
+	char *stripped;
+
+	stripped = ft_strtrim(command, "'\"");
+	if (ft_strncmp(stripped, EXPORT, ft_strlen(EXPORT)) || ft_strncmp(stripped, SET, ft_strlen(SET)))
+	{
+		free(stripped);
+		return (COMMAND_SETTER);
+	}
+	free(stripped);
+	return (COMMAND_NORMAL);
+}
+
 // FIXME:  dyfunctional
 /*
 ** this function parses the invidual command and strip its args from quotes, it 
@@ -96,12 +111,21 @@ int get_tab_size(char **tab)
 t_command	parse_command(char *command)
 {
 	t_command ret;
+	char		*tmp;
 	// TODO : 	Replace tilde with the home if its not procesded with a character
 	//			and does have something other than / or whitespace after it
 	command = replace_envvars(command);
 	ret.args = ft_split_args(command, ' ');
+	ret.type = get_type_command(ret.args[0]);
 	// FIXME: FT_STRTRIM doesnt work when env="stuff"
-	ret.args = strip_quotes(ret.args);
+	if (ret.type != COMMAND_SETTER)
+		ret.args = strip_quotes(ret.args);
+	else
+	{
+		tmp = ft_strtrim(ret.args[0], "'\"");
+		free(ret.args[0]);
+		ret.args[0] = tmp;
+	}
 	ret.command = ret.args[0];
 	ret.argc = get_tab_size(ret.args);
 	free(command);

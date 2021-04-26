@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 17:36:37 by iharchi           #+#    #+#             */
-/*   Updated: 2021/03/10 10:39:22 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/03/10 12:02:58 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,30 +30,31 @@ int	command_cd(char **args, int argc)
 // FIXME : segfaults
 int	command_export(char **args, int argc)
 {
-	char	*ptr;
-	char	*env;
-	char	*env_val;
+	// char	*ptr;
+	// char	*env;
+	// char	*env_val;
 
 	if (argc == 1)
 		return (command_env(args, argc));
-	ptr = ft_strrchr(args[1], '=');
-	ptr = ft_strdup(ptr + 1);
-	env = ptr;
-	// TODO : maybe change it in the parsing section ??
-	ptr = ft_strtrim(ptr, "\"'");
-	free (env);
-	if (ptr != NULL)
-	{
-		env = ft_substr(args[1], 0, ft_strlen(args[1]) - ft_strlen(ptr));
-		env_val = ft_get_env(env);
-		if (*env_val != 0)
-			ft_set_env(env, ptr);
-		else
-			ft_create_env(env, ptr);
-		free(env);
-		free(env_val);
-	}
-	free (ptr);
+	// ptr = ft_strrchr(args[1], '=');
+	// ptr = ft_strdup(ptr + 1);
+	// env = ptr;
+	// // TODO : maybe change it in the parsing section ??
+	// ptr = ft_strtrim(ptr, "\"'");
+	// free (env);
+	// if (ptr != NULL)
+	// {
+	// 	env = ft_substr(args[1], 0, ft_strlen(args[1]) - ft_strlen(ptr));
+	// 	env_val = ft_get_env(env);
+	// 	if (*env_val != 0)
+	// 		ft_set_env(env, ptr);
+	// 	else
+	// 		ft_create_env(env, ptr);
+	// 	free(env);
+	// 	free(env_val);
+	// }
+	// free (ptr);
+	printf("%s\n", args[1]);
 	return (0);
 }
 

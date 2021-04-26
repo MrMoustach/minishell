@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 11:12:14 by iharchi           #+#    #+#             */
-/*   Updated: 2021/02/19 10:29:44 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/03/10 12:36:35 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,23 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 
+/*
+*	Macros
+*/
+# define COMMAND_SETTER 911
+# define COMMAND_NORMAL 112
+# define EXPORT "export"
+# define SET "set"
+/*
+*	Structs
+*/
 typedef struct	s_command
 {
 	char		*command;
 	char		**args;
 	int			argc;
 	int			token;
+	int			type;
 }				 t_command;
 
 typedef	struct	s_builtin
