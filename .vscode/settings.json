@@ -5,14 +5,14 @@
         "FIXME",
         "TODO",
         "XXX",
-        "TODO (omar)",
-        "TODO (issam)",
+        "(omar) TODO",
+        "(issam) TODO",
         "NORM",
         "LEAK"
     ],
     "todo-tree.general.tagGroups": {
         
-        "TODO": ["TODO","TODO (omar)", "TODO (issam)"] 
+        "TODO": ["TODO","(omar) TODO", "(issam) TODO"] 
     },
     "todo-tree.highlights.useColourScheme": true,
 }
