@@ -6,14 +6,14 @@
 /*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:13:22 by zed               #+#    #+#             */
-/*   Updated: 2021/09/17 14:16:04 by zed              ###   ########.fr       */
+/*   Updated: 2021/09/17 14:17:07 by zed              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL
 # define MINISHELL
 
-#include <stdio.h>
-#include "../libft/libft.h"
+# include <stdio.h>
+# include "../libft/libft.h"
 
 #endif
