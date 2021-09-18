@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: zed <zed@student.42.fr>                    +#+  +:+       +#+         #
+#    By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/17 14:26:01 by zed               #+#    #+#              #
-#    Updated: 2021/09/17 14:26:46 by zed              ###   ########.fr        #
+#    Updated: 2021/09/18 16:07:27 by iharchi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,4 +36,4 @@ re : fclean all
 
 test :
 			@gcc  -g main.c $(SRC) $(LIBFT)libft.a $(FLAG) -o $(NAME) 	
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re test
