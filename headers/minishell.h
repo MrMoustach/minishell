@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:13:22 by zed               #+#    #+#             */
-/*   Updated: 2021/09/18 15:30:09 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/09/18 17:13:49 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,7 @@
 # include "../libft/libft.h"
 # include "types.h"
 
-int	ft_isalphanum(char c);
+char	**sort_env(char **envp);
+void	add_token(t_token *token, t_list **tokens);
+t_token	*create_token(char *str);
 #endif
