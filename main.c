@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:17:14 by zed               #+#    #+#             */
-/*   Updated: 2021/09/18 17:53:52 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/09/18 22:41:26 by zed              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,86 @@ t_spliter spliter (char *line)
 	return (spliter);
 }
 
+void	tokenizer(t_list *tokens)
+{
+	int	context;
+	t_list	*tmp;
+	char *str;
+	
+	context = 0;
+	tmp = tokens;
+	while (tmp) 
+	{
+		str = ((t_token *)tmp->content)->str;
+		if (!ft_strncmp(str, "|", ft_strlen(str)))
+		{
+			((t_token *)tmp->content)->type = PIPE;
+			context = 0;
+		}
+		else if (!ft_strncmp(str, ";", ft_strlen(str)))
+		{
+			((t_token *)tmp->content)->type = END;
+			context = 0;
+		}
+		else if (!ft_strncmp(str, "&&", ft_strlen(str) ))
+		{
+			((t_token *)tmp->content)->type = RANDOM;
+			context = 0;
+		}
+		else if (!ft_strncmp(str, "||", ft_strlen(str)))
+		{
+			((t_token *)tmp->content)->type = RANDOM;
+			context = 0;
+		}
+		else if (!ft_strncmp(str, "&", ft_strlen(str)))
+		{
+			((t_token *)tmp->content)->type = AND;
+			context = 0;
+		}
+		else if (!ft_strncmp(str, ">", ft_strlen(str)))
+		{
+			((t_token *)tmp->content)->type = REDIRECTION;
+			((t_token *)tmp->content)->direction = RIGHT;
+			context = 3;
+		}
+		else if (!ft_strncmp(str, ">>", ft_strlen(str)))
+		{
+			((t_token *)tmp->content)->type = APPEND;
+			((t_token *)tmp->content)->direction = RIGHT;
+			context = 3;
+		}
+		else if (!ft_strncmp(str, "<", ft_strlen(str)))
+		{
+			((t_token *)tmp->content)->type = REDIRECTION;
+			((t_token *)tmp->content)->direction = LEFT;
+			context = 3;
+		}
+		else if (!ft_strncmp(str, "<<", ft_strlen(str)))
+		{
+			((t_token *)tmp->content)->type = APPEND;
+			((t_token *)tmp->content)->direction = LEFT;
+			context = 3;
+		}
+		else
+		{
+			if (context == 0)
+			{
+				context = 1;
+				((t_token *)tmp->content)->type = COMMAND;
+			}
+			else if (context == 1)
+			{
+				((t_token *)tmp->content)->type = ARG;
+			}
+			else
+			{
+				((t_token *)tmp->content)->type = FILES;
+			}
+		}
+		tmp = tmp->next;
+	}
+}
+
 int	main(int ac, char **av, char **envp)
 {
 	t_spliter split;
@@ -119,10 +199,31 @@ int	main(int ac, char **av, char **envp)
 	if (ac > 1)
 	{
 		split = spliter(av[1]);
+		tokenizer(split.tokens);
 		tmp = split.tokens;
 		while (tmp)
 		{
 			printf("TOKEN : %s\n", ((t_token *)tmp->content)->str);
+			printf("TYPE : ");
+			if (((t_token *)tmp->content)->type == COMMAND)
+				printf("COMMAND\n");
+			if (((t_token *)tmp->content)->type == ARG)
+				printf("ARG\n");
+			if (((t_token *)tmp->content)->type == FILES)
+				printf("FILES\n");
+			if (((t_token *)tmp->content)->type == REDIRECTION)
+				printf("REDIRECTION\n");
+			if (((t_token *)tmp->content)->type == APPEND)
+				printf("APPEND\n");
+			if (((t_token *)tmp->content)->type == END)
+				printf("END\n");
+			if (((t_token *)tmp->content)->type == AND)
+				printf("AND\n");
+			if (((t_token *)tmp->content)->type == RANDOM)
+				printf("RANDOM\n");
+			if (((t_token *)tmp->content)->type == PIPE)
+				printf("PIPE\n");
+			printf("--------------------------------\n");
 			tmp = tmp->next;
 		}
 	}
