@@ -6,7 +6,7 @@
 /*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:17:14 by zed               #+#    #+#             */
-/*   Updated: 2021/09/18 22:41:26 by zed              ###   ########.fr       */
+/*   Updated: 2021/09/18 22:50:42 by zed              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ t_spliter spliter (char *line)
 	return (spliter);
 }
 
+// (issam) TODO : Clean up this shit
 void	tokenizer(t_list *tokens)
 {
 	int	context;
@@ -205,24 +206,7 @@ int	main(int ac, char **av, char **envp)
 		{
 			printf("TOKEN : %s\n", ((t_token *)tmp->content)->str);
 			printf("TYPE : ");
-			if (((t_token *)tmp->content)->type == COMMAND)
-				printf("COMMAND\n");
-			if (((t_token *)tmp->content)->type == ARG)
-				printf("ARG\n");
-			if (((t_token *)tmp->content)->type == FILES)
-				printf("FILES\n");
-			if (((t_token *)tmp->content)->type == REDIRECTION)
-				printf("REDIRECTION\n");
-			if (((t_token *)tmp->content)->type == APPEND)
-				printf("APPEND\n");
-			if (((t_token *)tmp->content)->type == END)
-				printf("END\n");
-			if (((t_token *)tmp->content)->type == AND)
-				printf("AND\n");
-			if (((t_token *)tmp->content)->type == RANDOM)
-				printf("RANDOM\n");
-			if (((t_token *)tmp->content)->type == PIPE)
-				printf("PIPE\n");
+			printf("%s\n", types[(int)((t_token *)tmp->content)->type]);
 			printf("--------------------------------\n");
 			tmp = tmp->next;
 		}
