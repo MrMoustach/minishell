@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:17:14 by zed               #+#    #+#             */
-/*   Updated: 2021/09/19 15:15:37 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/09/19 16:20:36 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,12 @@ t_spliter spliter (char *line)
 				{	
 					spliter.in_quotes = 0;
 					spliter.quotes = '\0';
-					spliter.i++;
-					spliter.last_word = ft_substr(line, spliter.word_start, spliter.i - spliter.word_start);
-					while (line[spliter.i] && line[spliter.i] == ' ')
-						spliter.i++;
-					spliter.word_start = spliter.i;
-					add_token(create_token(spliter.last_word), &(spliter.tokens));
+					// spliter.i++;
+					// spliter.last_word = ft_substr(line, spliter.word_start, spliter.i - spliter.word_start);
+					// while (line[spliter.i] && line[spliter.i] == ' ')
+					// 	spliter.i++;
+					// spliter.word_start = spliter.i;
+					// add_token(create_token(spliter.last_word), &(spliter.tokens));
 				}
 			}
 			else
@@ -78,8 +78,8 @@ t_spliter spliter (char *line)
 				spliter.in_quotes = 1;
 				spliter.quotes = line[spliter.i];
 			}
-			spliter.i++;
-			continue;
+			// spliter.i++;
+			// continue;
 		}
 		if (!spliter.in_quotes)
 		{
