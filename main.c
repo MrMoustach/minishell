@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:17:14 by zed               #+#    #+#             */
-/*   Updated: 2021/09/18 22:50:42 by zed              ###   ########.fr       */
+/*   Updated: 2021/09/19 14:50:29 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*ft_chardup(char c, int n)
 	return (s);
 }
 
-void	split_extra(t_spliter *spliter, char *line, char delim)
+t_spliter	split_extra(t_spliter *spliter, char *line, char delim)
 {
 	if (spliter->i != spliter->word_start)
 	{
@@ -39,13 +39,12 @@ void	split_extra(t_spliter *spliter, char *line, char delim)
 		spliter->i++;
 	}
 	else
-	{
 		add_token(create_token(ft_chardup(delim, 1)), &(spliter->tokens));
-	}
 	spliter->i++;
 	while (line[spliter->i] && line[spliter->i] == ' ')
 		spliter->i++;
 	spliter->word_start = spliter->i;
+	return (*spliter);
 }
 
 t_spliter spliter (char *line)
@@ -80,7 +79,7 @@ t_spliter spliter (char *line)
 		{
 			if (line[spliter.i] == '>' || line[spliter.i] == '<' || line[spliter.i] == '|' || line[spliter.i] == ';' || line[spliter.i] == '&')
 			{
-				split_extra(&spliter, line, line[spliter.i]);
+				spliter = split_extra(&spliter, line, line[spliter.i]);
 				continue ;
 			}
 			if (line[spliter.i] == ' ')
@@ -114,12 +113,14 @@ void	tokenizer(t_list *tokens)
 	int	context;
 	t_list	*tmp;
 	char *str;
+	t_token	*token;
 	
 	context = 0;
 	tmp = tokens;
 	while (tmp) 
 	{
 		str = ((t_token *)tmp->content)->str;
+		token = ((t_token *)tmp->content);
 		if (!ft_strncmp(str, "|", ft_strlen(str)))
 		{
 			((t_token *)tmp->content)->type = PIPE;
@@ -147,8 +148,8 @@ void	tokenizer(t_list *tokens)
 		}
 		else if (!ft_strncmp(str, ">", ft_strlen(str)))
 		{
-			((t_token *)tmp->content)->type = REDIRECTION;
-			((t_token *)tmp->content)->direction = RIGHT;
+			token->type = REDIRECTION;
+			token->direction = RIGHT;
 			context = 3;
 		}
 		else if (!ft_strncmp(str, ">>", ft_strlen(str)))
@@ -193,6 +194,7 @@ int	main(int ac, char **av, char **envp)
 {
 	t_spliter split;
 	t_list	*tmp;
+	t_token	token;
 	envp = sort_env(envp);
 	// (omar) TODO  : Provide the line, and work on history / readline stuff
 	// (issam) TODO : parse line into idividual commands, expand what can be expanded, and escape stuff return data as a command struct
@@ -204,9 +206,10 @@ int	main(int ac, char **av, char **envp)
 		tmp = split.tokens;
 		while (tmp)
 		{
-			printf("TOKEN : %s\n", ((t_token *)tmp->content)->str);
+			token = *((t_token *)tmp->content);
+			printf("TOKEN : %s\n", token.str);
 			printf("TYPE : ");
-			printf("%s\n", types[(int)((t_token *)tmp->content)->type]);
+			printf("%s\n", types[(int)token.type]);
 			printf("--------------------------------\n");
 			tmp = tmp->next;
 		}

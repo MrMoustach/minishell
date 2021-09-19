@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 16:18:57 by zed               #+#    #+#             */
-/*   Updated: 2021/09/18 22:33:38 by zed              ###   ########.fr       */
+/*   Updated: 2021/09/19 14:50:15 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ enum e_dir	{LEFT, RIGHT};
 typedef struct	s_token
 {
 	enum e_type type;
-	char		*str;
 	enum e_dir	direction;
+	char		*str;
 }				t_token;
 
 typedef struct	s_spliter
