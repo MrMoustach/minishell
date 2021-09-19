@@ -3,12 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   dev.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 22:45:58 by zed               #+#    #+#             */
-/*   Updated: 2021/09/18 22:52:24 by zed              ###   ########.fr       */
+/*   Updated: 2021/09/19 15:16:38 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/minishell.h"
-char *types[] = {"COMMAND", "ARG", "REDIRECTION", "APPEND", "PIPE", "END", "AND", "FILES", "RANDOM"};
+char *types[] = {"COMMAND", "ARG", "REDIRECTION", "APPEND", "PIPE", "END", "AND", "FILE", "RANDOM"};
