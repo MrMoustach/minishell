@@ -64,7 +64,7 @@ fclean: clean
 re: fclean all
 
 $(NAME): $(OBJS) $(LIBFT)
-	gcc $(LIBFT) $(OBJS) $(FLAGS) -o $(NAME)
+	gcc $(OBJS) $(LIBFT) $(FLAGS) -o $(NAME)
 
 $(LIBFT):
 	make -sC ./libft
