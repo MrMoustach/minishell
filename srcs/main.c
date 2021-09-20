@@ -6,7 +6,7 @@
 /*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:17:14 by zed               #+#    #+#             */
-/*   Updated: 2021/09/20 07:58:26 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/09/20 08:33:05 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,22 +206,21 @@ int	main(int ac, char **av, char **envp)
 	envp = sort_env(envp);
 	// (omar) TODO  : Provide the line, and work on history / readline stuff
 	// (issam) TODO : parse line into idividual commands, expand what can be expanded, and escape stuff return data as a command struct
-
-	line = readline();
-
-	// if (ac > 1)
-	// {
-	// 	split = spliter(av[1]);
-	// 	tokenizer(split.tokens);
-	// 	tmp = split.tokens;
-	// 	while (tmp)
-	// 	{
-	// 		token = *((t_token *)tmp->content);
-	// 		printf("TOKEN : %s\n", token.str);
-	// 		printf("TYPE : ");
-	// 		printf("%s\n", types[(int)token.type]);
-	// 		printf("--------------------------------\n");
-	// 		tmp = tmp->next;
-	// 	}
-	// }
+	
+	while (1)
+	{
+		line = readline("> ");
+		split = spliter(line);
+		tokenizer(split.tokens);
+		tmp = split.tokens;
+		while (tmp)
+		{
+			token = *((t_token *)tmp->content);
+			printf("TOKEN : %s\n", token.str);
+			printf("TYPE : ");
+			printf("%s\n", types[(int)token.type]);
+			printf("--------------------------------\n");
+			tmp = tmp->next;
+		}
+	}
 }
