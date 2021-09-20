@@ -6,7 +6,7 @@
 #    By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/17 14:26:01 by zed               #+#    #+#              #
-#    Updated: 2021/09/20 08:30:01 by omimouni         ###   ########.fr        #
+#    Updated: 2021/09/20 08:34:09 by omimouni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,6 +72,9 @@ $(LIBFT):
 	make -sC ./libft clean
 	mkdir -p ./libs
 	cp libft/libft.a libs/
+
+test: $(OBJS) $(LIBFT)
+	gcc $(LIBFT) $(OBJS) -g $(FLAGS) -o $(NAME)
 
 build/%.o: srcs/%.c
 	@mkdir -p $(dir $@)
