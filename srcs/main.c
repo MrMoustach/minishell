@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:17:14 by zed               #+#    #+#             */
-/*   Updated: 2021/09/19 16:20:36 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/09/20 07:58:26 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "headers/minishell.h"
+#include "minishell.h"
 
 char	*ft_chardup(char c, int n)
 {
@@ -202,23 +202,26 @@ int	main(int ac, char **av, char **envp)
 	t_spliter split;
 	t_list	*tmp;
 	t_token	token;
+	char	*line;
 	envp = sort_env(envp);
 	// (omar) TODO  : Provide the line, and work on history / readline stuff
 	// (issam) TODO : parse line into idividual commands, expand what can be expanded, and escape stuff return data as a command struct
 
-	if (ac > 1)
-	{
-		split = spliter(av[1]);
-		tokenizer(split.tokens);
-		tmp = split.tokens;
-		while (tmp)
-		{
-			token = *((t_token *)tmp->content);
-			printf("TOKEN : %s\n", token.str);
-			printf("TYPE : ");
-			printf("%s\n", types[(int)token.type]);
-			printf("--------------------------------\n");
-			tmp = tmp->next;
-		}
-	}
+	line = readline();
+
+	// if (ac > 1)
+	// {
+	// 	split = spliter(av[1]);
+	// 	tokenizer(split.tokens);
+	// 	tmp = split.tokens;
+	// 	while (tmp)
+	// 	{
+	// 		token = *((t_token *)tmp->content);
+	// 		printf("TOKEN : %s\n", token.str);
+	// 		printf("TYPE : ");
+	// 		printf("%s\n", types[(int)token.type]);
+	// 		printf("--------------------------------\n");
+	// 		tmp = tmp->next;
+	// 	}
+	// }
 }

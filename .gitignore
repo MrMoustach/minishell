@@ -1,1 +1,6 @@
 minishell
+*.dSYM
+build/
+libs/
+*.a
+*.o
