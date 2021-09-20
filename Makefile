@@ -6,7 +6,7 @@
 #    By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/17 14:26:01 by zed               #+#    #+#              #
-#    Updated: 2021/09/20 08:27:31 by omimouni         ###   ########.fr        #
+#    Updated: 2021/09/20 08:30:01 by omimouni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ OBJS = $(subst srcs/,build/, $(patsubst %.c,%.o,$(SRCS)))
 
 OBJ_FLAG = -c -I./headers
 
-FLAGS = 
+FLAGS = -lreadline
 
 LIBFT = libs/libft.a
 
