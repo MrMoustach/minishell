@@ -74,7 +74,7 @@ $(LIBFT):
 	cp libft/libft.a libs/
 
 test: $(OBJS) $(LIBFT)
-	gcc $(LIBFT) $(OBJS) -g $(FLAGS) -o $(NAME)
+	gcc $(OBJS) $(LIBFT)  -g $(FLAGS) -o $(NAME)
 
 build/%.o: srcs/%.c
 	@mkdir -p $(dir $@)
