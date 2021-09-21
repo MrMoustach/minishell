@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 16:18:57 by zed               #+#    #+#             */
-/*   Updated: 2021/09/20 09:26:37 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/09/21 15:26:59 by zed              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct	s_token
 	enum e_type type;
 	enum e_dir	direction;
 	char		*str;
+	int			empty;
 }				t_token;
 
 typedef struct	s_spliter
@@ -34,4 +35,13 @@ typedef struct	s_spliter
 	int		word_start;
 	t_list	*tokens;
 }				t_spliter;
+
+typedef struct	s_syntax
+{
+	t_token		current;
+	t_token		prev;
+	t_token		next;
+	int			context;
+	int			error;
+}				t_syntax;
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:13:22 by zed               #+#    #+#             */
-/*   Updated: 2021/09/20 09:27:26 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/09/21 15:07:45 by zed              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,7 @@
 char	**sort_env(char **envp);
 void	add_token(t_token *token, t_list **tokens);
 t_token	*create_token(char *str);
+void	tokenizer(t_list *tokens);
+t_spliter spliter (char *line);
+char	*ft_chardup(char c, int n);
 #endif
