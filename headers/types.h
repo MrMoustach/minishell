@@ -6,7 +6,7 @@
 /*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 16:18:57 by zed               #+#    #+#             */
-/*   Updated: 2021/09/21 15:26:59 by zed              ###   ########.fr       */
+/*   Updated: 2021/09/21 16:04:43 by zed              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct	s_syntax
 	t_token		prev;
 	t_token		next;
 	int			context;
+	t_token		err_token;
 	int			error;
 }				t_syntax;
 #endif

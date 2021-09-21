@@ -6,13 +6,13 @@
 /*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:17:14 by zed               #+#    #+#             */
-/*   Updated: 2021/09/21 16:03:15 by zed              ###   ########.fr       */
+/*   Updated: 2021/09/21 16:06:37 by zed              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	syntax_analysis(t_list *tokens)
+t_syntax	syntax_analysis(t_list *tokens)
 {
 	t_syntax	syntax;
 	t_list		*tmp;
@@ -31,20 +31,23 @@ int	syntax_analysis(t_list *tokens)
 		if (syntax.current.type == PIPE)
 			if (syntax.prev.empty || syntax.next.empty)
 			{
+				syntax.err_token = syntax.current;
 				syntax.error = 1;
-				return (syntax.error);
+				return (syntax);
 			}
 		if (syntax.current.type == REDIRECTION || syntax.current.type == APPEND)
 		{
 			if (syntax.next.empty)
 			{
+				syntax.err_token = syntax.current;
 				syntax.error = 2;
-				return (syntax.error);
+				return (syntax);
 			}
 			if (syntax.next.type != FILES)
 			{
+				syntax.err_token = syntax.current;
 				syntax.error = 3;
-				return (syntax.error);
+				return (syntax);
 			}
 		}
 
@@ -59,7 +62,7 @@ int	syntax_analysis(t_list *tokens)
 		syntax.current = syntax.next;
 		tmp = tmp->next;
 	}
-	return (syntax.error);
+	return (syntax);
 }
 
 int	main(int ac, char **av, char **envp)
@@ -68,7 +71,7 @@ int	main(int ac, char **av, char **envp)
 	t_list	*tmp;
 	t_token	token;
 	char	*line;
-	int		error;
+	t_syntax	syntax;
 	envp = sort_env(envp);
 	// (omar) TODO  : Provide the line, and work on history / readline stuff
 	// (issam) TODO : parse line into idividual commands, expand what can be expanded, and escape stuff return data as a command struct
@@ -86,10 +89,10 @@ int	main(int ac, char **av, char **envp)
 		split = spliter(line);
 		tokenizer(split.tokens);
 		tmp = split.tokens;
-		error = syntax_analysis(split.tokens);
-		if (error)
+		syntax = syntax_analysis(split.tokens);
+		if (syntax.error)
 		{
-			printf("syntax error m8 code : %d\n", error);
+			printf("syntax error m8 code : %d near %s\n", syntax.error, syntax.err_token.str);
 			continue;
 		}
 		while (tmp)
