@@ -6,7 +6,7 @@
 /*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 16:18:57 by zed               #+#    #+#             */
-/*   Updated: 2021/09/21 16:04:43 by zed              ###   ########.fr       */
+/*   Updated: 2021/09/21 16:46:59 by zed              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@ typedef struct	s_token
 	enum e_dir	direction;
 	char		*str;
 	int			empty;
+	int			arg_count;
+	char		**args;
+	char		*output;
 }				t_token;
 
 typedef struct	s_spliter
@@ -41,8 +44,15 @@ typedef struct	s_syntax
 	t_token		current;
 	t_token		prev;
 	t_token		next;
-	int			context;
 	t_token		err_token;
 	int			error;
 }				t_syntax;
+
+typedef	struct	s_parser
+{
+	t_token		*last_command;
+	t_token		*current;
+}				t_parser;
+
+
 #endif

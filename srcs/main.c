@@ -6,64 +6,11 @@
 /*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:17:14 by zed               #+#    #+#             */
-/*   Updated: 2021/09/21 16:06:37 by zed              ###   ########.fr       */
+/*   Updated: 2021/09/21 16:32:02 by zed              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-t_syntax	syntax_analysis(t_list *tokens)
-{
-	t_syntax	syntax;
-	t_list		*tmp;
-
-	tmp = tokens;
-	syntax.current = *((t_token *)(tmp->content));
-	syntax.prev.empty = 1;
-	syntax.error = 0;
-	while (tmp)
-	{
-		if (tmp->next)
-			syntax.next = *((t_token *)(tmp->next->content));
-		else
-			syntax.next.empty = 1;
-
-		if (syntax.current.type == PIPE)
-			if (syntax.prev.empty || syntax.next.empty)
-			{
-				syntax.err_token = syntax.current;
-				syntax.error = 1;
-				return (syntax);
-			}
-		if (syntax.current.type == REDIRECTION || syntax.current.type == APPEND)
-		{
-			if (syntax.next.empty)
-			{
-				syntax.err_token = syntax.current;
-				syntax.error = 2;
-				return (syntax);
-			}
-			if (syntax.next.type != FILES)
-			{
-				syntax.err_token = syntax.current;
-				syntax.error = 3;
-				return (syntax);
-			}
-		}
-
-
-		// if (!syntax.prev.empty)
-		// 	printf("prev token : %s | ", syntax.prev.str);
-		// printf("current token : %s | ", syntax.current.str);
-		// if (!syntax.next.empty)
-		// 	printf("next token : %s", syntax.next.str);
-		// printf("\n");
-		syntax.prev = syntax.current;
-		syntax.current = syntax.next;
-		tmp = tmp->next;
-	}
-	return (syntax);
-}
 
 int	main(int ac, char **av, char **envp)
 {
