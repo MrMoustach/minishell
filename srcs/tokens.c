@@ -6,7 +6,7 @@
 /*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 16:45:17 by iharchi           #+#    #+#             */
-/*   Updated: 2021/09/21 15:27:23 by zed              ###   ########.fr       */
+/*   Updated: 2021/09/22 22:14:30 by zed              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ t_token	*create_token(char *str)
 	token = (t_token *)malloc(sizeof(t_token *));
 	token->str = str;
 	token->empty = 0;
+	token->arg_count = 0;
 	return (token);
 }
 

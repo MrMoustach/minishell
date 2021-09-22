@@ -6,7 +6,7 @@
 /*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 16:31:46 by zed               #+#    #+#             */
-/*   Updated: 2021/09/21 16:53:01 by zed              ###   ########.fr       */
+/*   Updated: 2021/09/22 22:19:40 by zed              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,25 @@ t_syntax	syntax_analysis(t_list *tokens)
 	return (syntax);
 }
 
+char	**add_to_array(char **array, char *str, int count)
+{
+	char	**tmp;
+	int		i;
+	
+	tmp = malloc(sizeof(char *) * (count + 1));
+	i = 0;
+	while (i < count - 1)
+	{
+		tmp[i] = array[i];
+		i++;
+	}
+	tmp[i++] = str;
+	tmp[i] = NULL;
+	if (count != 1)
+		free (array);
+	return (tmp);
+}
+
 void	parser(char	*line)
 {
 	t_spliter	split;
@@ -64,6 +83,8 @@ void	parser(char	*line)
 	t_parser	parser;
 	t_list		*tmp;
 	t_list		*before;
+	t_token		token;
+	int			i;
 
 	split = spliter(line);
 	tokenizer(split.tokens);
@@ -78,16 +99,39 @@ void	parser(char	*line)
 	while (tmp)
 	{
 		parser.current = ((t_token *)tmp->content);
-		// if (parser.current->type == ARG)
-		// {
-		// 	if (before)
-		// 	{
-		// 		parser.last_command->>>>>]alsdlk[psakd[]]
-		// 	}
-		// }
+		if (parser.current->type == ARG)
+		{
+			if (before)
+			{
+				parser.last_command->arg_count++;
+				parser.last_command->args = add_to_array(parser.last_command->args, parser.current->str, parser.last_command->arg_count);
+				before->next = tmp->next;
+				free (tmp);
+				tmp = before->next;
+				continue ;
+			}
+		}
 		if (parser.current->type == COMMAND)
 			parser.last_command = parser.current;
 		before = tmp;
+		tmp = tmp->next;
+	}
+	tmp = split.tokens;
+	while (tmp)
+	{
+		token = *((t_token *)tmp->content);
+		printf("TOKEN : %s\n", token.str);
+		printf("TYPE : ");
+		printf("%s\n", types[(int)token.type]);
+		if (token.arg_count > 0)
+		{
+			i = 0;
+			printf("args : ");
+			while (i < token.arg_count)
+				printf("%s ", token.args[i++]);
+			printf("\n");
+		}
+		printf("--------------------------------\n");
 		tmp = tmp->next;
 	}
 }
