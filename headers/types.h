@@ -6,7 +6,7 @@
 /*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 16:18:57 by zed               #+#    #+#             */
-/*   Updated: 2021/09/21 16:46:59 by zed              ###   ########.fr       */
+/*   Updated: 2021/09/23 16:51:32 by zed              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,9 @@ typedef struct	s_syntax
 typedef	struct	s_parser
 {
 	t_token		*last_command;
+	t_token		*last_redirect;
 	t_token		*current;
+	int			context;
 }				t_parser;
 
 

@@ -6,7 +6,7 @@
 /*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:13:22 by zed               #+#    #+#             */
-/*   Updated: 2021/09/22 21:57:44 by zed              ###   ########.fr       */
+/*   Updated: 2021/09/23 16:17:48 by zed              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,5 @@ t_spliter spliter (char *line);
 char	*ft_chardup(char c, int n);
 t_syntax	syntax_analysis(t_list *tokens);
 void	parser(char	*line);
+void	add_token_front(t_token *token, t_list **tokens);
 #endif

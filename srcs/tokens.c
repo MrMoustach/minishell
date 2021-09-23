@@ -6,7 +6,7 @@
 /*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 16:45:17 by iharchi           #+#    #+#             */
-/*   Updated: 2021/09/22 22:14:30 by zed              ###   ########.fr       */
+/*   Updated: 2021/09/23 16:39:26 by zed              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,19 @@ t_token	*create_token(char *str)
 void	add_token(t_token *token, t_list **tokens)
 {
 	ft_lstadd_back(tokens, ft_lstnew(token));
+}
+
+void	add_token_front(t_token *token, t_list **tokens)
+{
+	// ft_lstadd_front(tokens, ft_lstnew(token));
+	t_list	*new;
+
+	printf("%d\n", ((t_token *)(*tokens)->content)->type);
+	new = ft_lstnew(token);
+	new->next = *tokens;
+	*tokens = new;
+	printf("%s\n", ((t_token *)(*tokens)->content)->str);
+	// printf("%s\n", ((t_token *)(*tokens)->next->content)->str);
 }
 
 // (issam) TODO : Clean up this shit
