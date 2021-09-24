@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 16:18:57 by zed               #+#    #+#             */
-/*   Updated: 2021/09/23 16:51:32 by zed              ###   ########.fr       */
+/*   Updated: 2021/09/24 15:39:28 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ typedef struct	s_token
 	int			empty;
 	int			arg_count;
 	char		**args;
-	char		*output;
 }				t_token;
 
 typedef struct	s_spliter

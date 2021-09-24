@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 16:31:46 by zed               #+#    #+#             */
-/*   Updated: 2021/09/24 15:23:56 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/09/24 15:43:19 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,7 +151,6 @@ void	parser(char	*line)
 		}
 		if (parser.current->type == FILES && parser.context == 1)
 		{
-			// parser.last_redirect->output = parser.current->str;
 			parser.last_redirect->args = malloc(sizeof(char *) * 2);
 			parser.last_redirect->args[0] = parser.current->str;
 			parser.last_redirect->args[1] = NULL;
@@ -162,35 +161,6 @@ void	parser(char	*line)
 			tmp = before->next;
 			continue ;
 		}
-		// if (parser.current->type == FILES && parser.context == 2)
-		// {
-		// 	if (!parser.last_command)
-		// 	{
-		// 		tmp_token = create_token(parser.current->str);
-		// 		tmp_token->type = COMMAND;
-		// 		tmp_lst = ft_lstnew(tmp_token);
-		// 		tmp_lst->next = before;
-		// 		before->next = tmp->next;
-		// 		free(tmp);
-		// 		parser.last_command = tmp_token;
-		// 		tmp = before->next;
-		// 		split.tokens = tmp_lst;
-		// 		continue ;
-		// 	}
-		// 	else
-		// 	{
-		// 		parser.last_command->arg_count++;
-		// 		parser.last_command->args = add_to_array(parser.last_command->args, parser.current->str, parser.last_command->arg_count);
-		// 		before->next = tmp->next;
-		// 		free (tmp);
-		// 		tmp = before->next;
-		// 		continue ;
-		// 	}
-		// 	before->next = tmp->next;
-		// 	free (tmp);
-		// 	tmp = before->next;
-		// 	continue ;
-		// }
 		before = tmp;
 		tmp = tmp->next;
 	}
