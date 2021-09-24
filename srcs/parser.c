@@ -6,7 +6,7 @@
 /*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 16:31:46 by zed               #+#    #+#             */
-/*   Updated: 2021/09/23 17:12:33 by zed              ###   ########.fr       */
+/*   Updated: 2021/09/23 17:51:59 by zed              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,56 +153,8 @@ void	parser(char	*line)
 			tmp = before->next;
 			continue ;
 		}
-		// if (parser.current->type == FILES && parser.context == 2)
-		// {
-		// 	if (!parser.last_command)
-		// 	{
-		// 		tmp_token = create_token(parser.current->str);
-		// 		tmp_token->type = COMMAND;
-		// 		tmp_lst = ft_lstnew(tmp_token);
-		// 		tmp_lst->next = before;
-		// 		before->next = tmp->next;
-		// 		free(tmp);
-		// 		parser.last_command = tmp_token;
-		// 		tmp = before->next;
-		// 		split.tokens = tmp_lst;
-		// 		continue ;
-		// 	}
-		// 	else
-		// 	{
-		// 		parser.last_command->arg_count++;
-		// 		parser.last_command->args = add_to_array(parser.last_command->args, parser.current->str, parser.last_command->arg_count);
-		// 		before->next = tmp->next;
-		// 		free (tmp);
-		// 		tmp = before->next;
-		// 		continue ;
-		// 	}
-		// 	before->next = tmp->next;
-		// 	free (tmp);
-		// 	tmp = before->next;
-		// 	continue ;
-		// }
 		before = tmp;
 		tmp = tmp->next;
 	}
-	tmp = split.tokens;
-	while (tmp)
-	{
-		token = *((t_token *)tmp->content);
-		printf("TOKEN : %s\n", token.str);
-		printf("TYPE : ");
-		printf("%s\n", types[(int)token.type]);
-		if (token.arg_count > 0 && token.type == COMMAND)
-		{
-			i = 0;
-			printf("args : ");
-			while (i < token.arg_count)
-				printf("%s ", token.args[i++]);
-			printf("\n");
-		}
-		if ((token.type == REDIRECTION || token.type == APPEND) && token.arg_count)
-			printf("Output : %s\n", token.args[0]);
-		printf("--------------------------------\n");
-		tmp = tmp->next;
-	}
+	print_helper(split.tokens);
 }

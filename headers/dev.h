@@ -6,7 +6,7 @@
 /*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 22:44:44 by zed               #+#    #+#             */
-/*   Updated: 2021/09/18 22:52:21 by zed              ###   ########.fr       */
+/*   Updated: 2021/09/23 17:51:30 by zed              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,4 +14,5 @@
 # define DEV_H
 // TODO: DELETE THIS IN PROD
 extern char *types[];
+void	print_helper(t_list *tokens);
 #endif
