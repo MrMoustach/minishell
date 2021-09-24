@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokens.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 16:45:17 by iharchi           #+#    #+#             */
-/*   Updated: 2021/09/23 16:39:26 by zed              ###   ########.fr       */
+/*   Updated: 2021/09/24 15:06:11 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_token	*create_token(char *str)
 {
 	t_token *token;
 	
-	token = (t_token *)malloc(sizeof(t_token *));
+	token = (t_token *)malloc(sizeof(t_token));
 	token->str = str;
 	token->empty = 0;
 	token->arg_count = 0;
@@ -26,19 +26,6 @@ t_token	*create_token(char *str)
 void	add_token(t_token *token, t_list **tokens)
 {
 	ft_lstadd_back(tokens, ft_lstnew(token));
-}
-
-void	add_token_front(t_token *token, t_list **tokens)
-{
-	// ft_lstadd_front(tokens, ft_lstnew(token));
-	t_list	*new;
-
-	printf("%d\n", ((t_token *)(*tokens)->content)->type);
-	new = ft_lstnew(token);
-	new->next = *tokens;
-	*tokens = new;
-	printf("%s\n", ((t_token *)(*tokens)->content)->str);
-	// printf("%s\n", ((t_token *)(*tokens)->next->content)->str);
 }
 
 // (issam) TODO : Clean up this shit
