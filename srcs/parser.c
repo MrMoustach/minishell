@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 16:31:46 by zed               #+#    #+#             */
-/*   Updated: 2021/09/24 15:43:19 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/09/24 15:56:03 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,24 +164,5 @@ void	parser(char	*line)
 		before = tmp;
 		tmp = tmp->next;
 	}
-	tmp = split.tokens;
-	while (tmp)
-	{
-		token = *((t_token *)tmp->content);
-		printf("TOKEN : %s\n", token.str);
-		printf("TYPE : ");
-		printf("%s\n", types[(int)token.type]);
-		if (token.arg_count > 0 && token.type == COMMAND)
-		{
-			i = 0;
-			printf("args : ");
-			while (i < token.arg_count)
-				printf("%s ", token.args[i++]);
-			printf("\n");
-		}
-		if ((token.type == REDIRECTION || token.type == APPEND) && token.arg_count)
-			printf("Output : %s\n", token.args[0]);
-		printf("--------------------------------\n");
-		tmp = tmp->next;
-	}
+	print_helper(split.tokens);
 }
