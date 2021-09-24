@@ -6,7 +6,7 @@
 /*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 16:31:46 by zed               #+#    #+#             */
-/*   Updated: 2021/09/23 17:51:59 by zed              ###   ########.fr       */
+/*   Updated: 2021/09/24 15:52:44 by zed              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ void	parser(char	*line)
 	t_token		token;
 	t_token		*tmp_token;
 	t_list		*tmp_lst;
+	t_list		*last_assignable_token;
 	int			i;
 
 	split = spliter(line);
@@ -100,6 +101,7 @@ void	parser(char	*line)
 	before = NULL;
 	parser.context = 0;
 	parser.last_command = NULL;
+	last_assignable_token = NULL;
 	while (tmp)
 	{
 		parser.current = ((t_token *)tmp->content);
@@ -115,7 +117,10 @@ void	parser(char	*line)
 				free(tmp);
 				parser.last_command = tmp_token;
 				tmp = before->next;
-				split.tokens = tmp_lst;
+				if (!last_assignable_token)
+					split.tokens = tmp_lst;
+				else
+					last_assignable_token->next = tmp_lst;
 				continue ;
 			}
 			if (before)
@@ -134,7 +139,11 @@ void	parser(char	*line)
 			parser.last_command = parser.current;
 		}
 		if (parser.current->type == PIPE || parser.current->type == RANDOM)
+		{
+			last_assignable_token = tmp;
 			parser.context = 0;
+			parser.last_command = NULL;
+		}
 		if (parser.current->type == REDIRECTION || parser.current->type == APPEND)
 		{
 			parser.last_redirect = parser.current;
