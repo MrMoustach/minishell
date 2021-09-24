@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 16:31:46 by zed               #+#    #+#             */
-/*   Updated: 2021/09/24 15:56:03 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/09/24 16:14:58 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,11 +83,9 @@ void	parser(char	*line)
 	t_parser	parser;
 	t_list		*tmp;
 	t_list		*before;
-	t_token		token;
 	t_token		*tmp_token;
 	t_list		*tmp_lst;
 	t_list		*last_assignable_token;
-	int			i;
 
 	split = spliter(line);
 	tokenizer(split.tokens);

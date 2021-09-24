@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 16:18:57 by zed               #+#    #+#             */
-/*   Updated: 2021/09/24 15:56:32 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/09/24 16:20:49 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,9 @@ typedef	struct	s_parser
 	int			context;
 }				t_parser;
 
+typedef struct	s_shell
+{
+	int			run;
+}				t_shell;
 
 #endif

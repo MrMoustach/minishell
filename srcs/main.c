@@ -3,23 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:17:14 by zed               #+#    #+#             */
-/*   Updated: 2021/09/22 22:21:30 by zed              ###   ########.fr       */
+/*   Updated: 2021/09/24 17:49:06 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(int ac, char **av, char **envp)
+int	run_minishell(void)
 {
-	t_spliter split;
-	t_list	*tmp;
-	t_token	token;
-	char	*line;
-	t_syntax	syntax;
-	envp = sort_env(envp);
+	char *line;
+	
 	// (omar) TODO  : Provide the line, and work on history / readline stuff
 	// (issam) TODO : parse line into idividual commands, expand what can be expanded, and escape stuff return data as a command struct
 	while (1)
@@ -36,4 +32,25 @@ int	main(int ac, char **av, char **envp)
 		parser(line);
 		free(line);
 	}
+}
+
+void init_shell()
+{
+	g_shell.run = 1;
+}
+
+// void	intSigHandler(int sig)
+// {
+// 	// signal(sig, SIG_IGN);
+// 	printf("\n"); // Move to a new line
+//     rl_on_new_line(); // Regenerate the prompt on a newline
+//     // rl_replace_line("", 0); // Clear the previous text
+//     rl_redisplay();
+// }
+
+int	main(int ac, char **av, char **envp)
+{
+	envp = sort_env(envp);
+	// signal(SIGINT, intSigHandler);
+	run_minishell();
 }
