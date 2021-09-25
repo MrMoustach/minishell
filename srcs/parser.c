@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 16:31:46 by zed               #+#    #+#             */
-/*   Updated: 2021/09/24 16:14:58 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/09/25 10:22:42 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ char	**add_to_array(char **array, char *str, int count)
 	return (tmp);
 }
 
-void	parser(char	*line)
+t_list	*parser(char	*line)
 {
 	t_spliter	split;
 	t_syntax	syntax;
@@ -93,7 +93,7 @@ void	parser(char	*line)
 	if (syntax.error)
 	{
 		printf("syntax error m8 code : %d near %s\n", syntax.error, syntax.err_token.str);
-		return ;
+		return (split.tokens);
 	}
 	tmp = split.tokens;
 	before = NULL;
@@ -163,4 +163,5 @@ void	parser(char	*line)
 		tmp = tmp->next;
 	}
 	print_helper(split.tokens);
+	return (split.tokens);
 }
