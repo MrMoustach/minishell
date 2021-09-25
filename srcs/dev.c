@@ -6,7 +6,7 @@
 /*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 22:45:58 by zed               #+#    #+#             */
-/*   Updated: 2021/09/25 10:45:08 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/09/25 10:53:48 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,6 @@ void	print_helper(t_list *tokens)
 		{
 			i = 0;
 			printf("%d ARGS : ", token.arg_count);
-			while (i < token.arg_count)
-				printf("%s ", token.args[i++]);
-			printf("\nExpanded : ");
 			while (i < token.arg_count)
 				printf("%s ", token.args[i++]);
 			printf("\n");

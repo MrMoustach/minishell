@@ -6,13 +6,13 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:17:14 by zed               #+#    #+#             */
-/*   Updated: 2021/09/25 11:53:04 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/09/25 11:55:58 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	run_minishell(void)
+int	run_minishell(char **envp)
 {
 	char *line;
 	t_list *tokens;
@@ -31,6 +31,8 @@ int	run_minishell(void)
 			continue;
 		add_history(line);
 		tokens = parser(line);
+		tokens = expand_tokens(tokens);
+		printf("PATH: %s \n", ft_getenv("PATH", envp));
 		builtin_execute(tokens);
 		free(line);
 	}
@@ -55,5 +57,5 @@ int	main(int ac, char **av, char **envp)
 {
 	init_shell(envp);
 	signal(SIGINT, intSigHandler);
-	run_minishell();
+	run_minishell(envp);
 }
