@@ -6,7 +6,7 @@
 #    By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/17 14:26:01 by zed               #+#    #+#              #
-#    Updated: 2021/09/25 09:48:42 by iharchi          ###   ########.fr        #
+#    Updated: 2021/09/25 09:51:39 by iharchi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,6 +78,6 @@ test: $(OBJS) $(LIBFT)
 
 build/%.o: srcs/%.c
 	@mkdir -p $(dir $@)
-	gcc $<  $(FLAGS) $(OBJ_FLAG)  -o $@
+	gcc $<  $(OBJ_FLAG)  -o $@
 
 .PHONY: all clan fclean re test
