@@ -6,7 +6,7 @@
 /*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:17:14 by zed               #+#    #+#             */
-/*   Updated: 2021/09/25 10:03:27 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/09/25 10:45:10 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	run_minishell(void)
 {
 	char *line;
+	t_list *tokens;
 	
 	// (omar) TODO  : Provide the line, and work on history / readline stuff
 	// (issam) TODO : parse line into idividual commands, expand what can be expanded, and escape stuff return data as a command struct
@@ -29,7 +30,8 @@ int	run_minishell(void)
 		if (!*line)
 			continue;
 		add_history(line);
-		parser(line);
+		tokens = parser(line);
+		builtin_execute(tokens);
 		free(line);
 	}
 }
@@ -41,10 +43,9 @@ void init_shell()
 
 void	intSigHandler(int sig)
 {
-	// signal(sig, SIG_IGN);
-	printf("\n"); // Move to a new line
-    rl_on_new_line(); // Regenerate the prompt on a newline
-    rl_replace_line("", 0); // Clear the previous text
+	printf("\n");
+    rl_on_new_line();
+    rl_replace_line("", 0);
     rl_redisplay();
 }
 

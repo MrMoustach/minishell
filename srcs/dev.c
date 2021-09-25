@@ -6,7 +6,7 @@
 /*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 22:45:58 by zed               #+#    #+#             */
-/*   Updated: 2021/09/25 10:37:26 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/09/25 10:45:08 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	print_helper(t_list *tokens)
 	int		i;
 	
 	tmp = tokens;
+	printf("--------------------------------\n");
 	while (tmp)
 	{
 		token = *((t_token *)tmp->content);
@@ -29,7 +30,7 @@ void	print_helper(t_list *tokens)
 		if (token.arg_count > 0 && token.type == COMMAND)
 		{
 			i = 0;
-			printf("ARGS : ");
+			printf("%d ARGS : ", token.arg_count);
 			while (i < token.arg_count)
 				printf("%s ", token.args[i++]);
 			printf("\nExpanded : ");

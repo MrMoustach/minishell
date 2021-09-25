@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo.c                                             :+:      :+:    :+:   */
+/*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/20 09:35:17 by omimouni          #+#    #+#             */
-/*   Updated: 2021/09/25 10:37:44 by iharchi          ###   ########.fr       */
+/*   Created: 2021/09/25 10:28:32 by iharchi           #+#    #+#             */
+/*   Updated: 2021/09/25 10:35:11 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	builtin_echo(t_token command)
+void	builtin_execute(t_list *tokens)
 {
-	int	new_line;
-	int	i;
+	t_list	*tmp;
+	t_token	command;
 
-	new_line = 1;
-	if (command.arg_count)
+	tmp = tokens;
+	while (tmp)
 	{
-		i = 0;
-		if (!ft_strncmp(command.args[0], "-n", 3))
+		command = *((t_token *)tmp->content);
+		if (command.type == COMMAND)
 		{
-			i++;	
-			new_line = 0;
+			if (!ft_strncmp(command.str, "echo", 5))
+				builtin_echo(command);
 		}
-		while (command.args[i])
-			printf("%s ", command.args[i++]);
+		tmp = tmp->next;
 	}
-	if (new_line)
-		printf("\n");
 }

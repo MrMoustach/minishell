@@ -6,7 +6,7 @@
 /*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:13:22 by zed               #+#    #+#             */
-/*   Updated: 2021/09/25 10:36:20 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/09/25 10:44:55 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,14 @@ void	tokenizer(t_list *tokens);
 t_spliter spliter (char *line);
 char	*ft_chardup(char c, int n);
 t_syntax	syntax_analysis(t_list *tokens);
-void	parser(char	*line);
+t_list	*parser(char	*line);
+
+
+/**
+** Builtins
+**/
+void	builtin_execute(t_list *tokens);
+void	builtin_echo(t_token command);
 
 
 // Testing expanstion
