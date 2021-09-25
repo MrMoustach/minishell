@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:17:14 by zed               #+#    #+#             */
-/*   Updated: 2021/09/25 11:38:19 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/09/25 11:53:04 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	run_minishell(void)
 		line = readline(FT_PROMPT);
 		if (!line)
 		{
-			printf("BYE\n");
+			printf("BYE CRUEL WORLD\n");
 			return (1);
 		}
 		if (!*line)
@@ -39,6 +39,8 @@ int	run_minishell(void)
 void init_shell(char	**envp)
 {
 	g_shell.run = 1;
+	g_shell.envp = dup_env(envp);
+	g_shell.envp = sort_env(g_shell.envp);
 }
 
 void	intSigHandler(int sig)
@@ -51,7 +53,7 @@ void	intSigHandler(int sig)
 
 int	main(int ac, char **av, char **envp)
 {
-	envp = sort_env(envp);
+	init_shell(envp);
 	signal(SIGINT, intSigHandler);
 	run_minishell();
 }
