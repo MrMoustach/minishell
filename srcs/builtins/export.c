@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 13:13:02 by iharchi           #+#    #+#             */
-/*   Updated: 2021/09/25 18:07:02 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/09/25 18:11:48 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,7 @@ static char	*var_line(char *line)
 {
 	char	*ret;
 	char	**tab;
-	int		count;
-	int		i;
+	
 	//TODO : free this split
 	tab = split_equals(line);
 	if (ft_strchr(line, '='))
@@ -67,12 +66,9 @@ void	builtin_export(t_token command)
 		while (command.args[i])
 		{
 			var_line(command.args[i]);
-			// printf("%s\n", var_line(command.args[i]));
 			i++;
 		}
 	}
 	else
-	{
 		builtin_env(command);
-	}
 }

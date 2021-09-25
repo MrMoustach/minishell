@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:17:14 by zed               #+#    #+#             */
-/*   Updated: 2021/09/25 12:00:31 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/09/25 18:13:10 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,15 @@ int	run_minishell(char **envp, char **av, int ac)
 {
 	char *line;
 	t_list *tokens;
+	char	*prompt;
 	
 	// (omar) TODO  : Provide the line, and work on history / readline stuff
 	// (issam) TODO : parse line into idividual commands, expand what can be expanded, and escape stuff return data as a command struct
 	while (1)
 	{
-		line = readline(ft_strjoin(&av[0][2], "-0.1$ "));
+		prompt = ft_strjoin(&av[0][2], "-0.1$ ");
+		line = readline(prompt);
+		free(prompt);
 		if (!line)
 		{
 			printf("BYE CRUEL WORLD\n");
