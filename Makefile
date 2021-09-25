@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+         #
+#    By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/17 14:26:01 by zed               #+#    #+#              #
-#    Updated: 2021/09/24 16:54:06 by iharchi          ###   ########.fr        #
+#    Updated: 2021/09/25 09:35:25 by omimouni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,9 +43,9 @@ NAME = minishell
 SRCS = $(wildcard srcs/*.c srcs/**/*.c)
 OBJS = $(subst srcs/,build/, $(patsubst %.c,%.o,$(SRCS)))
 
-OBJ_FLAG = -c -I./headers
+OBJ_FLAG = -c -I./headers -g
 
-FLAGS = -lreadline
+FLAGS = -lreadline -g
 
 LIBFT = libs/libft.a
 

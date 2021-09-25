@@ -16,4 +16,8 @@
         "TODO": ["TODO","(omar) TODO", "(issam) TODO"] 
     },
     "todo-tree.highlights.useColourScheme": true,
+    "files.associations": {
+        "twig": "html",
+        "__config": "c"
+    },
 }
