@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dev.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 22:45:58 by zed               #+#    #+#             */
-/*   Updated: 2021/09/23 17:51:16 by zed              ###   ########.fr       */
+/*   Updated: 2021/09/25 10:37:26 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@ void	print_helper(t_list *tokens)
 		{
 			i = 0;
 			printf("ARGS : ");
+			while (i < token.arg_count)
+				printf("%s ", token.args[i++]);
+			printf("\nExpanded : ");
 			while (i < token.arg_count)
 				printf("%s ", token.args[i++]);
 			printf("\n");

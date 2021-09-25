@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:13:22 by zed               #+#    #+#             */
-/*   Updated: 2021/09/24 16:21:25 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/09/25 10:36:20 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,10 @@ t_spliter spliter (char *line);
 char	*ft_chardup(char c, int n);
 t_syntax	syntax_analysis(t_list *tokens);
 void	parser(char	*line);
+
+
+// Testing expanstion
+void	expand_args(char **args, char **out);
 
 t_shell	g_shell;
 #endif
