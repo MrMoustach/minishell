@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:13:22 by zed               #+#    #+#             */
-/*   Updated: 2021/09/25 11:45:06 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/09/25 11:56:19 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,11 @@ void	builtin_echo(t_token command);
 t_list	*expand_tokens(t_list *tokens);
 
 char	*ft_getenv(char *name, char **envp);
+
+/**
+** env
+**/
+char	**dup_env(char **envp);
 
 t_shell	g_shell;
 #endif

@@ -6,7 +6,7 @@
 /*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:17:14 by zed               #+#    #+#             */
-/*   Updated: 2021/09/25 11:59:43 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/09/25 12:00:31 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	run_minishell(char **envp, char **av, int ac)
 		line = readline(ft_strjoin(&av[0][2], "-0.1$ "));
 		if (!line)
 		{
-			printf("BYE\n");
+			printf("BYE CRUEL WORLD\n");
 			return (1);
 		}
 		if (!*line)
@@ -40,6 +40,8 @@ int	run_minishell(char **envp, char **av, int ac)
 void init_shell(char	**envp)
 {
 	g_shell.run = 1;
+	g_shell.envp = dup_env(envp);
+	g_shell.envp = sort_env(g_shell.envp);
 }
 
 void	intSigHandler(int sig)
@@ -52,7 +54,7 @@ void	intSigHandler(int sig)
 
 int	main(int ac, char **av, char **envp)
 {
-	envp = sort_env(envp);
+	init_shell(envp);
 	signal(SIGINT, intSigHandler);
 	run_minishell(envp, av, ac);
 }
