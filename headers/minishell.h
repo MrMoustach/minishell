@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:13:22 by zed               #+#    #+#             */
-/*   Updated: 2021/09/25 11:56:19 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/09/25 12:51:00 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,26 @@ t_list	*parser(char	*line);
 **/
 void	builtin_execute(t_list *tokens);
 void	builtin_echo(t_token command);
-
+void	builtin_pwd(t_token command);
+void	builtin_env(t_token command);
+void	builtin_exit(t_token command);
 
 // Testing expanstion
 t_list	*expand_tokens(t_list *tokens);
 
-char	*ft_getenv(char *name, char **envp);
+char	*ft_getenv(char *name);
 
 /**
 ** env
 **/
 char	**dup_env(char **envp);
+
+/**
+** Utility
+**/
+void free_tab(char **tab);
+int	ft_is_number(char *s);
+long long	ft_atol(const char *str);
 
 t_shell	g_shell;
 #endif

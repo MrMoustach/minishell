@@ -6,25 +6,30 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 11:38:32 by iharchi           #+#    #+#             */
-/*   Updated: 2021/09/25 11:56:05 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/09/25 12:15:35 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*ft_getenv(char *name, char **envp)
+char	*ft_getenv(char *name)
 {
 	char 	*tmp;
 	int		i;
 	char	**sp;
+	char	*ret;
 
 	i = 0;
-	while (envp[i])
+	while (g_shell.envp[i])
 	{
-		sp = ft_split(envp[i], '=');
+		sp = ft_split(g_shell.envp[i], '=');
 		if (!ft_strncmp(sp[0], name, ft_strlen(sp[0])))
-			return (ft_strdup(sp[1]));
-		// TODO: Free split junk
+		{
+			ret = ft_strdup(sp[1]);
+			free_tab(sp);
+			return (ret);
+		}
+		free_tab(sp);
 		i++;
 	}
 	return (NULL);

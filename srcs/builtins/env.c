@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/25 11:36:47 by iharchi           #+#    #+#             */
-/*   Updated: 2021/09/25 12:11:43 by iharchi          ###   ########.fr       */
+/*   Created: 2021/09/25 12:17:00 by iharchi           #+#    #+#             */
+/*   Updated: 2021/09/25 12:32:28 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
- #include "minishell.h"
 
-void	builtin_pwd(t_token command)
+#include "minishell.h"
+
+void builtin_env(t_token command)
 {
-	char	*str;
-	 if (command.arg_count)
+	int i;
+
+	i = 0;
+	if (command.arg_count)
 	{
-		printf("pwd: Too many arguments\n");
+		printf("env : Too many arguments\n");
 		return ;
 	}
-	str = ft_getenv("PWD");
-	if (str)
-	{
-		printf("%s\n", str);
-		free(str);
-	}
+	while (g_shell.envp[i])
+		printf("%s\n", g_shell.envp[i++]);
 }
