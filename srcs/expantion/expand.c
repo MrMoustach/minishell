@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 10:34:41 by omimouni          #+#    #+#             */
-/*   Updated: 2021/09/25 10:43:31 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/09/25 10:52:38 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
  * 
  */
 void
-	expand_token(t_token *)
+	expand_token(t_token *t)
 {
 	
 }
