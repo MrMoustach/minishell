@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 11:38:32 by iharchi           #+#    #+#             */
-/*   Updated: 2021/09/25 12:15:35 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/09/25 14:11:02 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,11 @@ char	*ft_getenv(char *name)
 		i++;
 	}
 	return (NULL);
+}
+
+void	ft_addenv(char *var)
+{
+	
 }
 
 char	**sort_env(char **envp)

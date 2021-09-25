@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dev.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 22:45:58 by zed               #+#    #+#             */
-/*   Updated: 2021/09/25 10:53:48 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/09/25 14:33:25 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,9 @@ void	print_helper(t_list *tokens)
 		printf("--------------------------------\n");
 		tmp = tmp->next;
 	}
+}
+
+void	debug_leaks(void)
+{
+	system("leaks minishell");
 }

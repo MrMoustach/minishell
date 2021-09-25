@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 10:28:32 by iharchi           #+#    #+#             */
-/*   Updated: 2021/09/25 13:15:38 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/09/25 14:33:54 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,10 @@ void	builtin_execute(t_list *tokens)
 				builtin_env(command);
 			if (!ft_strncmp(command.str, "exit", 5))
 				builtin_exit(command);
+			if (!ft_strncmp(command.str, "export", 7))
+				builtin_export(command);
+			if (!ft_strncmp(command.str, "leaks", 6))
+				debug_leaks();
 		}
 		tmp = tmp->next;
 	}

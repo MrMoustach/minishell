@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dev.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 22:44:44 by zed               #+#    #+#             */
-/*   Updated: 2021/09/23 17:51:30 by zed              ###   ########.fr       */
+/*   Updated: 2021/09/25 14:33:31 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,4 +15,5 @@
 // TODO: DELETE THIS IN PROD
 extern char *types[];
 void	print_helper(t_list *tokens);
+void	debug_leaks(void);
 #endif
