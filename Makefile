@@ -6,7 +6,7 @@
 #    By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/17 14:26:01 by zed               #+#    #+#              #
-#    Updated: 2021/09/24 16:54:06 by iharchi          ###   ########.fr        #
+#    Updated: 2021/09/25 09:47:13 by iharchi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,9 +43,9 @@ NAME = minishell
 SRCS = $(wildcard srcs/*.c srcs/**/*.c)
 OBJS = $(subst srcs/,build/, $(patsubst %.c,%.o,$(SRCS)))
 
-OBJ_FLAG = -c -I./headers
+OBJ_FLAG = -c -I./headers -I$(HOME_BREW)/opt/readline/include
 
-FLAGS = -lreadline
+FLAGS =  -L $(HOME_BREW)/opt/readline/lib -lreadline
 
 LIBFT = libs/libft.a
 
@@ -78,6 +78,6 @@ test: $(OBJS) $(LIBFT)
 
 build/%.o: srcs/%.c
 	@mkdir -p $(dir $@)
-	gcc $<  $(OBJ_FLAG) -o $@
+	gcc $<  $(FLAGS) $(OBJ_FLAG)  -o $@
 
 .PHONY: all clan fclean re test
