@@ -6,7 +6,7 @@
 /*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:13:22 by zed               #+#    #+#             */
-/*   Updated: 2021/09/25 10:47:36 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/09/25 11:45:06 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	builtin_echo(t_token command);
 
 // Testing expanstion
 t_list	*expand_tokens(t_list *tokens);
+
+char	*ft_getenv(char *name, char **envp);
 
 t_shell	g_shell;
 #endif
