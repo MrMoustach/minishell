@@ -6,7 +6,7 @@
 /*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:17:14 by zed               #+#    #+#             */
-/*   Updated: 2021/09/25 10:45:10 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/09/25 10:47:46 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	run_minishell(void)
 			continue;
 		add_history(line);
 		tokens = parser(line);
+		tokens = expand_tokens(tokens);
 		builtin_execute(tokens);
 		free(line);
 	}

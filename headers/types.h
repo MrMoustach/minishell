@@ -6,7 +6,7 @@
 /*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 16:18:57 by zed               #+#    #+#             */
-/*   Updated: 2021/09/25 10:36:09 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/09/25 11:40:25 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ typedef struct	s_token
 	int			empty;
 	int			arg_count;
 	char		**args;
-	char		**args_expanded;
 }				t_token;
 
 typedef struct	s_spliter
