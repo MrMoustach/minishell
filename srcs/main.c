@@ -6,13 +6,13 @@
 /*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:17:14 by zed               #+#    #+#             */
-/*   Updated: 2021/09/25 11:53:39 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/09/25 11:59:43 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	run_minishell(char **envp)
+int	run_minishell(char **envp, char **av, int ac)
 {
 	char *line;
 	t_list *tokens;
@@ -21,7 +21,7 @@ int	run_minishell(char **envp)
 	// (issam) TODO : parse line into idividual commands, expand what can be expanded, and escape stuff return data as a command struct
 	while (1)
 	{
-		line = readline(FT_PROMPT);
+		line = readline(ft_strjoin(&av[0][2], "-0.1$ "));
 		if (!line)
 		{
 			printf("BYE\n");
@@ -32,7 +32,6 @@ int	run_minishell(char **envp)
 		add_history(line);
 		tokens = parser(line);
 		tokens = expand_tokens(tokens);
-		printf("PATH: %s \n", ft_getenv("PATH", envp));
 		builtin_execute(tokens);
 		free(line);
 	}
@@ -55,5 +54,5 @@ int	main(int ac, char **av, char **envp)
 {
 	envp = sort_env(envp);
 	signal(SIGINT, intSigHandler);
-	run_minishell(envp);
+	run_minishell(envp, av, ac);
 }
