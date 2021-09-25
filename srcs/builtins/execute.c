@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 10:28:32 by iharchi           #+#    #+#             */
-/*   Updated: 2021/09/25 12:34:53 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/09/25 13:15:38 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	builtin_execute(t_list *tokens)
 	tmp = tokens;
 	while (tmp)
 	{
+		// DOCS : All commands should change the exit status
 		command = *((t_token *)tmp->content);
 		if (command.type == COMMAND)
 		{
