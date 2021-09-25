@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:17:14 by zed               #+#    #+#             */
-/*   Updated: 2021/09/24 17:49:06 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/09/25 09:40:14 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,18 @@ void init_shell()
 	g_shell.run = 1;
 }
 
-// void	intSigHandler(int sig)
-// {
-// 	// signal(sig, SIG_IGN);
-// 	printf("\n"); // Move to a new line
-//     rl_on_new_line(); // Regenerate the prompt on a newline
-//     // rl_replace_line("", 0); // Clear the previous text
-//     rl_redisplay();
-// }
+void	intSigHandler(int sig)
+{
+	// signal(sig, SIG_IGN);
+	printf("\n"); // Move to a new line
+    rl_on_new_line(); // Regenerate the prompt on a newline
+    rl_replace_line("", 0); // Clear the previous text
+    rl_redisplay();
+}
 
 int	main(int ac, char **av, char **envp)
 {
 	envp = sort_env(envp);
-	// signal(SIGINT, intSigHandler);
+	signal(SIGINT, intSigHandler);
 	run_minishell();
 }
