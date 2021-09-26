@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 12:33:37 by iharchi           #+#    #+#             */
-/*   Updated: 2021/09/25 13:08:14 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/09/26 16:22:38 by zed              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+t_shell	g_shell;
 
 void	builtin_exit(t_token command)
 {
