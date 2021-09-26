@@ -6,11 +6,35 @@
 /*   By: omimouni <omimouni@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 14:11:43 by omimouni          #+#    #+#             */
-/*   Updated: 2021/09/26 17:59:10 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/09/26 18:45:51 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+char
+	*exp_strip_quotes(char *str)
+{
+	size_t	length;
+	char	*tmp;
+	int		i;
+
+	length = ft_strlen(str);
+	if (str[0] == '"' && str[length - 1] == '"')
+	{
+		tmp = malloc(sizeof(char) * length - 1);
+		int	i=0;
+		while(i < length - 2)
+		{
+			tmp[i] = str[i + 1];
+			i++;
+		}
+		tmp[i] = '\0';
+		free(str);
+		str = tmp;
+	}
+	return (str);
+}
 
 int
 	is_var_end(char c)
@@ -39,7 +63,6 @@ char
 		i++;
 	}
 	tmp[i] = '\0';
-	printf("command name: %s\n", tmp);
 	return (ft_getenv(tmp));
 }
 
@@ -129,8 +152,9 @@ char
 	char	*tmp;
 
 	count = exp_new_size(str);
+	str = exp_strip_quotes(str);
 	tmp = malloc(sizeof(char) * (count + 1));
-	ft_memset(tmp, 'x', count);
+	ft_memset(tmp, 'x', count); // TODO: remove later
 	tmp[count] = '\0';
 	exp_replace_str(tmp, str, count);
 	printf("%s\n", tmp);
@@ -140,7 +164,7 @@ char
 void
 	expand_command_token(t_token *command)
 {
-	printf("%s\n", command->str);
+	// printf("%s\n", command->str);
 	exp_str(command->str);
 	
 }
