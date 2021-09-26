@@ -1,35 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expand.c                                           :+:      :+:    :+:   */
+/*   exp_helper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/25 10:34:41 by omimouni          #+#    #+#             */
-/*   Updated: 2021/09/26 10:32:58 by omimouni         ###   ########.fr       */
+/*   Created: 2021/09/26 10:46:35 by omimouni          #+#    #+#             */
+/*   Updated: 2021/09/26 10:46:50 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static t_token
-	*expand_token(t_token *token)
-{
-	if (token->type == COMMAND)
-		expand_command_token(token);
-	return (token);
-}
-
-t_list
-	*expand_tokens(t_list *tokens)
-{
-	t_list	*curr;
-
-	curr = tokens;
-	while (curr != NULL)
-	{
-		expand_token((t_token *)curr->content);
-		curr = curr->next;
-	}
-	return (tokens);
-}

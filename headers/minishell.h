@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:13:22 by zed               #+#    #+#             */
-/*   Updated: 2021/09/25 14:29:15 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/09/26 10:33:32 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,6 @@ void	builtin_env(t_token command);
 void	builtin_exit(t_token command);
 void	builtin_export(t_token command);
 
-// Testing expanstion
-t_list	*expand_tokens(t_list *tokens);
-
 char	*ft_getenv(char *name);
 
 /**
@@ -60,6 +57,13 @@ void free_tab(char **tab);
 int	ft_is_number(char *s);
 long long	ft_atol(const char *str);
 int		table_count(char **table);
+
+
+/**
+ * Expansion
+ */
+t_list	*expand_tokens(t_list *tokens);
+void	expand_command_token(t_token *command);
 
 t_shell	g_shell;
 #endif
