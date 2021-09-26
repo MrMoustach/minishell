@@ -6,7 +6,7 @@
 #    By: omimouni <omimouni@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/17 14:26:01 by zed               #+#    #+#              #
-#    Updated: 2021/09/26 12:43:23 by omimouni         ###   ########.fr        #
+#    Updated: 2021/09/26 17:09:39 by omimouni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@
 
 NAME = minishell
 
-SRCS = $(wildcard srcs/*.c srcs/**/*.c)
+SRCS = $(wildcard srcs/*.c srcs/**/*.c src/**/**/*.c)
 OBJS = $(subst srcs/,build/, $(patsubst %.c,%.o,$(SRCS)))
 
 OBJ_FLAG = -c -I./headers -I$(HOME_BREW)/opt/readline/include

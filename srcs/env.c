@@ -6,7 +6,7 @@
 /*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 11:38:32 by iharchi           #+#    #+#             */
-/*   Updated: 2021/09/26 18:05:52 by zed              ###   ########.fr       */
+/*   Updated: 2021/09/26 18:08:56 by zed              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*ft_getenv(char *name)
 	while (g_shell.envp[i])
 	{
 		sp = ft_split(g_shell.envp[i], '=');
-		if (!ft_strncmp(sp[0], name, ft_strlen(sp[0])))
+		if (!ft_strncmp(sp[0], name, ft_strlen(name)))
 		{
 			ret = ft_strdup(sp[1]);
 			free_tab(sp);
