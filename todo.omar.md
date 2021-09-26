@@ -1,0 +1,4 @@
+- fix the expansion
+- finish cd builtin
+- clean up expansion
+- read about execution
