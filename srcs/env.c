@@ -6,7 +6,7 @@
 /*   By: omimouni <omimouni@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 11:38:32 by iharchi           #+#    #+#             */
-/*   Updated: 2021/09/26 13:41:06 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/09/26 17:50:42 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*ft_getenv(char *name)
 	while (g_shell.envp[i])
 	{
 		sp = ft_split(g_shell.envp[i], '=');
-		if (!ft_strncmp(sp[0], name, ft_strlen(sp[0])))
+		if (!ft_strncmp(sp[0], name, ft_strlen(name)))
 		{
 			ret = ft_strdup(sp[1]);
 			free_tab(sp);
