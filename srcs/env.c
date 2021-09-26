@@ -6,7 +6,7 @@
 /*   By: omimouni <omimouni@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 11:38:32 by iharchi           #+#    #+#             */
-/*   Updated: 2021/09/26 17:50:42 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/09/26 18:03:13 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,19 @@ char	*ft_getenv(char *name)
 
 void	ft_addenv(char *var)
 {
-	
+	char	**table;
+	int		count;
+
+	count = table_count(g_shell.envp);
+	table = malloc(sizeof(char *) * (count + 2));
+	table[count + 1] = NULL;
+	table[count] = var;
+	while (count--)
+		table[count] = ft_strdup(g_shell.envp[count]);
+	table = sort_env(table);
+	free_tab(g_shell.envp);
+	g_shell.envp = table;
+	sort_env(table);
 }
 
 char	**sort_env(char **envp)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:13:22 by zed               #+#    #+#             */
-/*   Updated: 2021/09/26 10:33:32 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/09/26 17:19:55 by zed              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ char	*ft_getenv(char *name);
 ** env
 **/
 char	**dup_env(char **envp);
-
+void	ft_addenv(char *var);
+char	**sort_env(char **envp);
 /**
 ** Utility
 **/
@@ -65,5 +66,5 @@ int		table_count(char **table);
 t_list	*expand_tokens(t_list *tokens);
 void	expand_command_token(t_token *command);
 
-t_shell	g_shell;
+extern t_shell	g_shell;
 #endif
