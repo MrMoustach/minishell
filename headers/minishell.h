@@ -6,7 +6,7 @@
 /*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:13:22 by zed               #+#    #+#             */
-/*   Updated: 2021/09/26 16:22:02 by zed              ###   ########.fr       */
+/*   Updated: 2021/09/26 17:19:55 by zed              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ char	*ft_getenv(char *name);
 ** env
 **/
 char	**dup_env(char **envp);
-
+void	ft_addenv(char *var);
+char	**sort_env(char **envp);
 /**
 ** Utility
 **/

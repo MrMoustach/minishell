@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 16:18:57 by zed               #+#    #+#             */
-/*   Updated: 2021/09/26 10:36:38 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/09/26 16:47:36 by zed              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,12 @@ typedef struct	s_spliter
 	int		word_start;
 	t_list	*tokens;
 }				t_spliter;
+
+typedef struct	s_var
+{
+	char	*name;
+	char	*line;
+}				t_var;
 
 typedef struct	s_syntax
 {
