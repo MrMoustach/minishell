@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: omimouni <omimouni@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 14:11:43 by omimouni          #+#    #+#             */
-/*   Updated: 2021/09/26 11:15:28 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/09/26 14:21:03 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,17 @@ char
 	char	*tmp;
 	size_t	i;
 
-	tmp = malloc(sizeof(char) * size);
+
+	printf("size: %zu\n", size);
+	tmp = malloc(sizeof(char) * size + 1);
 	i = 0;
 	while (i < size)
 	{
 		tmp[i] = str[i];
 		i++;
 	}
-	printf("%s\n", tmp);
-	return (tmp);
+	tmp[i] = '\0';
+	return (ft_getenv(tmp));
 }
 
 size_t
@@ -36,22 +38,23 @@ size_t
 	size_t	count;
 	size_t	beg;
 	size_t	end;
+	char	*tmp;
 
 	count = 0;
 	i = 0;
-	while (str[i])
+	while (str[i] != '\0')
 	{
 		if (str[i] == '$')
 		{
-			beg = i + 1;
+			beg = ++i;
 			// TODO: add helper to know the end of variable
-			while (str[i] != ' ' && str[i] != '\0' && str[i] != '.')
+			while (str[i] != '\0')
 				i++;
-			end = i;
-			printf("%s\n", exp_command_name((str + beg), end - beg));
-			// TODO: manage this with a helper
-			if (str[i] != '\0')
-				count++;
+			tmp = exp_command_name((str + beg), i - beg);
+			printf("x%sx\n", tmp);
+			if (tmp)
+				count += ft_strlen(tmp);
+			i--;
 		}
 		else
 			count++;
@@ -60,19 +63,24 @@ size_t
 	return (count);
 }
 
-void
-	exp_str(char *str)
+
+/**
+ * Replace env var in a string
+ */
+char
+	*exp_str(char *str)
 {
 	size_t	count;
 
 	count = exp_new_size(str);
-
-	printf("%zu \n", count);
+	printf("%zu\n", count);
+	return (NULL);
 }
 
 void
 	expand_command_token(t_token *command)
 {
+
 	exp_str(command->str);
 	
 	printf("\n-----------\n");

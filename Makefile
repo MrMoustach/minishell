@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+         #
+#    By: omimouni <omimouni@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/17 14:26:01 by zed               #+#    #+#              #
-#    Updated: 2021/09/25 09:51:39 by iharchi          ###   ########.fr        #
+#    Updated: 2021/09/26 12:43:23 by omimouni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,6 @@ SRCS = $(wildcard srcs/*.c srcs/**/*.c)
 OBJS = $(subst srcs/,build/, $(patsubst %.c,%.o,$(SRCS)))
 
 OBJ_FLAG = -c -I./headers -I$(HOME_BREW)/opt/readline/include
-
 FLAGS =  -L $(HOME_BREW)/opt/readline/lib -lreadline
 
 LIBFT = libs/libft.a
