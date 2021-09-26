@@ -6,7 +6,7 @@
 /*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 11:38:32 by iharchi           #+#    #+#             */
-/*   Updated: 2021/09/26 17:24:12 by zed              ###   ########.fr       */
+/*   Updated: 2021/09/26 18:05:52 by zed              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,29 @@ void	ft_addenv(char *var)
 	free_tab(g_shell.envp);
 	g_shell.envp = table;
 	sort_env(table);
+}
+
+void	ft_delenv(char *var)
+{
+	char	**table;
+	int		count;
+	int		flag;
+
+	count = table_count(g_shell.envp);
+	table = malloc(sizeof(char *) * (count));
+	table[--count] = NULL;
+	flag = 1;
+	while (count--)
+	{
+		if (flag && (!ft_strncmp(table[count], var, ft_strlen(var))))
+		{
+			flag = 0;
+			continue ;
+		}
+		table[count] = ft_strdup(g_shell.envp[count]);
+	}
+	free_tab(g_shell.envp);
+	g_shell.envp = table;
 }
 
 char	**sort_env(char **envp)

@@ -6,7 +6,7 @@
 /*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:13:22 by zed               #+#    #+#             */
-/*   Updated: 2021/09/26 17:19:55 by zed              ###   ########.fr       */
+/*   Updated: 2021/09/26 18:07:07 by zed              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	builtin_pwd(t_token command);
 void	builtin_env(t_token command);
 void	builtin_exit(t_token command);
 void	builtin_export(t_token command);
+void	builtin_unset(t_token command);
 
 char	*ft_getenv(char *name);
 
@@ -51,6 +52,7 @@ char	*ft_getenv(char *name);
 char	**dup_env(char **envp);
 void	ft_addenv(char *var);
 char	**sort_env(char **envp);
+void	ft_delenv(char *var);
 /**
 ** Utility
 **/
