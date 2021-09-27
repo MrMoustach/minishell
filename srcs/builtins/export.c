@@ -6,35 +6,13 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 13:13:02 by iharchi           #+#    #+#             */
-/*   Updated: 2021/09/27 13:04:23 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/09/27 13:38:21 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 // t_shell	g_shell;
-
-static char	**split_equals(char *str)
-{
-	int	i;
-	char	**tab;
-
-	i = 0;
-	while (str[i])
-	{	
-		if (str[i] == '=')
-			break ;
-		i++;
-	}
-	tab = malloc(sizeof(char *) * 3);
-	tab[0] = ft_substr(str, 0, i);
-	if (str[i + 1])
-		tab[1] = ft_substr(str, i + 1, ft_strlen(str) - i);
-	else
-		tab[1] = ft_strdup("");
-	tab[2] = NULL;
-	return (tab);
-}
 
 static t_var	var_line(char *line)
 {
@@ -57,7 +35,7 @@ char	**get_address(char *var)
 	i = 0;
 	while (g_shell.envp[i])
 	{
-		if (!ft_strncmp(var, g_shell.envp[i], ft_strlen(var)))
+		if (compare_env(var, g_shell.envp[i]))
 			return (&g_shell.envp[i]);
 		i++;
 	}

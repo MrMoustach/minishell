@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 17:55:05 by zed               #+#    #+#             */
-/*   Updated: 2021/09/26 18:07:50 by zed              ###   ########.fr       */
+/*   Updated: 2021/09/27 13:16:35 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	builtin_unset(t_token command)
 		{
 			if (ft_strchr(command.args[i], '=') == NULL)
 				ft_delenv(command.args[i]);
+			i++;
 		}
 	}
 }

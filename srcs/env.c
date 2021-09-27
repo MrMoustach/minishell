@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 11:38:32 by iharchi           #+#    #+#             */
-/*   Updated: 2021/09/26 18:08:56 by zed              ###   ########.fr       */
+/*   Updated: 2021/09/27 13:33:51 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,20 +58,24 @@ void	ft_delenv(char *var)
 	char	**table;
 	int		count;
 	int		flag;
+	int		i;
 
 	count = table_count(g_shell.envp);
 	table = malloc(sizeof(char *) * (count));
-	table[--count] = NULL;
-	flag = 1;
-	while (count--)
+	i = 0;
+	flag = 0;
+	while (g_shell.envp[i])
 	{
-		if (flag && (!ft_strncmp(table[count], var, ft_strlen(var))))
+		if (!flag && compare_env(var, g_shell.envp[i]))
 		{
-			flag = 0;
+			flag = 1;
+			i++;
 			continue ;
 		}
-		table[count] = ft_strdup(g_shell.envp[count]);
+		table[i - flag] = ft_strdup(g_shell.envp[i]);
+		i++;
 	}
+	table[i] = NULL;
 	free_tab(g_shell.envp);
 	g_shell.envp = table;
 }
@@ -124,4 +128,39 @@ char	**dup_env(char **envp)
 	while (count--)
 		table[count] = ft_strdup(envp[count]);
 	return (table);
+}
+
+char	**split_equals(char *str)
+{
+	int	i;
+	char	**tab;
+
+	i = 0;
+	while (str[i])
+	{	
+		if (str[i] == '=')
+			break ;
+		i++;
+	}
+	tab = malloc(sizeof(char *) * 3);
+	tab[0] = ft_substr(str, 0, i);
+	if (str[i + 1])
+		tab[1] = ft_substr(str, i + 1, ft_strlen(str) - i);
+	else
+		tab[1] = ft_strdup("");
+	tab[2] = NULL;
+	return (tab);
+}
+
+int	compare_env(char *name, char *var)
+{
+	char	**tab;
+	int		ret;
+	
+	tab = split_equals(var);
+	ret = 0;
+	if (!ft_strncmp(tab[0], name, ft_strlen(tab[0])))
+		ret = 1;
+	free_tab(tab);
+	return (ret);
 }

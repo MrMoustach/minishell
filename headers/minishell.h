@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:13:22 by zed               #+#    #+#             */
-/*   Updated: 2021/09/26 18:07:07 by zed              ###   ########.fr       */
+/*   Updated: 2021/09/27 13:29:56 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ char	**dup_env(char **envp);
 void	ft_addenv(char *var);
 char	**sort_env(char **envp);
 void	ft_delenv(char *var);
+char	**split_equals(char *str);
+int		compare_env(char *name, char *var);
 /**
 ** Utility
 **/
