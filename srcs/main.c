@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: omimouni <omimouni@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:17:14 by zed               #+#    #+#             */
-/*   Updated: 2021/09/27 13:02:32 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/09/27 19:49:23 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,9 @@ int	run_minishell(char **envp, char **av, int ac)
 			continue;
 		add_history(line);
 		tokens = parser(line);
+		print_helper(tokens);
 		tokens = expand_tokens(tokens);
+		print_helper(tokens);
 		builtin_execute(tokens);
 		free(line);
 	}

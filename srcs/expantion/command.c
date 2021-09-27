@@ -6,7 +6,7 @@
 /*   By: omimouni <omimouni@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 14:11:43 by omimouni          #+#    #+#             */
-/*   Updated: 2021/09/27 18:21:49 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/09/27 19:54:32 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,7 +147,9 @@ char
 	char	*tmp;
 
 	length = ft_strlen(str);
-	// str = exp_stripe_quotes(str, &length);	
+	// TODO: fix this stripe
+	str = exp_stripe_quotes(str, &length);
+	// FIXME: Expand by context	
 	tmp = exp_expanded(str, &length);
 
 	printf("\nExpansion ------------------\n");
@@ -155,7 +157,7 @@ char
 	printf("string: %s\n", str);
 	printf("expand: %s\n", tmp);
 	printf("----------------------------\n");
-	return (str);
+	return (tmp);
 }
 
 void
@@ -163,7 +165,16 @@ void
 {
 	size_t	size;
 	char	*tmp;
+	int		i;
 
 	tmp = exp_string(command->str);
-
+	command->str = tmp;
+	i = 0;
+	while (i < command->arg_count)
+	{
+		tmp = exp_string(command->args[i]);
+		free(command->args[i]);
+		command->args[i] = tmp; 
+		i++;
+	}
 }

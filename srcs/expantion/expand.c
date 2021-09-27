@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: omimouni <omimouni@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 10:34:41 by omimouni          #+#    #+#             */
-/*   Updated: 2021/09/26 10:32:58 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/09/27 19:48:17 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 static t_token
 	*expand_token(t_token *token)
 {
-	if (token->type == COMMAND)
+
+	// TODO: Fix this hacky shit
+	// if (token->type == COMMAND)
 		expand_command_token(token);
 	return (token);
 }
