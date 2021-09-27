@@ -6,7 +6,7 @@
 /*   By: omimouni <omimouni@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 14:11:43 by omimouni          #+#    #+#             */
-/*   Updated: 2021/09/27 18:07:45 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/09/27 18:21:49 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,8 @@ char
 	}
 	tmp2[count] = '\0';
 	printf("%s\n", tmp2);
-	return (NULL);
+	*length = count;
+	return (tmp2);
 }
 
 char
