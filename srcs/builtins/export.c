@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 13:13:02 by iharchi           #+#    #+#             */
-/*   Updated: 2021/09/26 17:23:03 by zed              ###   ########.fr       */
+/*   Updated: 2021/09/27 13:04:23 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,8 @@ static t_var	var_line(char *line)
 	
 	//TODO : free this split
 	tab = split_equals(line);
-	if (ft_strchr(line, '='))
-	{
-		ret = ft_strjoin(tab[0], "=\"");
-		ret = ft_strjoin(ret, tab[1]);
-		ret = ft_strjoin(ret, "\"");
-	}
-	else
-		ret = ft_strdup(line);
 	var.name = ft_strdup(tab[0]);
-	var.line = ret;
+	var.line = ft_strdup(line);
 	free_tab(tab);
 	return (var);
 }
@@ -66,12 +58,30 @@ char	**get_address(char *var)
 	while (g_shell.envp[i])
 	{
 		if (!ft_strncmp(var, g_shell.envp[i], ft_strlen(var)))
-		{
 			return (&g_shell.envp[i]);
-		}
 		i++;
 	}
 	return (NULL);
+}
+
+void	print_env()
+{
+	int		i;
+	char	**tab;
+
+	i = 0;
+	while (g_shell.envp[i])
+	{
+		if (ft_strchr(g_shell.envp[i], '='))
+		{
+			tab = split_equals(g_shell.envp[i]);
+			printf("export %s=\"%s\"\n", tab[0], tab[1]);
+			free_tab(tab);
+		}
+		else
+			printf("%s\n", g_shell.envp[i]);
+		i++;
+	}
 }
 
 void	builtin_export(t_token command)
@@ -94,8 +104,9 @@ void	builtin_export(t_token command)
 			else
 				ft_addenv(var.line);
 			i++;
+			free(var.name);
 		}
 	}
 	else
-		builtin_env(command);
+		print_env();
 }
