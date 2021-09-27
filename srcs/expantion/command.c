@@ -6,7 +6,7 @@
 /*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 14:11:43 by omimouni          #+#    #+#             */
-/*   Updated: 2021/09/27 12:28:28 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/09/27 12:55:40 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,17 @@ char
 	size_t	i;
 	char	*tmp;
 	size_t	j;
+	int		single_quote;
 
 	i = 0;
+	single_quote = 0;
 	while (str[i])
 	{
-		if(str[i] == '"')
+		if (str[i] == '\'' && single_quote)
+			single_quote = 0;
+		if (str[i] == '\'')
+			single_quote = 1;
+		if(str[i] == '"' && single_quote)
 			*length -= 1;
 		i++;
 	}

@@ -21,4 +21,5 @@
         "__config": "c",
         "minishell.h": "c"
     },
+    "C_Cpp.errorSquiggles": "Disabled",
 }

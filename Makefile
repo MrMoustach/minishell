@@ -6,7 +6,7 @@
 #    By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/17 14:26:01 by zed               #+#    #+#              #
-#    Updated: 2021/09/27 12:16:42 by omimouni         ###   ########.fr        #
+#    Updated: 2021/09/27 13:00:03 by omimouni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,10 @@ NAME = minishell
 SRCS = $(wildcard srcs/*.c srcs/**/*.c src/**/**/*.c)
 OBJS = $(subst srcs/,build/, $(patsubst %.c,%.o,$(SRCS)))
 
-OBJ_FLAG = -c -I./headers -I$(HOME_BREW)/opt/readline/include
-FLAGS =  -L $(HOME_BREW)/opt/readline/lib -lreadline
+DEBUG = 1
+
+OBJ_FLAG = -c -I./headers -I$(HOME_BREW)/opt/readline/include -DDEBUG=$(DEBUG)
+FLAGS =  -L $(HOME_BREW)/opt/readline/lib -lreadline 
 
 LIBFT = libs/libft.a
 

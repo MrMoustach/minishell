@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omimouni <omimouni@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:17:14 by zed               #+#    #+#             */
-/*   Updated: 2021/09/26 17:37:19 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/09/27 13:00:18 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,26 +18,35 @@ int	run_minishell(char **envp, char **av, int ac)
 	t_list *tokens;
 	char	*prompt;
 	
+
+	// TODO: remove debugging stuff
 	// (omar) TODO  : Provide the line, and work on history / readline stuff
 	// (issam) TODO : parse line into idividual commands, expand what can be expanded, and escape stuff return data as a command struct
-	while (1)
+	if (!DEBUG)
 	{
-		prompt = ft_strjoin(&av[0][2], "-0.1$ ");
-		line = readline(prompt);
-		free(prompt);
-		if (!line)
+		while (1)
 		{
-			printf("BYE CRUEL WORLD\n");
-			return (1);
+			prompt = ft_strjoin(&av[0][2], "-0.1$ ");
+			line = readline(prompt);
+			free(prompt);
+			if (!line)
+			{
+				printf("BYE CRUEL WORLD\n");
+				return (1);
+			}
+			if (!*line)
+				continue;
+			add_history(line);
+			tokens = parser(line);
+			tokens = expand_tokens(tokens);
+			builtin_execute(tokens);
+			free(line);
 		}
-		if (!*line)
-			continue;
-		add_history(line);
-		tokens = parser(line);
-		tokens = expand_tokens(tokens);
-		builtin_execute(tokens);
-		free(line);
 	}
+	else
+	{
+	}
+	return (0);
 }
 
 void init_shell(char	**envp)
