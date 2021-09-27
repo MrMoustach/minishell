@@ -3,40 +3,12 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: omimouni <omimouni@student.1337.ma>        +#+  +:+       +#+         #
+#    By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/17 14:26:01 by zed               #+#    #+#              #
-#    Updated: 2021/09/26 17:09:39 by omimouni         ###   ########.fr        #
+#    Updated: 2021/09/27 12:16:42 by omimouni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
-# NAME = minishell
-
-# SRC = 	srcs/*.c
-# LIBFT = libft/
-# FLAG = -I./headers -lreadline  #-Wall -Werror -Wextra
-# all: $(NAME)
-# $(NAME) : 
-# 			@echo "\033[0;33mMaking LIBFT"
-# 			@$(MAKE) -C $(LIBFT)
-# 			@$(MAKE) -C $(LIBFT) bonus
-# 			@$(MAKE) -C $(LIBFT) clean
-# 			@echo "\033[0;33mCompiling MINISHELL"
-# 			@gcc  main.c $(FLAG) $(LIBFT)libft.a $(SRC) -o $(NAME)
-# 			@echo "\033[0;32mReady to use.\n\033[0;33mDo ./miniShell"
-# clean:
-# 	@$(MAKE) -C $(LIBFT) clean
-# 	@echo "\033[0;32mDone."
-# fclean: clean
-# 	@/bin/rm -f $(NAME)
-# 	@$(MAKE) -C $(LIBFT) fclean
-# 	@echo "\033[0;32mEverything is cleaned"
-
-# re : fclean all
-
-# test :
-# 			@gcc  -g  $(FLAG) $(SRC) $(LIBFT)libft.a main.c -o $(NAME) 	
-# .PHONY: all clean fclean re test
 
 NAME = minishell
 
