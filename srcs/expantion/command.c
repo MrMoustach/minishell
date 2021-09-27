@@ -6,7 +6,7 @@
 /*   By: omimouni <omimouni@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 14:11:43 by omimouni          #+#    #+#             */
-/*   Updated: 2021/09/27 17:26:19 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/09/27 18:07:45 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,15 @@ char
 	*exp_expanded(char *str, size_t *length)
 {
 	char	*tmp;
+	char	*tmp_val;
+	char	*tmp2;
 	size_t	i;
 	size_t	beg;
 	size_t	j;
+	size_t	count;
 
 	i = 0;
+	count = 0;
 	// TODO: work on context
 
 	while (str[i])
@@ -82,14 +86,56 @@ char
 				j++;
 			}
 			tmp[j] = '\0';
-			printf("CMD %s\n", tmp);
+			tmp_val = ft_getenv(tmp);
+			if (tmp_val)
+				count += ft_strlen(tmp_val);
 		}
 		else
 		{
-			printf("char : %c\n",str[i]);
+			count++;
 			i++;
 		}
 	}
+	tmp2 = malloc(sizeof(char) * (count + 1));
+	ft_memset(tmp2, 'x', count);
+	i = 0;
+	count = 0;
+	while (str[i])
+	{
+		if (str[i] == '$')
+		{
+			beg = ++i;
+			while (exp_is_var(str[i]))
+				i++;
+			tmp = malloc(sizeof(char) * (i - beg));
+			j = 0;
+			while (j < (i - beg))
+			{
+				tmp[j] = str[beg + j];
+				j++;
+			}
+			tmp[j] = '\0';
+			tmp_val = ft_getenv(tmp);
+			if (tmp_val)
+			{
+				j = 0;
+				while (j < ft_strlen(tmp_val))
+				{
+					tmp2[count] = tmp_val[j];
+					j++;
+					count++;
+				}
+			}
+		}
+		else
+		{
+			tmp2[count] = str[i];
+			count++;
+			i++;
+		}
+	}
+	tmp2[count] = '\0';
+	printf("%s\n", tmp2);
 	return (NULL);
 }
 
@@ -100,7 +146,7 @@ char
 	char	*tmp;
 
 	length = ft_strlen(str);
-	str = exp_stripe_quotes(str, &length);	
+	// str = exp_stripe_quotes(str, &length);	
 	tmp = exp_expanded(str, &length);
 
 	printf("\nExpansion ------------------\n");
