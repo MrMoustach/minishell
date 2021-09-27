@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:17:14 by zed               #+#    #+#             */
-/*   Updated: 2021/09/27 13:02:32 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/09/27 17:24:45 by zed              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,10 @@ int	run_minishell(char **envp, char **av, int ac)
 		tokens = expand_tokens(tokens);
 		builtin_execute(tokens);
 		free(line);
+		refresh_shell();
 	}
 }
 
-void init_shell(char	**envp)
-{
-	g_shell.run = 1;
-	g_shell.envp = dup_env(envp);
-	g_shell.envp = sort_env(g_shell.envp);
-}
 
 void	intSigHandler(int sig)
 {
