@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:13:22 by zed               #+#    #+#             */
-/*   Updated: 2021/09/27 13:39:32 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/09/27 18:38:55 by zed              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	builtin_env(t_token command);
 void	builtin_exit(t_token command);
 void	builtin_export(t_token command);
 void	builtin_unset(t_token command);
+void	builtin_cd(t_token command);
 
 char	*ft_getenv(char *name);
 
@@ -55,6 +56,7 @@ char	**sort_env(char **envp);
 void	ft_delenv(char *var);
 char	**split_equals(char *str);
 int		compare_env(char *name, char *var);
+void	ft_modenv(char *name, char *line);
 /**
 ** Utility
 **/
@@ -69,6 +71,12 @@ int		table_count(char **table);
  */
 t_list	*expand_tokens(t_list *tokens);
 void	expand_command_token(t_token *command);
+
+/***
+ * shell
+*/
+void init_shell(char	**envp, char **av);
+void refresh_shell();
 
 extern t_shell	g_shell;
 #endif

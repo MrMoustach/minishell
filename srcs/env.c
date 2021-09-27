@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 11:38:32 by iharchi           #+#    #+#             */
-/*   Updated: 2021/09/27 13:33:51 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/09/27 17:28:31 by zed              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,24 @@ void	ft_delenv(char *var)
 	table[i] = NULL;
 	free_tab(g_shell.envp);
 	g_shell.envp = table;
+}
+
+void	ft_modenv(char *name, char *line)
+{
+	char	*tmp;
+	int		i;
+
+	i = 0;
+	while (g_shell.envp[i])
+	{
+		if (compare_env(name, g_shell.envp[i]))
+		{
+			free (g_shell.envp[i]);
+			g_shell.envp[i] = line;
+			break ;
+		}
+		i++;
+	}
 }
 
 char	**sort_env(char **envp)

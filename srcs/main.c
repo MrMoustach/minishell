@@ -6,7 +6,7 @@
 /*   By: omimouni <omimouni@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:17:14 by zed               #+#    #+#             */
-/*   Updated: 2021/09/27 19:49:23 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/09/27 19:56:04 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,12 @@ int	run_minishell(char **envp, char **av, int ac)
 {
 	char *line;
 	t_list *tokens;
-	char	*prompt;
 	
 	// (omar) TODO  : Provide the line, and work on history / readline stuff
 	// (issam) TODO : parse line into idividual commands, expand what can be expanded, and escape stuff return data as a command struct
 	while (1)
 	{
-		prompt = ft_strjoin(&av[0][2], "-0.1$ ");
-		line = readline(prompt);
-		free(prompt);
+		line = readline(g_shell.prompt);
 		if (!line)
 		{
 			printf("BYE CRUEL WORLD\n");
@@ -39,15 +36,10 @@ int	run_minishell(char **envp, char **av, int ac)
 		print_helper(tokens);
 		builtin_execute(tokens);
 		free(line);
+		refresh_shell();
 	}
 }
 
-void init_shell(char	**envp)
-{
-	g_shell.run = 1;
-	g_shell.envp = dup_env(envp);
-	g_shell.envp = sort_env(g_shell.envp);
-}
 
 void	intSigHandler(int sig)
 {
@@ -59,7 +51,7 @@ void	intSigHandler(int sig)
 
 int	main(int ac, char **av, char **envp)
 {
-	init_shell(envp);
+	init_shell(envp, av);
 	signal(SIGINT, intSigHandler);
 	run_minishell(envp, av, ac);
 }

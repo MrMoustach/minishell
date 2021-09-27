@@ -6,7 +6,7 @@
 /*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 10:28:32 by iharchi           #+#    #+#             */
-/*   Updated: 2021/09/26 18:06:57 by zed              ###   ########.fr       */
+/*   Updated: 2021/09/27 18:34:53 by zed              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ void	builtin_execute(t_list *tokens)
 				builtin_export(command);
 			if (!ft_strncmp(command.str, "unset", 7))
 				builtin_unset(command);
-
+			if (!ft_strncmp(command.str, "cd", 7))
+				builtin_cd(command);
 
 				
 			if (!ft_strncmp(command.str, "leaks", 6))

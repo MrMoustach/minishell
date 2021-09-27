@@ -6,7 +6,7 @@
 /*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 16:18:57 by zed               #+#    #+#             */
-/*   Updated: 2021/09/26 16:47:36 by zed              ###   ########.fr       */
+/*   Updated: 2021/09/27 18:39:22 by zed              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ typedef struct	s_shell
 {
 	int			run;
 	char		**envp;
+	char		*prompt;
+	char		*name;
 }				t_shell;
 
 #endif
