@@ -6,7 +6,7 @@
 /*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:13:22 by zed               #+#    #+#             */
-/*   Updated: 2021/09/27 17:27:41 by zed              ###   ########.fr       */
+/*   Updated: 2021/09/27 18:38:55 by zed              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	expand_command_token(t_token *command);
 /***
  * shell
 */
-void init_shell(char	**envp);
+void init_shell(char	**envp, char **av);
 void refresh_shell();
 
 extern t_shell	g_shell;

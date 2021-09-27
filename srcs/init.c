@@ -6,17 +6,25 @@
 /*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 17:16:10 by zed               #+#    #+#             */
-/*   Updated: 2021/09/27 17:37:33 by zed              ###   ########.fr       */
+/*   Updated: 2021/09/27 18:47:03 by zed              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void init_shell(char	**envp)
+void init_shell(char	**envp, char **av)
 {
+	char	*tmp;
+	char	*tmp2;
+
 	g_shell.run = 1;
 	g_shell.envp = dup_env(envp);
 	g_shell.envp = sort_env(g_shell.envp);
+	g_shell.name = ft_strjoin(&av[0][2], "-0.2> ");
+	// tmp = ft_getenv("PWD");
+	// g_shell.prompt = ft_strjoin(g_shell.name, tmp);
+	// free (tmp);
+	g_shell.prompt = g_shell.name;
 }
 
 void refresh_shell()
