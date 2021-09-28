@@ -6,7 +6,7 @@
 /*   By: omimouni <omimouni@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 08:04:44 by omimouni          #+#    #+#             */
-/*   Updated: 2021/09/28 17:41:26 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/09/28 17:58:34 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ char
 	*exp_stripe_quotes(char *str, size_t *length)
 {
 	char	*tmp;
+	char	*tmp2;
 	int		i;
 	int		j;
 	int		con;
 	int		end_con;
 
 	tmp = malloc(sizeof(char) * (*length + 1));
-	ft_memset(tmp, 'x', *length);
 	i = 0;
 	j = 0;
 	con = 0;
@@ -40,6 +40,13 @@ char
 		}
 		i++;
 	}
-	tmp[*length] = '\0';
-	return (tmp);
+	tmp2 = malloc(sizeof(char) * (j));
+	i = 0;
+	while (i < j)
+	{
+		tmp2[i] = tmp[i];
+		i++;
+	}
+	tmp2[j] = '\0'; 
+	return (tmp2);
 }
