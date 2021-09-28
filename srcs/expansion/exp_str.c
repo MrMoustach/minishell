@@ -6,7 +6,7 @@
 /*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 14:11:43 by omimouni          #+#    #+#             */
-/*   Updated: 2021/09/28 08:53:46 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/09/28 12:00:01 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,18 @@ size_t
 	size_t	i;
 	size_t	count;
 	size_t	beg;
+	int		con;
 
 	i = 0;
 	count = 0;
+	con = 0;
 	while (str[i])
 	{
-		if (str[i] == '$')
+		if (str[i] == '\'')
+			con = 1;
+		if (str[i] == '"')
+			con = 2;
+		if (str[i] == '$' && con != 1)
 		{
 			beg = ++i;
 			while (exp_is_var(str[i]))
@@ -49,14 +55,20 @@ char
 	char	*tmp;
 	size_t	beg;
 	size_t	i;
+	int		con;
 	size_t	j;
 
 	dest = malloc(sizeof(char) * (count + 1));
 	i = 0;
 	count = 0;
+	con = 0;
 	while (str[i])
 	{
-		if (str[i] == '$')
+		if (str[i] == '\'')
+			con = 1;
+		if (str[i] == '"')
+			con = 2;
+		if (str[i] == '$' && con != 1)
 		{
 			beg = ++i;
 			while (exp_is_var(str[i]))
@@ -97,9 +109,9 @@ char
 
 	length = ft_strlen(str);
 	// TODO: fix this stripe
-	str = exp_stripe_quotes(str, &length);
 	// FIXME: Expand by context
 	tmp = exp_str_set(str, exp_str_size(str), &length);
+	str = exp_stripe_quotes(str, &length);
 
 	return (tmp);
 }
