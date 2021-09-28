@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exp_str.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: omimouni <omimouni@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 14:11:43 by omimouni          #+#    #+#             */
-/*   Updated: 2021/09/28 12:00:01 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/09/28 16:51:01 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,7 @@ size_t
 	con = 0;
 	while (str[i])
 	{
-		if (str[i] == '\'')
-			con = 1;
-		if (str[i] == '"')
-			con = 2;
+		con = exp_create_context(str[i], con);
 		if (str[i] == '$' && con != 1)
 		{
 			beg = ++i;
@@ -64,10 +61,7 @@ char
 	con = 0;
 	while (str[i])
 	{
-		if (str[i] == '\'')
-			con = 1;
-		if (str[i] == '"')
-			con = 2;
+		con = exp_create_context(str[i], con);
 		if (str[i] == '$' && con != 1)
 		{
 			beg = ++i;

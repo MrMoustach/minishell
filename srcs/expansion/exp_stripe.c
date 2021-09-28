@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exp_stripe.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: omimouni <omimouni@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 08:04:44 by omimouni          #+#    #+#             */
-/*   Updated: 2021/09/28 11:35:48 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/09/28 16:50:38 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,8 @@ char
 	con = 0;
 	while (str[i])
 	{
-		if (str[i] == '\'')
-			con = 1;
-		else if (str[i] == '"')
-			con = 2;
-		else {
+		con = exp_create_context(str[i], con);
+		if (str[i] != '\'' || str[i] != '"'){
 			printf("%c in quotes %d \n", str[i], con);
 			tmp[j] = str[i];
 			j++;
