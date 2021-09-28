@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:17:14 by zed               #+#    #+#             */
-/*   Updated: 2021/09/28 16:46:08 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/09/28 17:37:39 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ int	run_minishell(char **envp, char **av, int ac)
 	char *line;
 	t_list *tokens;
 	
-	// (omar) TODO  : Provide the line, and work on history / readline stuff
-	// (issam) TODO : parse line into idividual commands, expand what can be expanded, and escape stuff return data as a command struct
 	while (1)
 	{
 		line = readline(g_shell.prompt);
@@ -32,6 +30,7 @@ int	run_minishell(char **envp, char **av, int ac)
 		add_history(line);
 		tokens = parser(line);
 		print_helper(tokens);
+		// FIXME
 		// (omar) TODO : Try  this case it doesnt work echo "$USER''$SHELL"
 		tokens = expand_tokens(tokens);
 		print_helper(tokens);
