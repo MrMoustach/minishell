@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 16:33:29 by zed               #+#    #+#             */
-/*   Updated: 2021/09/28 18:20:44 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/09/28 18:23:46 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ char	**add_to_top_array(char **array, char *str, int count)
 	tmp[0] = str;
 	while (i < count)
 	{
-		printf("wtf %s\n", array[i]);
 		tmp[i + 1] = array[i];
 		i++;
 	}

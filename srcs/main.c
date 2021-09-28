@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:17:14 by zed               #+#    #+#             */
-/*   Updated: 2021/09/28 18:22:14 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/09/28 18:24:51 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	run_minishell(char **envp, char **av, int ac)
 		if (!*line)
 			continue;
 		add_history(line);
+		// (issam) TODO : trim spaces from the line
 		tokens = parser(line);
 		print_helper(tokens);
 		tokens = expand_tokens(tokens);
