@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omimouni <omimouni@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:17:14 by zed               #+#    #+#             */
-/*   Updated: 2021/09/28 17:37:39 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/09/28 18:13:52 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ int	run_minishell(char **envp, char **av, int ac)
 		add_history(line);
 		tokens = parser(line);
 		print_helper(tokens);
-		// FIXME
-		// (omar) TODO : Try  this case it doesnt work echo "$USER''$SHELL"
 		tokens = expand_tokens(tokens);
 		print_helper(tokens);
 		builtin_execute(tokens);
