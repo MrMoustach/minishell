@@ -6,7 +6,7 @@
 /*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 14:11:43 by omimouni          #+#    #+#             */
-/*   Updated: 2021/09/28 08:34:14 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/09/28 08:45:36 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ size_t
 }
 
 char
-	*exp_str_set(char *str, size_t count)
+	*exp_str_set(char *str, size_t count, size_t *length)
 {
 	char	*dest;
 	char	*tmp;
@@ -51,9 +51,10 @@ char
 	size_t	i;
 	size_t	j;
 
-	dest = malloc(sizeof(count) * (count + 1));
-	count = 0;
+	dest = malloc(sizeof(char) * (count + 1));
+	ft_memset(dest, 'x', count);
 	i = 0;
+	count = 0;
 	while (str[i])
 	{
 		if (str[i] == '$')
@@ -65,7 +66,8 @@ char
 			if (tmp)
 			{
 				j = 0;
-				while (j < i - beg)
+				beg = ft_strlen(tmp);
+				while (j < beg)
 				{
 					dest[count] = tmp[j];
 					count++;	
@@ -81,6 +83,7 @@ char
 		}
 	}
 	dest[count] = '\0';
+	*length = count;
 	return (dest);
 }
 
@@ -99,48 +102,7 @@ char
 
 	i = 0;
 	count = exp_str_size(str);
-
-	tmp2 = malloc(sizeof(char) * (count + 1));
-	ft_memset(tmp2, 'x', count);
-	i = 0;
-	count = 0;
-	while (str[i])
-	{
-		if (str[i] == '$')
-		{
-			beg = ++i;
-			while (exp_is_var(str[i]))
-				i++;
-			tmp = malloc(sizeof(char) * (i - beg));
-			j = 0;
-			while (j < (i - beg))
-			{
-				tmp[j] = str[beg + j];
-				j++;
-			}
-			tmp[j] = '\0';
-			tmp_val = ft_getenv(tmp);
-			if (tmp_val)
-			{
-				j = 0;
-				while (j < ft_strlen(tmp_val))
-				{
-					tmp2[count] = tmp_val[j];
-					j++;
-					count++;
-				}
-			}
-		}
-		else
-		{
-			tmp2[count] = str[i];
-			count++;
-			i++;
-		}
-	}
-	tmp2[count] = '\0';
-	printf("%s\n", tmp2);
-	*length = count;
+	tmp2 = exp_str_set(str, count, length);
 	return (tmp2);
 }
 
@@ -156,10 +118,10 @@ char
 	// FIXME: Expand by context	
 	tmp = exp_expanded(str, &length);
 
-	printf("\nExpansion ------------------\n");
-	printf("length: %zu\n", length);
-	printf("string: %s\n", str);
-	printf("expand: %s\n", tmp);
-	printf("----------------------------\n");
+	// printf("\nExpansion ------------------\n");
+	// printf("length: %zu\n", length);
+	// printf("string: %s\n", str);
+	// printf("expand: %s\n", tmp);
+	// printf("----------------------------\n");
 	return (tmp);
 }
