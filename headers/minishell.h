@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:13:22 by zed               #+#    #+#             */
-/*   Updated: 2021/09/27 18:38:55 by zed              ###   ########.fr       */
+/*   Updated: 2021/09/28 08:07:43 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,12 @@ int		table_count(char **table);
  */
 t_list	*expand_tokens(t_list *tokens);
 void	expand_command_token(t_token *command);
+char	*exp_stripe_quotes(char *str, size_t *length);
+int		exp_is_var(char c);
+void	expand_command_token(t_token *command);
+char	*exp_string(char *str);
+char	*exp_expanded(char *str, size_t *length);
+
 
 /***
  * shell
