@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omimouni <omimouni@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:13:22 by zed               #+#    #+#             */
-/*   Updated: 2021/09/28 16:51:21 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/09/28 18:10:54 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ t_spliter spliter (char *line);
 char	*ft_chardup(char c, int n);
 t_syntax	syntax_analysis(t_list *tokens);
 t_list	*parser(char	*line);
+void	reparse_commands(t_list	*tokens);
 
 
 /**
@@ -64,6 +65,8 @@ void free_tab(char **tab);
 int	ft_is_number(char *s);
 long long	ft_atol(const char *str);
 int		table_count(char **table);
+char	**add_to_array(char **array, char *str, int count);
+char	**add_to_top_array(char **array, char *str, int count);
 
 
 /**

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omimouni <omimouni@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 16:31:46 by zed               #+#    #+#             */
-/*   Updated: 2021/09/27 19:49:16 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/09/28 18:17:05 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,25 +55,6 @@ t_syntax	syntax_analysis(t_list *tokens)
 		tmp = tmp->next;
 	}
 	return (syntax);
-}
-
-char	**add_to_array(char **array, char *str, int count)
-{
-	char	**tmp;
-	int		i;
-	
-	tmp = malloc(sizeof(char *) * (count + 1));
-	i = 0;
-	while (i < count - 1)
-	{
-		tmp[i] = array[i];
-		i++;
-	}
-	tmp[i++] = str;
-	tmp[i] = NULL;
-	if (count != 1)
-		free (array);
-	return (tmp);
 }
 
 t_list	*parser(char	*line)
@@ -163,4 +144,34 @@ t_list	*parser(char	*line)
 		tmp = tmp->next;
 	}
 	return (split.tokens);
+}
+
+void	reparse_commands(t_list	*tokens)
+{
+	t_list	*tmp;
+	t_token	*token;
+	char	**tab;
+	int		i;
+	
+	tmp = tokens;
+	while (tmp)
+	{
+		token = (t_token *)tmp->content;
+		if (token->type == COMMAND)
+		{
+			if (ft_strchr(token->str, ' '))
+			{
+				tab = ft_split(token->str, ' ');
+				free (token->str);
+				token->str = ft_strdup(tab[0]);
+				i = 1;
+				while (tab[i])
+				{
+					token->arg_count++;	
+					token->args = add_to_top_array(token->args, tab[i++], table_count(tab) + 1);
+				}
+			}
+		}
+		tmp = tmp->next;
+	}
 }
