@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: omimouni <omimouni@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:13:22 by zed               #+#    #+#             */
-/*   Updated: 2021/09/28 11:19:56 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/09/28 16:51:21 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void	expand_command_token(t_token *command);
 char	*exp_string(char *str);
 size_t	exp_str_size(char *str);
 char	*exp_current_var(char *src, size_t end);
+int		exp_create_context(char c, int con);
 
 /***
  * shell
