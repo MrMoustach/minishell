@@ -6,7 +6,7 @@
 /*   By: omimouni <omimouni@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 14:11:43 by omimouni          #+#    #+#             */
-/*   Updated: 2021/09/28 17:41:30 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/09/28 18:13:44 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,6 @@ char
 }
 
 
-// TODO: work on quotation stripe and context
 
 char
 	*exp_string(char *str)
@@ -102,8 +101,6 @@ char
 	char	*tmp;
 
 	length = ft_strlen(str);
-	// TODO: fix this stripe
-	// FIXME: Expand by context
 	tmp = exp_str_set(str, exp_str_size(str), &length);
 	tmp = exp_stripe_quotes(tmp, &length);
 
