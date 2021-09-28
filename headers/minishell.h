@@ -6,7 +6,7 @@
 /*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:13:22 by zed               #+#    #+#             */
-/*   Updated: 2021/09/28 08:07:43 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/09/28 08:25:57 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,8 @@ int		exp_is_var(char c);
 void	expand_command_token(t_token *command);
 char	*exp_string(char *str);
 char	*exp_expanded(char *str, size_t *length);
-
+size_t	exp_str_size(char *str);
+char	*exp_current_var(char *src, size_t end);
 
 /***
  * shell
