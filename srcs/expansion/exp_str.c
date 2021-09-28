@@ -6,7 +6,7 @@
 /*   By: omimouni <omimouni@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 14:11:43 by omimouni          #+#    #+#             */
-/*   Updated: 2021/09/28 16:51:01 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/09/28 17:41:30 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ char
 	// TODO: fix this stripe
 	// FIXME: Expand by context
 	tmp = exp_str_set(str, exp_str_size(str), &length);
-	str = exp_stripe_quotes(str, &length);
+	tmp = exp_stripe_quotes(tmp, &length);
 
 	return (tmp);
 }

@@ -6,7 +6,7 @@
 /*   By: omimouni <omimouni@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 08:04:44 by omimouni          #+#    #+#             */
-/*   Updated: 2021/09/28 17:30:59 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/09/28 17:41:26 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,20 +26,20 @@ char
 	i = 0;
 	j = 0;
 	con = 0;
+
+	// FIXME: Sig fault when unclosed quote
 	while (str[i])
 	{
 		con = exp_create_context(str[i], con);
 		end_con = con;
 		end_con = exp_create_context(str[i], con);
-		if (con && end_con)
+		if ((str[i] != '\'' && str[i] != '\"') || con && end_con)
 		{
-			printf("%c in quote %d %d\n", str[i], con, end_con);
 			tmp[j] = str[i];
 			j++;
 		}
 		i++;
 	}
 	tmp[*length] = '\0';
-	printf("\nstripped sentence %s\n", tmp);
 	return (tmp);
 }
