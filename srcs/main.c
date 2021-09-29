@@ -27,11 +27,14 @@ int	run_minishell(char **envp, char **av, int ac)
 		}
 		if (!*line)
 			continue;
-		add_history(line);
 		// (issam) TODO : trim spaces from the line
+		line = trim_starting_whitespaces(line);
+		add_history(line);
 		tokens = parser(line);
 		if (g_shell.debug_mode == 2)
 			print_helper(tokens);
+		// FIXME:
+		// (omar) TODO: $? needs to be expandable to g_shell.exit_code
 		tokens = expand_tokens(tokens);
 		if (g_shell.debug_mode == 2)
 		{

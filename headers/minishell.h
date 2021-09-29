@@ -69,6 +69,7 @@ long long	ft_atol(const char *str);
 int		table_count(char **table);
 char	**add_to_array(char **array, char *str, int count);
 char	**add_to_top_array(char **array, char *str, int count);
+char	*trim_starting_whitespaces(char *str);
 
 
 /**

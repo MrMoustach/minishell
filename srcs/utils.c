@@ -107,3 +107,16 @@ char	**add_to_top_array(char **array, char *str, int count)
 		free (array);
 	return (tmp);
 }
+
+char	*trim_starting_whitespaces(char *str)
+{
+	int		i;
+	char	*tmp;
+	
+	i = 0;
+	while (str[i] && (str[i] == ' ' || str[i] == '\t' || str[i] == '\r'))
+		i++;
+	tmp = ft_strdup(&str[i]);
+	free (str);
+	return (tmp);
+}
