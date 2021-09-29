@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 16:31:46 by zed               #+#    #+#             */
-/*   Updated: 2021/09/28 18:17:05 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/09/29 12:53:33 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,8 +167,8 @@ void	reparse_commands(t_list	*tokens)
 				i = 1;
 				while (tab[i])
 				{
-					token->arg_count++;	
-					token->args = add_to_top_array(token->args, tab[i++], table_count(tab) + 1);
+					token->args = add_to_top_array(token->args, tab[i++], token->arg_count);
+					token->arg_count++;
 				}
 			}
 		}
