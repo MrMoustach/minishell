@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:13:22 by zed               #+#    #+#             */
-/*   Updated: 2021/09/29 13:43:29 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/09/29 14:53:13 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <signal.h>
+# include <sys/types.h>
+# include <dirent.h>
 
 char	**sort_env(char **envp);
 void	add_token(t_token *token, t_list **tokens);
@@ -37,7 +39,7 @@ void	reparse_commands(t_list	*tokens);
 /**
 ** Builtins
 **/
-void	builtin_execute(t_token command);
+int		builtin_execute(t_token command);
 void	builtin_echo(t_token command);
 void	builtin_pwd(t_token command);
 void	builtin_env(t_token command);
@@ -86,7 +88,7 @@ int		exp_create_context(char c, int con);
  * Execution
 */
 void	execute_line(t_list	*tokens);
-
+int		execute_command(t_token command);
 
 /***
  * shell

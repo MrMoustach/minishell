@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:17:14 by zed               #+#    #+#             */
-/*   Updated: 2021/09/29 14:10:18 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/09/29 15:29:53 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	run_minishell(char **envp, char **av, int ac)
 			printf("reparsed commands\n");
 		}
 		reparse_commands(tokens);
-		if (g_shell.debug_mode)
+		if (g_shell.debug_mode == 1)
 			print_helper(tokens);
 		execute_line(tokens);
 		free(line);
