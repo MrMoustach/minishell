@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 17:16:10 by zed               #+#    #+#             */
-/*   Updated: 2021/09/29 13:48:50 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/09/29 14:19:27 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,20 @@ void init_shell(char	**envp, char **av, int ac)
 	g_shell.debug_mode = 0;
 	if (ac > 1)
 	{
-		i = 0;
+		i = 1;
 		while (av[i])
 		{
-			if (ft_strncmp(av[i], "-d", 3))
+			if (!ft_strncmp(av[i], "-d", 3))
+			{
 				g_shell.debug_mode = 1;
+				if (av[i + 1])	
+					g_shell.debug_mode = ft_atoi(av[i + 1]);
+			}
 			i++;
 		}
 	}
+	if (g_shell.debug_mode)
+		printf("\e[41m!!Verbose debug mode level %d enabled!!\e[49m\n", g_shell.debug_mode);
 }
 
 void refresh_shell()

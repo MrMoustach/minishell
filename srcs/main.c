@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:17:14 by zed               #+#    #+#             */
-/*   Updated: 2021/09/29 13:48:20 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/09/29 14:10:18 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,17 @@ int	run_minishell(char **envp, char **av, int ac)
 		add_history(line);
 		// (issam) TODO : trim spaces from the line
 		tokens = parser(line);
-		if (g_shell.debug_mode)
+		if (g_shell.debug_mode == 2)
 			print_helper(tokens);
 		tokens = expand_tokens(tokens);
-		if (g_shell.debug_mode)
+		if (g_shell.debug_mode == 2)
+		{
 			print_helper(tokens);
+			printf("reparsed commands\n");
+		}
 		reparse_commands(tokens);
 		if (g_shell.debug_mode)
-		{
-			printf("reparsed commands\n");
 			print_helper(tokens);
-		}
 		execute_line(tokens);
 		free(line);
 		refresh_shell();
