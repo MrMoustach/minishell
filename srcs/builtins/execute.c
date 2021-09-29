@@ -3,25 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 10:28:32 by iharchi           #+#    #+#             */
-/*   Updated: 2021/09/27 18:34:53 by zed              ###   ########.fr       */
+/*   Updated: 2021/09/29 13:39:13 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	builtin_execute(t_list *tokens)
+void	builtin_execute(t_token command)
 {
-	t_list	*tmp;
-	t_token	command;
-
-	tmp = tokens;
-	while (tmp)
-	{
 		// DOCS : All commands should change the exit status
-		command = *((t_token *)tmp->content);
 		if (command.type == COMMAND)
 		{
 			if (!ft_strncmp(command.str, "echo", 5))
@@ -43,6 +36,4 @@ void	builtin_execute(t_list *tokens)
 			if (!ft_strncmp(command.str, "leaks", 6))
 				debug_leaks();
 		}
-		tmp = tmp->next;
-	}
 }

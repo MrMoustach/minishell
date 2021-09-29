@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:13:22 by zed               #+#    #+#             */
-/*   Updated: 2021/09/28 18:10:54 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/09/29 13:43:29 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	reparse_commands(t_list	*tokens);
 /**
 ** Builtins
 **/
-void	builtin_execute(t_list *tokens);
+void	builtin_execute(t_token command);
 void	builtin_echo(t_token command);
 void	builtin_pwd(t_token command);
 void	builtin_env(t_token command);
@@ -83,9 +83,15 @@ char	*exp_current_var(char *src, size_t end);
 int		exp_create_context(char c, int con);
 
 /***
+ * Execution
+*/
+void	execute_line(t_list	*tokens);
+
+
+/***
  * shell
 */
-void init_shell(char	**envp, char **av);
+void init_shell(char	**envp, char **av, int ac);
 void refresh_shell();
 
 extern t_shell	g_shell;
