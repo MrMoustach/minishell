@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 17:16:10 by zed               #+#    #+#             */
-/*   Updated: 2021/09/30 09:47:56 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/09/30 11:53:14 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void init_shell(char	**envp, char **av, int ac)
 	int		i;
 
 	g_shell.run = 1;
+	g_shell.error = 0;
 	g_shell.envp = dup_env(envp);
 	g_shell.envp = sort_env(g_shell.envp);
 	g_shell.name = ft_strjoin(&av[0][2], "-0.5> ");
@@ -53,6 +54,7 @@ void refresh_shell()
 	char	*tmp;
 
 	tmp = getcwd(tmp, 0);
+	g_shell.error = 0;
 	if (tmp)
 	{
 		cwd = ft_strjoin("PWD=", tmp);

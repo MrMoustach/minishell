@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:17:14 by zed               #+#    #+#             */
-/*   Updated: 2021/09/30 11:22:26 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/09/30 11:53:54 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,16 @@ int	run_minishell(char **envp, char **av, int ac)
 			printf("BYE CRUEL WORLD\n");
 			return (1);
 		}
-		// (issam) TODO : trim spaces from the line
 		line = trim_starting_whitespaces(line);
 		if (!*line)
 			continue;
 		add_history(line);
 		tokens = parser(line);
+		if (g_shell.error)
+		{
+			refresh_shell();
+			continue ;
+		}
 		if (g_shell.debug_mode == 2)
 			print_helper(tokens);
 		// FIXME:

@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 16:31:46 by zed               #+#    #+#             */
-/*   Updated: 2021/09/30 11:34:22 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/09/30 11:52:54 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ t_syntax	syntax_analysis(t_list *tokens)
 		syntax.current = syntax.next;
 		tmp = tmp->next;
 	}
-	if (g_shell.error)
+	if (g_shell.error != 0)
 	{
 		syntax.error = 4;
 		syntax.err_token = syntax.prev;
@@ -79,6 +79,7 @@ t_list	*parser(char	*line)
 	if (syntax.error)
 	{
 		printf("syntax error m8 code : %d near %s\n", syntax.error, syntax.err_token.str);
+		g_shell.error = 2;
 		return (split.tokens);
 	}
 	tmp = split.tokens;
