@@ -110,9 +110,15 @@ int	execute_binary(t_binary binary, t_token command)
 	}
 	else if (pid == 0)
 	{
-		g_shell.exit_code = execve (path, command.args, g_shell.envp);	
+		dup2(command.fds[0], 0);
+		dup2(command.fds[1], 1);
+		g_shell.exit_code = execve (path, command.args, g_shell.envp);
+		close (1);
 		exit (0);
 	}
+	if (command.fds[0] != 0)
+		close (command.fds[0]);	
+	
 	wait (NULL);
 	free_tab(command.args);
 	return (0);
