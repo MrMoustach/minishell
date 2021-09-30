@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   spliter.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 15:07:06 by zed               #+#    #+#             */
-/*   Updated: 2021/09/21 15:07:27 by zed              ###   ########.fr       */
+/*   Updated: 2021/09/30 11:31:56 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,5 +103,7 @@ t_spliter spliter (char *line)
 		}
 		spliter.i++;
 	}
+	if (spliter.in_quotes)
+		g_shell.error = 1;
 	return (spliter);
 }

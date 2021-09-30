@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 12:33:37 by iharchi           #+#    #+#             */
-/*   Updated: 2021/09/26 16:22:38 by zed              ###   ########.fr       */
+/*   Updated: 2021/09/30 11:05:40 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,16 @@ void	builtin_exit(t_token command)
 	{
 		if (ft_is_number(command.args[0]))
 		{
-			if (ft_strlen(command.args[0]) < 13)
-				ret = ft_atol(command.args[0]);
-			else
-				ret = 255;
-			if (ret >= 2147483647)
-				exit_code = (int)((ret - 2147483648) % 255);
-			else
-				exit_code = (int)(ret) % 255;
+			// DOCS: check this out before pushing
+			exit_code = ft_atoi(command.args[0]);
+			// if (ft_strlen(command.args[0]) < 13)
+			// 	ret = ft_atol(command.args[0]);
+			// else
+			// 	ret = 255;
+			// if (ret >= 2147483647)
+			// 	exit_code = (int)((ret - 2147483648) % 255);
+			// else
+			// 	exit_code = (int)(ret) % 255;
 		}
 		else
 			printf("exit: %s: numeric argument required\n", command.args[0]);

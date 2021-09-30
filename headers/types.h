@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 16:18:57 by zed               #+#    #+#             */
-/*   Updated: 2021/09/29 15:01:29 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/09/30 11:29:47 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ typedef struct	s_shell
 	char		command_status;
 	int			exit_code;
 	char		debug_mode;
+	char		error;
 }				t_shell;
 
 typedef struct	s_binary
