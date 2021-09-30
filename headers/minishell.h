@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:13:22 by zed               #+#    #+#             */
-/*   Updated: 2021/09/29 14:53:13 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/09/30 13:32:13 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,11 @@ int		exp_create_context(char c, int con);
 */
 void	execute_line(t_list	*tokens);
 int		execute_command(t_token command);
+
+/***
+ * Pipes
+*/
+t_list	*assign_io(t_list *tokens);
 
 /***
  * shell

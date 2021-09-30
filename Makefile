@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+         #
+#    By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/17 14:26:01 by zed               #+#    #+#              #
-#    Updated: 2021/09/27 13:02:44 by omimouni         ###   ########.fr        #
+#    Updated: 2021/09/30 13:40:11 by iharchi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ SRCS = $(wildcard srcs/*.c srcs/**/*.c src/**/**/*.c)
 OBJS = $(subst srcs/,build/, $(patsubst %.c,%.o,$(SRCS)))
 
 OBJ_FLAG = -c -I./headers -I$(HOME_BREW)/opt/readline/include
-FLAGS =  -L $(HOME_BREW)/opt/readline/lib -lreadline
+FLAGS =  -L $(HOME_BREW)/opt/readline/lib -lreadline -g
 
 LIBFT = libs/libft.a
 
@@ -45,10 +45,10 @@ $(LIBFT):
 	cp libft/libft.a libs/
 
 test: $(OBJS) $(LIBFT)
-	gcc $(OBJS) $(LIBFT)  -g $(FLAGS) -o $(NAME)
+	gcc $(OBJS) $(LIBFT)  $(FLAGS) -o $(NAME)
 
 build/%.o: srcs/%.c
 	@mkdir -p $(dir $@)
-	gcc $<  $(OBJ_FLAG)  -o $@
+	gcc $<  $(OBJ_FLAG) -g  -o $@
 
 .PHONY: all clan fclean re test
