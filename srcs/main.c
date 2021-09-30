@@ -48,9 +48,9 @@ int	run_minishell(char **envp, char **av, int ac)
 		reparse_commands(tokens);
 		if (g_shell.debug_mode >= 1)
 			print_helper(tokens);
-		// tokens = assign_io(tokens);
-		// if (g_shell.debug_mode >= 4)
-		// 	print_helper(tokens);
+		tokens = assign_io(tokens);
+		if (g_shell.debug_mode >= 4)
+			print_helper(tokens);
 		execute_line(tokens);
 		free(line);
 		refresh_shell();

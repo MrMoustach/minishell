@@ -20,20 +20,21 @@ t_list	*assign_io(t_list *tokens)
 
 	tmp = tokens;
 	queue.current = ((t_token *)(tmp->content));
-	queue.prev->empty = 1;
+	queue.prev = NULL;
+	queue.next = NULL;
 	while (tmp)
 	{
 		if (tmp->next)
 			queue.next = ((t_token *)(tmp->next->content));
 		else
-			queue.next->empty = 1;
+			queue.next = NULL;
 		if (queue.current->type == COMMAND)
 		{
-			if (queue.prev->empty)
+			if (!queue.prev)
 				queue.current->fds[0] = 0;
-			if (queue.next->empty)
+			if (!queue.next)
 				queue.current->fds[1] = 1;
-			else if (!queue.next->empty && queue.next->type == PIPE)
+			else if (queue.next && queue.next->type == PIPE)
 			{
 				pipe(p);
 				queue.current->fds[1] = p[1];

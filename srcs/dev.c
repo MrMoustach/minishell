@@ -45,8 +45,8 @@ void	print_helper(t_list *tokens)
 			if (token.arg_count)
 				printf("FILE : %s\n", token.args[0]);
 		}
-		// if (token.type == COMMAND && g_shell.debug_mode == 4)
-		// 	printf("fds : %d %d\n", token.fds[0], token.fds[1]);
+		if (token.type == COMMAND && g_shell.debug_mode == 4)
+			printf("fds : %d %d\n", token.fds[0], token.fds[1]);
 		printf("--------------------------------\n");
 		tmp = tmp->next;
 	}
