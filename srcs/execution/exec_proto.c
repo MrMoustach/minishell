@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 13:34:59 by iharchi           #+#    #+#             */
-/*   Updated: 2021/09/30 09:43:08 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/01 11:29:01 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	execute_line(t_list	*tokens)
 {
 	t_list	*tmp;
 	t_token	token;
+	int		stat;
 
 	tmp = tokens;
 	while (tmp)
@@ -27,6 +28,12 @@ void	execute_line(t_list	*tokens)
 				execute_command(token);
 		}
 		tmp = tmp->next;
+	}
+	stat = 0;
+	while (waitpid(-1, &stat, 0) > 0)
+	{
+		if (WIFEXITED(stat))
+			g_shell.exit_code = WEXITSTATUS(stat);
 	}
 }
 
@@ -110,16 +117,24 @@ int	execute_binary(t_binary binary, t_token command)
 	}
 	else if (pid == 0)
 	{
-		dup2(command.fds[0], 0);
-		dup2(command.fds[1], 1);
+		// dup2(command.fds[0], 0);
+		// dup2(command.fds[1], 1);
+		if (command.fds[1] != 1)
+		{
+			dup2(command.fds[1], 1);
+			close (command.fds[1] - 1);
+		}
+		if (command.fds[0] != 0)
+			dup2(command.fds[0], 0);
 		g_shell.exit_code = execve (path, command.args, g_shell.envp);
 		close (1);
 		exit (0);
 	}
 	if (command.fds[0] != 0)
 		close (command.fds[0]);	
-	
-	wait (NULL);
+	if (command.fds[1] != 1)
+		close (command.fds[1]);	
+	// wait (NULL);
 	free_tab(command.args);
 	return (0);
 }
