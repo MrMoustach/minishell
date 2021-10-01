@@ -1,0 +1,1 @@
+https://stackoverflow.com/questions/8082932/connecting-n-commands-with-pipes-in-a-shell
