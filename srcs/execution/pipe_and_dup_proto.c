@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 13:05:07 by iharchi           #+#    #+#             */
-/*   Updated: 2021/09/30 13:32:40 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/14 13:39:44 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ t_list	*assign_io(t_list *tokens)
 				pipe(p);
 				queue.current->fds[1] = p[1];
 				queue.next->fds[0] = p[0];
+				// sleep (10);
 			}
 		}
 		if (queue.current->type == PIPE)

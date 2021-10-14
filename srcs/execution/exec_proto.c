@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 13:34:59 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/01 12:14:20 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/14 14:42:02 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,8 +117,6 @@ int	execute_binary(t_binary binary, t_token command)
 	}
 	else if (pid == 0)
 	{
-		// dup2(command.fds[0], 0);
-		// dup2(command.fds[1], 1);
 		if (command.fds[1] != 1)
 		{
 			dup2(command.fds[1], 1);
@@ -127,7 +125,6 @@ int	execute_binary(t_binary binary, t_token command)
 		if (command.fds[0] != 0)
 			dup2(command.fds[0], 0);
 		g_shell.exit_code = execve (path, command.args, g_shell.envp);
-		// close (1);
 		exit (0);
 	}
 	if (command.fds[0] != 0)

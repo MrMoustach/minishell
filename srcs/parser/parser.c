@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omimouni <omimouni@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 16:31:46 by zed               #+#    #+#             */
-/*   Updated: 2021/10/07 18:25:16 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/10/08 12:10:07 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,32 +102,32 @@ t_list	*parser(char	*line)
 	return (split.tokens);
 }
 
-void	reparse_commands(t_list	*tokens)
-{
-	t_list	*tmp;
-	t_token	*token;
-	char	**tab;
-	int		i;
+// void	reparse_commands(t_list	*tokens)
+// {
+// 	t_list	*tmp;
+// 	t_token	*token;
+// 	char	**tab;
+// 	int		i;
 	
-	tmp = tokens;
-	while (tmp)
-	{
-		token = (t_token *)tmp->content;
-		if (token->type == COMMAND)
-		{
-			if (ft_strchr(token->str, ' '))
-			{
-				tab = ft_split(token->str, ' ');
-				free (token->str);
-				token->str = ft_strdup(tab[0]);
-				i = 1;
-				while (tab[i])
-				{
-					token->args = add_to_top_array(token->args, tab[i++], token->arg_count);
-					token->arg_count++;
-				}
-			}
-		}
-		tmp = tmp->next;
-	}
-}
+// 	tmp = tokens;
+// 	while (tmp)
+// 	{
+// 		token = (t_token *)tmp->content;
+// 		if (token->type == COMMAND)
+// 		{
+// 			if (ft_strchr(token->str, ' '))
+// 			{
+// 				tab = ft_split(token->str, ' ');
+// 				free (token->str);
+// 				token->str = ft_strdup(tab[0]);
+// 				i = 1;
+// 				while (tab[i])
+// 				{
+// 					token->args = add_to_top_array(token->args, tab[i++], token->arg_count);
+// 					token->arg_count++;
+// 				}
+// 			}
+// 		}
+// 		tmp = tmp->next;
+// 	}
+// }
