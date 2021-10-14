@@ -6,7 +6,7 @@
 /*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 13:05:07 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/14 16:34:19 by zed              ###   ########.fr       */
+/*   Updated: 2021/10/14 22:36:35 by zed              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,7 @@ int		create_or_open_file(t_token redirect)
 	else
 	{
 		if (redirect.type == REDIRECTION)
-		{
 			fd = open(redirect.args[0], O_RDONLY, 0644);
-		}
 	}
 	return (fd);
 }

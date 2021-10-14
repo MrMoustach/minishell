@@ -6,11 +6,13 @@
 /*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 16:31:46 by zed               #+#    #+#             */
-/*   Updated: 2021/10/14 16:40:33 by zed              ###   ########.fr       */
+/*   Updated: 2021/10/14 22:47:06 by zed              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+// TODO : cleanup priority N1
 
 t_list	*parser(char	*line)
 {
@@ -86,11 +88,11 @@ t_list	*parser(char	*line)
 		}
 		if (parser.current->type == FILES && parser.context == 1)
 		{
-			// (issam) TODO : make it so left redirects and appends files stay in their args instead of command args
-			parser.last_redirect->args = malloc(sizeof(char *) * 2);
-			parser.last_redirect->args[0] = parser.current->str;
-			parser.last_redirect->args[1] = NULL;
-			parser.last_redirect->arg_count++;
+			// parser.last_redirect->args = malloc(sizeof(char *) * 2);
+			// parser.last_redirect->args[0] = parser.current->str;
+			// parser.last_redirect->args[1] = NULL;
+			// parser.last_redirect->arg_count++;
+			parser.last_redirect->args = add_to_array(parser.last_redirect->args, parser.current->str, ++parser.last_redirect->arg_count);
 			parser.context = 2;
 			before->next = tmp->next;
 			free (tmp);
