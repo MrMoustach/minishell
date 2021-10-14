@@ -6,7 +6,7 @@
 /*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 10:28:32 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/14 15:31:15 by zed              ###   ########.fr       */
+/*   Updated: 2021/10/14 22:59:14 by zed              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	builtin_execute(t_token command)
 	
 	if (command.in_pipe && builtin_pipe_handler(command) != 0)
 		return ;
-	// DOCS : All commands should change the exit status
+	// (issam) TODO : All commands should change the exit status
 	if (!ft_strncmp(command.str, "echo", 5))
 		builtin_echo(command);
 	else if (!ft_strncmp(command.str, "pwd", 4))

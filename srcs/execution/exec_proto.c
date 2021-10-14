@@ -6,7 +6,7 @@
 /*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 13:34:59 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/14 15:02:19 by zed              ###   ########.fr       */
+/*   Updated: 2021/10/14 23:07:28 by zed              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,9 +119,12 @@ int	execute_binary(t_binary binary, t_token command)
 	}
 	else if (pid == 0)
 	{
+		if (g_shell.exit_code != 0)
+			exit (0);
 		if (command.fds[1] != 1)
 		{
 			dup2(command.fds[1], 1);
+			// BUG : might cause problems, needs to be assigned
 			close (command.fds[1] - 1);
 		}
 		if (command.fds[0] != 0)
