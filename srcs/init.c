@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 17:16:10 by zed               #+#    #+#             */
-/*   Updated: 2021/10/01 11:33:00 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/14 19:12:33 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void init_shell(char	**envp, char **av, int ac)
 	g_shell.error = 0;
 	g_shell.envp = dup_env(envp);
 	g_shell.envp = sort_env(g_shell.envp);
-	g_shell.name = ft_strjoin(&av[0][2], "-0.6> ");
+	g_shell.name = ft_strjoin(&av[0][2], "-0.7> ");
 	g_shell.prompt = g_shell.name;
 	g_shell.command_status = 0;
 	g_shell.debug_mode = 0;
