@@ -6,7 +6,7 @@
 /*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:13:22 by zed               #+#    #+#             */
-/*   Updated: 2021/10/14 15:01:48 by zed              ###   ########.fr       */
+/*   Updated: 2021/10/14 15:38:25 by zed              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <dirent.h>
+ #include <fcntl.h>
 
 char	**sort_env(char **envp);
 void	add_token(t_token *token, t_list **tokens);

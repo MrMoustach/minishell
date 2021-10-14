@@ -6,7 +6,7 @@
 /*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 16:45:17 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/14 14:59:04 by zed              ###   ########.fr       */
+/*   Updated: 2021/10/14 16:06:30 by zed              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_token	*create_token(char *str)
 	token->empty = 0;
 	token->arg_count = 0;
 	token->in_pipe = 0;
+	token->redirects = 0;
 	return (token);
 }
 

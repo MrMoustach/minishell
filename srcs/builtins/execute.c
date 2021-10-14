@@ -6,11 +6,13 @@
 /*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 10:28:32 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/14 15:15:51 by zed              ###   ########.fr       */
+/*   Updated: 2021/10/14 15:31:15 by zed              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+// TODO : remove leaks from built-ins
 
 int		is_builtin(t_token command)
 {

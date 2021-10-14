@@ -6,7 +6,7 @@
 /*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 16:18:57 by zed               #+#    #+#             */
-/*   Updated: 2021/10/14 14:58:39 by zed              ###   ########.fr       */
+/*   Updated: 2021/10/14 16:06:17 by zed              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct	s_token
 	char		**args;
 	int			fds[2];
 	char		in_pipe;
+	char		redirects;
 }				t_token;
 
 typedef struct	s_spliter

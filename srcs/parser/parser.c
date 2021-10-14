@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 16:31:46 by zed               #+#    #+#             */
-/*   Updated: 2021/10/08 12:10:07 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/14 16:40:33 by zed              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ t_list	*parser(char	*line)
 		}
 		if (parser.current->type == FILES && parser.context == 1)
 		{
+			// (issam) TODO : make it so left redirects and appends files stay in their args instead of command args
 			parser.last_redirect->args = malloc(sizeof(char *) * 2);
 			parser.last_redirect->args[0] = parser.current->str;
 			parser.last_redirect->args[1] = NULL;
@@ -101,33 +102,3 @@ t_list	*parser(char	*line)
 	}
 	return (split.tokens);
 }
-
-// void	reparse_commands(t_list	*tokens)
-// {
-// 	t_list	*tmp;
-// 	t_token	*token;
-// 	char	**tab;
-// 	int		i;
-	
-// 	tmp = tokens;
-// 	while (tmp)
-// 	{
-// 		token = (t_token *)tmp->content;
-// 		if (token->type == COMMAND)
-// 		{
-// 			if (ft_strchr(token->str, ' '))
-// 			{
-// 				tab = ft_split(token->str, ' ');
-// 				free (token->str);
-// 				token->str = ft_strdup(tab[0]);
-// 				i = 1;
-// 				while (tab[i])
-// 				{
-// 					token->args = add_to_top_array(token->args, tab[i++], token->arg_count);
-// 					token->arg_count++;
-// 				}
-// 			}
-// 		}
-// 		tmp = tmp->next;
-// 	}
-// }
