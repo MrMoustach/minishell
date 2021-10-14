@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_proto.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 13:34:59 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/14 14:42:02 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/14 15:02:19 by zed              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,10 @@ void	execute_line(t_list	*tokens)
 		token = *((t_token *)tmp->content);
 		if (token.type == COMMAND)
 		{
-			if (!builtin_execute(token))
+			if (!is_builtin(token))
 				execute_command(token);
+			else
+				builtin_execute(token);
 		}
 		tmp = tmp->next;
 	}

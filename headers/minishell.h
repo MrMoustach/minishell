@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:13:22 by zed               #+#    #+#             */
-/*   Updated: 2021/10/01 11:25:56 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/14 15:01:48 by zed              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	reparse_commands(t_list	*tokens);
 /**
 ** Builtins
 **/
-int		builtin_execute(t_token command);
+void	builtin_execute(t_token command);
 void	builtin_echo(t_token command);
 void	builtin_pwd(t_token command);
 void	builtin_env(t_token command);
@@ -48,6 +48,7 @@ void	builtin_exit(t_token command);
 void	builtin_export(t_token command);
 void	builtin_unset(t_token command);
 void	builtin_cd(t_token command);
+int		is_builtin(t_token command);
 
 char	*ft_getenv(char *name);
 
