@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_and_dup_proto.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 13:05:07 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/14 22:36:35 by zed              ###   ########.fr       */
+/*   Updated: 2021/10/15 17:42:41 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ t_list	*assign_io(t_list *tokens)
 	int p[2];
 
 	tmp = tokens;
+	// TODO : Handle cat < file | rev
 	queue.current = ((t_token *)(tmp->content));
 	queue.prev = NULL;
 	queue.next = NULL;
@@ -65,6 +66,8 @@ t_list	*assign_io(t_list *tokens)
 			}
 			else if (queue.next && (queue.next->type == REDIRECTION || queue.next->type == APPEND))
 			{
+				queue.current->fds[0] = 0;
+				queue.current->fds[1] = 1;
 				if (queue.next->type == REDIRECTION && queue.next->direction == LEFT)
 					queue.current->fds[0] = create_or_open_file(*(queue.next));
 				else
