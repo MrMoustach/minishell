@@ -17,9 +17,11 @@
     },
     "todo-tree.highlights.useColourScheme": true,
     "files.associations": {
+        "*.twig": "html",
         "twig": "html",
         "__config": "c",
-        "minishell.h": "c"
+        "minishell.h": "c",
+        "typeinfo": "c"
     },
     "C_Cpp.errorSquiggles": "Disabled",
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   spliter.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omimouni <omimouni@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 15:07:06 by zed               #+#    #+#             */
-/*   Updated: 2021/09/30 11:31:56 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/16 17:15:37 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,29 @@ static t_spliter	split_extra(t_spliter *spliter, char *line, char delim)
 t_spliter spliter (char *line)
 {
 	t_spliter	spliter;
+
+	
+	// Quotation
+	int	i;
+	int	nq;
+	int	nsq;
+
+	nq = 0;
+	nsq = 0;
+	i = 0;
+	while (line[i])
+	{
+		if (line[i] == '\'')
+			nsq++;
+		if (line[i] == '\"')
+			nq++;
+		i++;
+	}
+	if (nq%2!=0 || nsq%2!=0)
+	{
+		printf("parse an error here yoo");
+		exit(-1);
+	}
 
 	spliter.i = 0;
 	spliter.in_quotes = 0;
