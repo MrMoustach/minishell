@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 13:05:07 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/15 17:42:41 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/16 17:30:35 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ t_list	*assign_io(t_list *tokens)
 	t_list	*tmp;
 	t_queue	queue;
 	int p[2];
+	t_token	*last_command;
 
 	tmp = tokens;
 	// TODO : Handle cat < file | rev
@@ -53,6 +54,7 @@ t_list	*assign_io(t_list *tokens)
 			queue.next = NULL;
 		if (queue.current->type == COMMAND)
 		{
+			last_command = queue.current;
 			if (!queue.prev)
 				queue.current->fds[0] = 0;
 			if (!queue.next)
@@ -79,6 +81,14 @@ t_list	*assign_io(t_list *tokens)
 		}
 		if (queue.current->type == PIPE)
 		{
+			// if (queue.prev->type == REDIRECTION || queue.prev->type == APPEND)
+			// {
+			// 	pipe(p);
+			// 	queue.current->fds[1] = p[1];
+			// 	queue.current->fds[0] = 1;
+			// 	if (queue.prev->direction == LEFT)
+			// 		last_command->fds[1] = queue.current->fds[1];
+			// }
 			queue.next->fds[0] = queue.current->fds[0];
 			queue.next->fds[1] = queue.current->fds[1];
 			queue.next->in_pipe = 1;
