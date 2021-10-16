@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_and_dup_proto.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 13:05:07 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/16 17:30:35 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/16 21:34:17 by zed              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,14 +81,14 @@ t_list	*assign_io(t_list *tokens)
 		}
 		if (queue.current->type == PIPE)
 		{
-			// if (queue.prev->type == REDIRECTION || queue.prev->type == APPEND)
-			// {
-			// 	pipe(p);
-			// 	queue.current->fds[1] = p[1];
-			// 	queue.current->fds[0] = 1;
-			// 	if (queue.prev->direction == LEFT)
-			// 		last_command->fds[1] = queue.current->fds[1];
-			// }
+			if (queue.prev->type == REDIRECTION || queue.prev->type == APPEND)
+			{
+				pipe(p);
+				queue.current->fds[0] = p[0];
+				queue.current->fds[1] = 1;
+				if (queue.prev->direction == LEFT)
+					last_command->fds[1] = p[1];
+			}
 			queue.next->fds[0] = queue.current->fds[0];
 			queue.next->fds[1] = queue.current->fds[1];
 			queue.next->in_pipe = 1;
