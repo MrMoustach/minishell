@@ -6,7 +6,7 @@
 /*   By: omimouni <omimouni@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 15:07:06 by zed               #+#    #+#             */
-/*   Updated: 2021/10/16 17:15:37 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/10/17 00:20:21 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ static t_spliter	split_extra(t_spliter *spliter, char *line, char delim)
 {
 	if (spliter->i != spliter->word_start)
 	{
-		spliter->last_word = ft_substr(line, spliter->word_start, spliter->i - spliter->word_start);
+		spliter->last_word = ft_substr(line, spliter->word_start,
+				spliter->i - spliter->word_start);
 		add_token(create_token(spliter->last_word), &(spliter->tokens));
-
 	}
 	if (line[spliter->i + 1] == delim)
 	{
@@ -47,32 +47,29 @@ static t_spliter	split_extra(t_spliter *spliter, char *line, char delim)
 	return (*spliter);
 }
 
-t_spliter spliter (char *line)
+void		split_quotes(t_spliter *spliter, char *line)
+{
+	if (line[spliter->i] == '\'' || line[spliter->i] == '\"')
+	{
+		if (spliter->in_quotes)
+		{
+			if (spliter->quotes == line[spliter->i])
+			{	
+				spliter->in_quotes = 0;
+				spliter->quotes = '\0';
+			}
+		}
+		else
+		{
+			spliter->in_quotes = 1;
+			spliter->quotes = line[spliter->i];
+		}
+	}
+}
+
+t_spliter	spliter(char *line)
 {
 	t_spliter	spliter;
-
-	
-	// Quotation
-	int	i;
-	int	nq;
-	int	nsq;
-
-	nq = 0;
-	nsq = 0;
-	i = 0;
-	while (line[i])
-	{
-		if (line[i] == '\'')
-			nsq++;
-		if (line[i] == '\"')
-			nq++;
-		i++;
-	}
-	if (nq%2!=0 || nsq%2!=0)
-	{
-		printf("parse an error here yoo");
-		exit(-1);
-	}
 
 	spliter.i = 0;
 	spliter.in_quotes = 0;
@@ -80,32 +77,36 @@ t_spliter spliter (char *line)
 	spliter.tokens = NULL;
 	while (line[spliter.i])
 	{
-		if (line[spliter.i] == '\'' || line[spliter.i] == '\"')
-		{
-			if (spliter.in_quotes)
-			{
-				if (spliter.quotes == line[spliter.i])
-				{	
-					spliter.in_quotes = 0;
-					spliter.quotes = '\0';
-				}
-			}
-			else
-			{
-				spliter.in_quotes = 1;
-				spliter.quotes = line[spliter.i];
-			}
-		}
+		// if (line[spliter.i] == '\'' || line[spliter.i] == '\"')
+		// {
+		// 	if (spliter.in_quotes)
+		// 	{
+		// 		if (spliter.quotes == line[spliter.i])
+		// 		{	
+		// 			spliter.in_quotes = 0;
+		// 			spliter.quotes = '\0';
+		// 		}
+		// 	}
+		// 	else
+		// 	{
+		// 		spliter.in_quotes = 1;
+		// 		spliter.quotes = line[spliter.i];
+		// 	}
+		// }
+		split_quotes(&spliter, line);
 		if (!spliter.in_quotes)
 		{
-			if (line[spliter.i] == '>' || line[spliter.i] == '<' || line[spliter.i] == '|' || line[spliter.i] == ';' || line[spliter.i] == '&')
+			if (line[spliter.i] == '>' || line[spliter.i] == '<'
+				|| line[spliter.i] == '|' || line[spliter.i] == ';'
+				|| line[spliter.i] == '&')
 			{
 				spliter = split_extra(&spliter, line, line[spliter.i]);
 				continue ;
 			}
 			if (line[spliter.i] == ' ')
 			{
-				spliter.last_word = ft_substr(line, spliter.word_start, spliter.i - spliter.word_start);
+				spliter.last_word = ft_substr(line, spliter.word_start,
+						spliter.i - spliter.word_start);
 				while (line[spliter.i] && line[spliter.i] == ' ')
 					spliter.i++;
 				spliter.word_start = spliter.i;
@@ -115,12 +116,14 @@ t_spliter spliter (char *line)
 			}
 			if (line[spliter.i + 1] == '\0')
 			{
-				spliter.last_word = ft_substr(line, spliter.word_start, spliter.i - spliter.word_start + 1);
+				spliter.last_word = ft_substr(line, spliter.word_start,
+						spliter.i - spliter.word_start + 1);
 				while (line[spliter.i] && line[spliter.i] == ' ')
 					spliter.i++;
 				spliter.word_start = spliter.i;
 				if (*spliter.last_word != '\0')
-					add_token(create_token(spliter.last_word), &(spliter.tokens));
+					add_token(create_token(spliter.last_word),
+						&(spliter.tokens));
 				break ;
 			}
 		}
