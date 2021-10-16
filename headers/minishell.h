@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: omimouni <omimouni@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:13:22 by zed               #+#    #+#             */
-/*   Updated: 2021/10/14 15:38:25 by zed              ###   ########.fr       */
+/*   Updated: 2021/10/16 18:03:51 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,15 @@ char	*ft_chardup(char c, int n);
 t_syntax	syntax_analysis(t_list *tokens);
 t_list	*parser(char	*line);
 void	reparse_commands(t_list	*tokens);
+
+/**
+ * Parser
+ */
+void	parser_last_command(t_token **tmp_token,
+	t_list **tokens, t_parser *parser, t_list **list);
+void	parser_beofre_command(t_parser *parser, t_list **list);
+int		parse_switch_arg(t_parser *parser, t_list **list, t_token *tmp_token,
+		t_list *tokens);
 
 
 /**

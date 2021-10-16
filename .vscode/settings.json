@@ -23,5 +23,4 @@
         "minishell.h": "c",
         "typeinfo": "c"
     },
-    "C_Cpp.errorSquiggles": "Disabled",
 }
