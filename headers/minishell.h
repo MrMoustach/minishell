@@ -6,7 +6,7 @@
 /*   By: omimouni <omimouni@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:13:22 by zed               #+#    #+#             */
-/*   Updated: 2021/10/16 18:03:51 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/10/17 00:51:00 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,12 @@ void	ft_delenv(char *var);
 char	**split_equals(char *str);
 int		compare_env(char *name, char *var);
 void	ft_modenv(char *name, char *line);
+
+
+void		split_quotes(t_spliter *spliter, char *line);
+int			split_append(t_spliter *spliter, char *line);
+int	split_end(t_spliter *spliter, char *line);
+t_spliter	*split_extra(t_spliter *spliter, char *line, char delim);
 /**
 ** Utility
 **/

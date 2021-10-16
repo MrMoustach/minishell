@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omimouni <omimouni@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 16:33:29 by zed               #+#    #+#             */
-/*   Updated: 2021/09/30 11:23:13 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/17 00:34:59 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,10 @@ char	**add_to_top_array(char **array, char *str, int count)
 		i++;
 	}
 	tmp[i + 1] = NULL;
-	if (count != 1)
-		free (array);
+
+	// FIXME: this fuckedup the reparser
+	// if (count != 1)
+	// 	free (array);
 	return (tmp);
 }
 

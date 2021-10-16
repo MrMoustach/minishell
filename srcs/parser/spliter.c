@@ -6,7 +6,7 @@
 /*   By: omimouni <omimouni@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 15:07:06 by zed               #+#    #+#             */
-/*   Updated: 2021/10/17 00:20:21 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/10/17 00:50:56 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*ft_chardup(char c, int n)
 	return (s);
 }
 
-static t_spliter	split_extra(t_spliter *spliter, char *line, char delim)
+t_spliter	*split_extra(t_spliter *spliter, char *line, char delim)
 {
 	if (spliter->i != spliter->word_start)
 	{
@@ -44,27 +44,7 @@ static t_spliter	split_extra(t_spliter *spliter, char *line, char delim)
 	while (line[spliter->i] && line[spliter->i] == ' ')
 		spliter->i++;
 	spliter->word_start = spliter->i;
-	return (*spliter);
-}
-
-void		split_quotes(t_spliter *spliter, char *line)
-{
-	if (line[spliter->i] == '\'' || line[spliter->i] == '\"')
-	{
-		if (spliter->in_quotes)
-		{
-			if (spliter->quotes == line[spliter->i])
-			{	
-				spliter->in_quotes = 0;
-				spliter->quotes = '\0';
-			}
-		}
-		else
-		{
-			spliter->in_quotes = 1;
-			spliter->quotes = line[spliter->i];
-		}
-	}
+	return (spliter);
 }
 
 t_spliter	spliter(char *line)
@@ -77,55 +57,13 @@ t_spliter	spliter(char *line)
 	spliter.tokens = NULL;
 	while (line[spliter.i])
 	{
-		// if (line[spliter.i] == '\'' || line[spliter.i] == '\"')
-		// {
-		// 	if (spliter.in_quotes)
-		// 	{
-		// 		if (spliter.quotes == line[spliter.i])
-		// 		{	
-		// 			spliter.in_quotes = 0;
-		// 			spliter.quotes = '\0';
-		// 		}
-		// 	}
-		// 	else
-		// 	{
-		// 		spliter.in_quotes = 1;
-		// 		spliter.quotes = line[spliter.i];
-		// 	}
-		// }
 		split_quotes(&spliter, line);
 		if (!spliter.in_quotes)
 		{
-			if (line[spliter.i] == '>' || line[spliter.i] == '<'
-				|| line[spliter.i] == '|' || line[spliter.i] == ';'
-				|| line[spliter.i] == '&')
-			{
-				spliter = split_extra(&spliter, line, line[spliter.i]);
+			if (split_append(&spliter, line))
 				continue ;
-			}
-			if (line[spliter.i] == ' ')
-			{
-				spliter.last_word = ft_substr(line, spliter.word_start,
-						spliter.i - spliter.word_start);
-				while (line[spliter.i] && line[spliter.i] == ' ')
-					spliter.i++;
-				spliter.word_start = spliter.i;
-				add_token(create_token(spliter.last_word), &(spliter.tokens));
-				if (line[spliter.i])
-					continue ;
-			}
-			if (line[spliter.i + 1] == '\0')
-			{
-				spliter.last_word = ft_substr(line, spliter.word_start,
-						spliter.i - spliter.word_start + 1);
-				while (line[spliter.i] && line[spliter.i] == ' ')
-					spliter.i++;
-				spliter.word_start = spliter.i;
-				if (*spliter.last_word != '\0')
-					add_token(create_token(spliter.last_word),
-						&(spliter.tokens));
+			if (split_end(&spliter, line))
 				break ;
-			}
 		}
 		spliter.i++;
 	}
