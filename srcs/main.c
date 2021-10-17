@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:17:14 by zed               #+#    #+#             */
-/*   Updated: 2021/10/01 12:07:56 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/17 09:28:32 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+// FIXME: $? reparse doesn't parse new arguments .. I guess
 
 int	run_minishell(char **envp, char **av, int ac)
 {
@@ -37,8 +39,6 @@ int	run_minishell(char **envp, char **av, int ac)
 		}
 		if (g_shell.debug_mode == 2)
 			print_helper(tokens);
-		// FIXME:
-		// (omar) TODO: $? needs to be expandable to g_shell.exit_code
 		tokens = expand_tokens(tokens);
 		if (g_shell.debug_mode == 1)
 		{
@@ -68,6 +68,7 @@ void	intSigHandler(int sig)
 
 int	main(int ac, char **av, char **envp)
 {
+	g_shell.last_status = 127;
 	init_shell(envp, av, ac);
 	signal(SIGINT, intSigHandler);
 	run_minishell(envp, av, ac);

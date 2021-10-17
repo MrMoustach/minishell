@@ -6,7 +6,7 @@
 /*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 08:06:58 by omimouni          #+#    #+#             */
-/*   Updated: 2021/09/28 08:07:10 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/10/17 09:09:47 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void
 	{
 		tmp = exp_string(command->args[i]);
 		free(command->args[i]);
-		command->args[i] = tmp; 
+		command->args[i] = tmp;
 		i++;
 	}
 }

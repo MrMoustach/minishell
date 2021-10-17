@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exp_str.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omimouni <omimouni@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 14:11:43 by omimouni          #+#    #+#             */
-/*   Updated: 2021/09/28 18:13:44 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/10/17 09:26:57 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,13 @@ size_t
 		if (str[i] == '$' && con != 1)
 		{
 			beg = ++i;
+			
+			if (str[i] == '?')
+			{
+				count = ft_strlen(ft_itoa(g_shell.last_status));
+				break ;
+			}
+			
 			while (exp_is_var(str[i]))
 				i++;
 			tmp = exp_current_var(str + beg, i - beg);
@@ -63,8 +70,19 @@ char
 	{
 		con = exp_create_context(str[i], con);
 		if (str[i] == '$' && con != 1)
-		{
+		{	
 			beg = ++i;
+			if (str[i] == '?')
+			{
+				j = 0;
+				while (j < ft_strlen(ft_itoa(g_shell.last_status)))
+				{
+					dest[count] = ft_itoa(g_shell.last_status)[j];
+					count++;
+					j++;
+				}
+				break ;
+			}
 			while (exp_is_var(str[i]))
 				i++;
 			tmp = exp_current_var(str + beg, i - beg);
