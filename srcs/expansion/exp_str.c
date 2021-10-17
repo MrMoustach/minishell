@@ -6,7 +6,7 @@
 /*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 14:11:43 by omimouni          #+#    #+#             */
-/*   Updated: 2021/10/17 09:26:57 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/10/17 09:58:38 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,18 @@ size_t
 		if (str[i] == '$' && con != 1)
 		{
 			beg = ++i;
-			
 			if (str[i] == '?')
 			{
 				count = ft_strlen(ft_itoa(g_shell.last_status));
-				break ;
 			}
-			
-			while (exp_is_var(str[i]))
-				i++;
-			tmp = exp_current_var(str + beg, i - beg);
-			if (tmp)
-				count += ft_strlen(tmp);
+			else
+			{
+				while (exp_is_var(str[i]))
+					i++;
+				tmp = exp_current_var(str + beg, i - beg);
+				if (tmp)
+					count += ft_strlen(tmp);
+			}
 		}
 		else
 		{
@@ -51,6 +51,9 @@ size_t
 	}
 	return (count);
 }
+
+// FIXME (FIXED): $? reparse doesn't parse new arguments .. I guess
+
 
 char
 	*exp_str_set(char *str, size_t count, size_t *length)
@@ -75,26 +78,28 @@ char
 			if (str[i] == '?')
 			{
 				j = 0;
+				i++;
 				while (j < ft_strlen(ft_itoa(g_shell.last_status)))
 				{
 					dest[count] = ft_itoa(g_shell.last_status)[j];
 					count++;
 					j++;
 				}
-				break ;
 			}
-			while (exp_is_var(str[i]))
-				i++;
-			tmp = exp_current_var(str + beg, i - beg);
-			if (tmp)
-			{
-				j = 0;
-				beg = ft_strlen(tmp);
-				while (j < beg)
+			else {
+				while (exp_is_var(str[i]))
+					i++;
+				tmp = exp_current_var(str + beg, i - beg);
+				if (tmp)
 				{
-					dest[count] = tmp[j];
-					count++;	
-					j++;
+					j = 0;
+					beg = ft_strlen(tmp);
+					while (j < beg)
+					{
+						dest[count] = tmp[j];
+						count++;	
+						j++;
+					}
 				}
 			}
 		}

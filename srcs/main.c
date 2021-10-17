@@ -6,13 +6,12 @@
 /*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:17:14 by zed               #+#    #+#             */
-/*   Updated: 2021/10/17 09:28:32 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/10/17 09:53:17 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// FIXME: $? reparse doesn't parse new arguments .. I guess
 
 int	run_minishell(char **envp, char **av, int ac)
 {
