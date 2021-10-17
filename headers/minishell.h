@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omimouni <omimouni@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:13:22 by zed               #+#    #+#             */
-/*   Updated: 2021/10/17 00:51:00 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/10/17 11:12:59 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,9 @@ char	*exp_string(char *str);
 size_t	exp_str_size(char *str);
 char	*exp_current_var(char *src, size_t end);
 int		exp_create_context(char c, int con);
+void	exp_str_size_var(char *str, size_t *i, size_t *count);
+
+size_t	exp_str_size(char *str);
 
 /***
  * Execution

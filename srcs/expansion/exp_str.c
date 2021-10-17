@@ -6,116 +6,88 @@
 /*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 14:11:43 by omimouni          #+#    #+#             */
-/*   Updated: 2021/10/17 09:58:38 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/10/17 11:12:25 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-size_t
-	exp_str_size(char *str)
+void
+	exp_str_set_dest(char *tmp, char *dest, size_t *count)
 {
-	char	*tmp;
-	size_t	i;
-	size_t	count;
+	size_t	j;
 	size_t	beg;
-	int		con;
 
-	i = 0;
-	count = 0;
-	con = 0;
-	while (str[i])
+	if (tmp)
 	{
-		con = exp_create_context(str[i], con);
-		if (str[i] == '$' && con != 1)
+		j = 0;
+		beg = ft_strlen(tmp);
+		while (j < beg)
 		{
-			beg = ++i;
-			if (str[i] == '?')
-			{
-				count = ft_strlen(ft_itoa(g_shell.last_status));
-			}
-			else
-			{
-				while (exp_is_var(str[i]))
-					i++;
-				tmp = exp_current_var(str + beg, i - beg);
-				if (tmp)
-					count += ft_strlen(tmp);
-			}
+			dest[(*count)] = tmp[j];
+			(*count)++;
+			j++;
 		}
-		else
-		{
-			i++;
-			count++;
-		}
+		free(tmp);
 	}
-	return (count);
 }
 
-// FIXME (FIXED): $? reparse doesn't parse new arguments .. I guess
+void
+	exp_str_set_var(char *str, size_t *i, size_t *count, char *dest)
+{
+	char	*tmp;
+	size_t	beg;
+	size_t	j;
 
+	beg = ++(*i);
+	if (str[(*i)] == '?')
+	{
+		j = 0;
+		(*i)++;
+		while (j < ft_strlen(ft_itoa(g_shell.last_status)))
+		{
+			dest[(*count)] = ft_itoa(g_shell.last_status)[j];
+			(*count)++;
+			j++;
+		}
+	}
+	else
+	{
+		while (exp_is_var(str[(*i)]))
+			(*i)++;
+		tmp = exp_current_var(str + beg, (*i) - beg);
+		exp_str_set_dest(tmp, dest, count);
+	}
+}
 
 char
 	*exp_str_set(char *str, size_t count, size_t *length)
 {
 	char	*dest;
 	char	*tmp;
-	size_t	beg;
-	size_t	i;
 	int		con;
-	size_t	j;
+	size_t	num[3];
 
 	dest = malloc(sizeof(char) * (count + 1));
-	i = 0;
+	num[1] = 0;
 	count = 0;
 	con = 0;
-	while (str[i])
+	while (str[num[1]])
 	{
-		con = exp_create_context(str[i], con);
-		if (str[i] == '$' && con != 1)
-		{	
-			beg = ++i;
-			if (str[i] == '?')
-			{
-				j = 0;
-				i++;
-				while (j < ft_strlen(ft_itoa(g_shell.last_status)))
-				{
-					dest[count] = ft_itoa(g_shell.last_status)[j];
-					count++;
-					j++;
-				}
-			}
-			else {
-				while (exp_is_var(str[i]))
-					i++;
-				tmp = exp_current_var(str + beg, i - beg);
-				if (tmp)
-				{
-					j = 0;
-					beg = ft_strlen(tmp);
-					while (j < beg)
-					{
-						dest[count] = tmp[j];
-						count++;	
-						j++;
-					}
-				}
-			}
-		}
+		con = exp_create_context(str[num[1]], con);
+		if (str[num[1]] == '$' && con != 1)
+			exp_str_set_var(str, &num[1], &count, dest);
 		else
 		{
-			dest[count] = str[i];
+			dest[count] = str[num[1]];
 			count++;
-			i++;
+			num[1]++;
 		}
 	}
 	dest[count] = '\0';
 	*length = count;
 	return (dest);
 }
-
-
 
 char
 	*exp_string(char *str)
@@ -126,6 +98,5 @@ char
 	length = ft_strlen(str);
 	tmp = exp_str_set(str, exp_str_size(str), &length);
 	tmp = exp_stripe_quotes(tmp, &length);
-
 	return (tmp);
 }
