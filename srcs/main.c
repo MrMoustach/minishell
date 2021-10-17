@@ -6,7 +6,7 @@
 /*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:17:14 by zed               #+#    #+#             */
-/*   Updated: 2021/10/17 10:08:53 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/10/17 10:19:07 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void	intSigHandler(int sig)
     rl_redisplay();
 }
 
+// BUG: cat + (ctrl + c) cause problemg
 int	main(int ac, char **av, char **envp)
 {
 	g_shell.last_status = 0;
