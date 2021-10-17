@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_proto.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 13:34:59 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/14 23:07:28 by zed              ###   ########.fr       */
+/*   Updated: 2021/10/17 10:10:43 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,6 +150,10 @@ int	execute_command(t_token command)
 		execute_binary(binary, command);
 	}
 	else
+	{
+		// NOTE: testing $?
+		g_shell.last_status = 127;
 		printf("Binary doesnt exist : %s\n", binary.name);
+	}
 	return (1);
 }

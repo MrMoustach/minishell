@@ -6,7 +6,7 @@
 /*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:17:14 by zed               #+#    #+#             */
-/*   Updated: 2021/10/17 09:53:17 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/10/17 10:08:53 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	intSigHandler(int sig)
 
 int	main(int ac, char **av, char **envp)
 {
-	g_shell.last_status = 127;
+	g_shell.last_status = 0;
 	init_shell(envp, av, ac);
 	signal(SIGINT, intSigHandler);
 	run_minishell(envp, av, ac);
