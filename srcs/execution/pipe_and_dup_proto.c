@@ -3,15 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_and_dup_proto.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 13:05:07 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/16 21:34:17 by zed              ###   ########.fr       */
+/*   Updated: 2021/10/17 14:26:20 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+
+/**
+ * BUG:
+ * exec twice 	 cat srcs/main.c | grep int | wc -l | grep 1
+ * then exec 	 cat srcs/main.c | grep int | wc -l | grep 3
+ * then exec 	 cat srcs/main.c | grep int | wc -l | grep 1
+ * ------
+ * exec twice cat srcs/main.c | grep
+ */
 int		create_or_open_file(t_token redirect)
 {
 	int	fd;

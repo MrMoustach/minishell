@@ -3,18 +3,20 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: omimouni <omimouni@student.1337.ma>        +#+  +:+       +#+         #
+#    By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/17 14:26:01 by zed               #+#    #+#              #
-#    Updated: 2021/10/17 00:35:18 by omimouni         ###   ########.fr        #
+#    Updated: 2021/10/17 14:20:29 by omimouni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
+# TODO: Explicitily declare the srcs
 SRCS = $(wildcard srcs/*.c srcs/**/*.c src/**/**/*.c)
-OBJS = $(subst srcs/,build/, $(patsubst %.c,%.o,$(SRCS)))
 
+# Objs config ---
+OBJS = $(subst srcs/,build/, $(patsubst %.c,%.o,$(SRCS)))
 OBJ_FLAG = -c -I./headers -I$(HOME_BREW)/opt/readline/include
 FLAGS =  -L $(HOME_BREW)/opt/readline/lib -lreadline -g
 
