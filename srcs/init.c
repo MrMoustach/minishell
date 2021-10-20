@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 17:16:10 by zed               #+#    #+#             */
-/*   Updated: 2021/10/14 19:12:33 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/20 20:44:15 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ void refresh_shell()
 
 	tmp = getcwd(tmp, 0);
 	g_shell.error = 0;
+	// BUG : exit code should presist but refresh after second command
+	g_shell.exit_code = 0;
 	if (tmp)
 	{
 		cwd = ft_strjoin("PWD=", tmp);
