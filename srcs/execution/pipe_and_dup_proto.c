@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 13:05:07 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/21 16:53:16 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/21 18:30:40 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	heredoc(t_token redirect)
 	line = NULL;
 	while (1)
 	{
+		// BUG: signals don't work
 		line = readline("heredocs>");
 		if (!ft_strncmp(line, redirect.args[0], ft_strlen(line) + 1))
 			break ;
