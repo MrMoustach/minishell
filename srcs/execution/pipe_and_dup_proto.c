@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 13:05:07 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/20 20:43:26 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/21 16:08:37 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int		create_or_open_file(t_token redirect)
 {
 	int	fd;
 	int	flag;
+	int	file;
+	char	*line;
 	
 	if (redirect.direction == RIGHT)
 	{
@@ -30,6 +32,23 @@ int		create_or_open_file(t_token redirect)
 	{
 		if (redirect.type == REDIRECTION)
 			fd = open(redirect.args[0], O_RDONLY, 0644);
+		if (redirect.type == APPEND)
+		{
+			file = open ("/tmp/lmao", O_WRONLY | O_CREAT, 0644);
+			line = NULL;
+			while (1)
+			{
+				line = readline(">");
+				if (!ft_strncmp(line, redirect.args[0], ft_strlen(redirect.args[0])))
+					break ;
+				write (file, line, ft_strlen(line));
+				write (file, "\n", 1);
+				free (line);
+			}
+			free(line);
+			close (file);
+			fd = open("/tmp/lmao", O_RDONLY);
+		}
 	}
 	return (fd);
 }
@@ -69,7 +88,7 @@ t_list	*assign_io(t_list *tokens)
 			{
 				queue.current->fds[0] = 0;
 				queue.current->fds[1] = 1;
-				if (queue.next->type == REDIRECTION && queue.next->direction == LEFT)
+				if ((queue.next->type == REDIRECTION || queue.next->type == APPEND) && queue.next->direction == LEFT)
 					queue.current->fds[0] = create_or_open_file(*(queue.next));
 				else
 					queue.current->fds[1] = create_or_open_file(*(queue.next));
