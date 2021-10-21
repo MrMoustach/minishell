@@ -6,18 +6,35 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 13:05:07 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/21 16:10:33 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/21 16:53:16 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+void	heredoc(t_token redirect)
+{
+	int		file;
+	char	*line;
+	file = open ("/tmp/lmao", O_WRONLY | O_CREAT, 0644);
+	line = NULL;
+	while (1)
+	{
+		line = readline("heredocs>");
+		if (!ft_strncmp(line, redirect.args[0], ft_strlen(line) + 1))
+			break ;
+		write (file, line, ft_strlen(line));
+		write (file, "\n", 1);
+		free (line);
+	}
+	free(line);
+	close (file);
+}
+
 int		create_or_open_file(t_token redirect)
 {
 	int	fd;
 	int	flag;
-	int	file;
-	char	*line;
 	
 	if (redirect.direction == RIGHT)
 	{
@@ -34,19 +51,8 @@ int		create_or_open_file(t_token redirect)
 			fd = open(redirect.args[0], O_RDONLY, 0644);
 		if (redirect.type == APPEND)
 		{
-			file = open ("/tmp/lmao", O_WRONLY | O_CREAT, 0644);
-			line = NULL;
-			while (1)
-			{
-				line = readline("herdocs>");
-				if (!ft_strncmp(line, redirect.args[0], ft_strlen(redirect.args[0])))
-					break ;
-				write (file, line, ft_strlen(line));
-				write (file, "\n", 1);
-				free (line);
-			}
-			free(line);
-			close (file);
+			// BUG: Env vars need to be not expanded
+			heredoc(redirect);
 			// BUG: need to delete file afterwards
 			fd = open("/tmp/lmao", O_RDONLY);
 		}

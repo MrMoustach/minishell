@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 13:34:59 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/21 14:37:54 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/21 16:50:30 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void	execute_line(t_list	*tokens)
 			else
 				builtin_execute(token);
 		}
+		else if (token.type == APPEND && token.direction == LEFT)
+				unlink("/tmp/lmao");
 		tmp = tmp->next;
 	}
 	stat = 0;
