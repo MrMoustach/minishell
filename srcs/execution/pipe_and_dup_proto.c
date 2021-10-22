@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_and_dup_proto.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 13:05:07 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/21 22:17:47 by zed              ###   ########.fr       */
+/*   Updated: 2021/10/22 14:37:39 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	heredoc(t_token redirect)
 {
 	int		file;
 	char	*line;
+	char	*tmp;
 	file = open ("/tmp/lmao", O_WRONLY | O_CREAT, 0644);
 	line = NULL;
 	while (1)
@@ -25,9 +26,11 @@ void	heredoc(t_token redirect)
 			break ;
 		if (!ft_strncmp(line, redirect.args[0], ft_strlen(line) + 1))
 			break ;
-		write (file, line, ft_strlen(line));
+		tmp = exp_string(line);
+		write (file, tmp, ft_strlen(tmp));
 		write (file, "\n", 1);
 		free (line);
+		free (tmp);
 	}
 	free(line);
 	close (file);
@@ -53,9 +56,7 @@ int		create_or_open_file(t_token redirect)
 			fd = open(redirect.args[0], O_RDONLY, 0644);
 		if (redirect.type == APPEND)
 		{
-			// BUG: Env vars need to be not expanded
 			heredoc(redirect);
-			// BUG: need to delete file afterwards
 			fd = open("/tmp/lmao", O_RDONLY);
 		}
 	}
