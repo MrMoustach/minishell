@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+         #
+#    By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/17 14:26:01 by zed               #+#    #+#              #
-#    Updated: 2021/10/17 14:20:29 by omimouni         ###   ########.fr        #
+#    Updated: 2021/10/23 14:48:30 by iharchi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ fclean: clean
 re: fclean all
 
 $(NAME): $(OBJS) $(LIBFT)
-	gcc $(OBJS) $(LIBFT) $(FLAGS) -o $(NAME)
+	gcc $(OBJS) $(LIBFT) $(FLAGS) -o $(NAME) -fsanitize=address
 
 $(LIBFT):
 	make -sC ./libft
@@ -47,7 +47,7 @@ $(LIBFT):
 	cp libft/libft.a libs/
 
 test: $(OBJS) $(LIBFT)
-	gcc $(OBJS) $(LIBFT)  $(FLAGS) -o $(NAME)
+	gcc $(OBJS) $(LIBFT)  $(FLAGS) -o $(NAME) 
 
 build/%.o: srcs/%.c
 	@mkdir -p $(dir $@)

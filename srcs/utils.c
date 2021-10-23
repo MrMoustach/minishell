@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omimouni <omimouni@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 16:33:29 by zed               #+#    #+#             */
-/*   Updated: 2021/10/17 00:34:59 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/10/23 14:46:06 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void free_tab(char **tab)
 			free(tab[i++]);
 		free(tab);
 	}
-	
 }
 
 int	ft_is_number(char *s)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:17:14 by zed               #+#    #+#             */
-/*   Updated: 2021/10/17 10:19:07 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/10/23 14:44:33 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int	run_minishell(char **envp, char **av, int ac)
 		if (g_shell.debug_mode == 4)
 			print_helper(tokens);
 		execute_line(tokens);
+		ft_lstclear(&tokens, free_token);
 		free(line);
 		refresh_shell();
 	}

@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 13:34:59 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/21 16:50:30 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/23 14:51:57 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,6 @@ int	execute_binary(t_binary binary, t_token command)
 	tmp = ft_strjoin(binary.path, "/");
 	path = ft_strjoin(tmp, binary.name);
 	free (tmp);
-
 	if (command.arg_count)
 		command.args = add_to_top_array(command.args, path, table_count(command.args));
 	else
@@ -134,11 +133,11 @@ int	execute_binary(t_binary binary, t_token command)
 		g_shell.exit_code = execve (path, command.args, g_shell.envp);
 		exit (0);
 	}
+	free (path);
 	if (command.fds[0] != 0)
 		close (command.fds[0]);	
 	if (command.fds[1] != 1)
 		close (command.fds[1]);	
-	free_tab(command.args);
 	return (0);
 }
 
@@ -157,5 +156,7 @@ int	execute_command(t_token command)
 		g_shell.exit_code = 127;
 		printf("Binary doesnt exist : %s\n", binary.name);
 	}
+	free (binary.path);
+	free (binary.name);
 	return (1);
 }
