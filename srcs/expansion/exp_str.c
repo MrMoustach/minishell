@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exp_str.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 14:11:43 by omimouni          #+#    #+#             */
-/*   Updated: 2021/10/17 11:12:25 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/10/23 22:41:52 by zed              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,9 +94,11 @@ char
 {
 	size_t	length;
 	char	*tmp;
+	char	*tmp2;
 
 	length = ft_strlen(str);
-	tmp = exp_str_set(str, exp_str_size(str), &length);
-	tmp = exp_stripe_quotes(tmp, &length);
+	tmp2 = exp_str_set(str, exp_str_size(str), &length);
+	tmp = exp_stripe_quotes(tmp2, &length);
+	free (tmp2);
 	return (tmp);
 }

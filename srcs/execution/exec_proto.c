@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_proto.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 13:34:59 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/23 14:51:57 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/23 22:18:17 by zed              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ int	execute_binary(t_binary binary, t_token command)
 		command.args = add_to_top_array(command.args, path, table_count(command.args));
 	else
 		command.args = add_to_array(command.args, path, 1);
+	command.arg_count++;
 	if ((pid = fork ()) == -1)
 	{
 		printf("Error: fork error\n");
@@ -134,6 +135,12 @@ int	execute_binary(t_binary binary, t_token command)
 		exit (0);
 	}
 	free (path);
+	// BUG: this might fail
+	if (command.arg_count)
+		free (command.args[command.arg_count]);
+	else
+		free (command.args[0]);
+	free(command.args);
 	if (command.fds[0] != 0)
 		close (command.fds[0]);	
 	if (command.fds[1] != 1)
