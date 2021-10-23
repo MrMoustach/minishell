@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omimouni <omimouni@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 16:31:46 by zed               #+#    #+#             */
-/*   Updated: 2021/10/16 18:10:45 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/10/23 15:54:46 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ t_list	*parse_tokens(t_list *tokens)
 	while (list[0])
 	{
 		if (parse_switch_arg(&parser, (t_list **)list,
-				tmp_token, tokens))
+				tmp_token, &tokens))
 			continue ;
 		if (parse_token_type(&parser, (t_list **)list))
 			continue ;

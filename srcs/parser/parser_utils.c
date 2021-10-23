@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omimouni <omimouni@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 18:02:16 by omimouni          #+#    #+#             */
-/*   Updated: 2021/10/16 18:05:22 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/10/23 15:55:51 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void
 }
 
 int	parse_switch_arg(t_parser *parser, t_list **list, t_token *tmp_token,
-		t_list *tokens)
+		t_list **tokens)
 {
 	parser->current = ((t_token *)list[0]->content);
 	if (parser->current->type == ARG
@@ -50,7 +50,7 @@ int	parse_switch_arg(t_parser *parser, t_list **list, t_token *tmp_token,
 	{
 		if (!parser->last_command)
 		{
-			parser_last_command(&tmp_token, &tokens, parser, (t_list **)list);
+			parser_last_command(&tmp_token, tokens, parser, (t_list **)list);
 			return (1);
 		}
 		if (list[1])

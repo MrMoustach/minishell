@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:13:22 by zed               #+#    #+#             */
-/*   Updated: 2021/10/23 14:28:34 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/23 15:54:26 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	parser_last_command(t_token **tmp_token,
 	t_list **tokens, t_parser *parser, t_list **list);
 void	parser_beofre_command(t_parser *parser, t_list **list);
 int		parse_switch_arg(t_parser *parser, t_list **list, t_token *tmp_token,
-		t_list *tokens);
+		t_list **tokens);
 
 
 /**
