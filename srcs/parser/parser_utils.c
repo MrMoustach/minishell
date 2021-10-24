@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 18:02:16 by omimouni          #+#    #+#             */
-/*   Updated: 2021/10/23 15:55:51 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/24 15:57:52 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	parser_last_command(t_token **tmp_token,
 	list[2] = ft_lstnew((*tmp_token));
 	list[2]->next = list[1];
 	list[1]->next = list[0]->next;
+	free (list[0]->content);
 	free(list[0]);
 	parser->last_command = (*tmp_token);
 	list[0] = list[1]->next;
@@ -37,6 +38,7 @@ void
 			parser->last_command->args, parser->current->str,
 			parser->last_command->arg_count);
 	list[1]->next = list[0]->next;
+	free (list[0]->content);
 	free (list[0]);
 	list[0] = list[1]->next;
 }

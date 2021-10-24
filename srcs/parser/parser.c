@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 16:31:46 by zed               #+#    #+#             */
-/*   Updated: 2021/10/23 15:54:46 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/24 15:58:53 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	parse_files(t_parser *parser, t_list **list)
 			parser->current->str, ++(*parser).last_redirect->arg_count);
 	parser->context = 2;
 	list[1]->next = list[0]->next;
+	free (list[0]->content);
 	free (list[0]);
 	list[0] = list[1]->next;
 }
