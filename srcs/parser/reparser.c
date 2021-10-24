@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reparser.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omimouni <omimouni@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 19:09:46 by omimouni          #+#    #+#             */
-/*   Updated: 2021/10/17 00:36:05 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/10/24 18:51:43 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void
 		tab = ft_split((*token)->str, ' ');
 		free ((*token)->str);
 		(*token)->str = ft_strdup(tab[0]);
+		free (tab[0]);
 		i = 1;
 		while (tab[i])
 		{
@@ -33,6 +34,7 @@ void
 					tab[i++], (*token)->arg_count);
 			(*token)->arg_count++;
 		}
+		free (tab);
 	}
 }
 
