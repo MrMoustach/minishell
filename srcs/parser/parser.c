@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 16:31:46 by zed               #+#    #+#             */
-/*   Updated: 2021/10/24 15:58:53 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/24 16:41:45 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ t_list	*parser(char	*line)
 	syntax = syntax_analysis(split.tokens);
 	if (syntax.error)
 	{
-		printf("syntax error m8 code : %d near %s\n",
+		printf("syntax error code : %d near %s\n",
 			syntax.error, syntax.err_token.str);
 		g_shell.error = 2;
 		return (split.tokens);
