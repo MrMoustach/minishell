@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   spliter_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omimouni <omimouni@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 00:49:07 by omimouni          #+#    #+#             */
-/*   Updated: 2021/10/17 00:52:49 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/10/24 16:11:56 by zed              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int	split_end(t_spliter *spliter, char *line)
 		if (*spliter->last_word != '\0')
 			add_token(create_token(spliter->last_word),
 				&(spliter->tokens));
+		else
+			free (spliter->last_word);
 		return (1);
 	}
 	return (0);
