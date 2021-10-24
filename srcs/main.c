@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:17:14 by zed               #+#    #+#             */
-/*   Updated: 2021/10/23 14:44:33 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/24 16:15:02 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int	run_minishell(char **envp, char **av, int ac)
 		tokens = parser(line);
 		if (g_shell.error)
 		{
+			ft_lstclear(&tokens, free_token);
+			free(line);
 			refresh_shell();
 			continue ;
 		}
