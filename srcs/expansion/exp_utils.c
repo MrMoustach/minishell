@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exp_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 08:05:41 by omimouni          #+#    #+#             */
-/*   Updated: 2021/10/17 11:14:45 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/10/24 18:39:16 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,7 @@ char
 		i++;
 	}
 	tmp[i] = '\0';
-	return (ft_getenv(tmp));
+	val = ft_getenv(tmp);
+	free (tmp);
+	return (val);
 }
