@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 13:34:59 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/25 16:40:50 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/25 17:04:49 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	execute_line(t_list	*tokens)
 		token = *((t_token *)tmp->content);
 		if (token.type == COMMAND)
 		{
-			// BUG: export and unset doesnt work when executed in redirect
 			if(execute_twice(token))
 			{
 				token.in_pipe = 0;

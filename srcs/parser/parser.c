@@ -6,7 +6,7 @@
 /*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 19:04:15 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/25 17:20:34 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/10/25 17:21:09 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ t_list	*parser(char	*line)
 	syntax = syntax_analysis(split.tokens);
 	if (syntax.error)
 	{
-		printf("syntax error code : %d near %s\n",
+		printf("minishell: Syntax error code : %d near %s\n",
 			syntax.error, syntax.err_token.str);
 		g_shell.error = 2;
 		return (split.tokens);
