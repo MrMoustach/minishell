@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansion.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 10:34:41 by omimouni          #+#    #+#             */
-/*   Updated: 2021/10/24 18:34:13 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/25 17:43:56 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,10 @@ t_list
 	curr = tokens;
 	while (curr != NULL)
 	{
-		if (((t_token *)curr->content)->type == APPEND && ((t_token *)curr->content)->type == LEFT)
+		if (((t_token *)curr->content)->type == APPEND
+			&& ((t_token *)curr->content)->type == LEFT)
 			continue ;
-			expand_token((t_token *)curr->content);
+		expand_token((t_token *)curr->content);
 		curr = curr->next;
 	}
 	return (tokens);

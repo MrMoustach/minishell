@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   spliter_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 19:04:22 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/24 19:04:23 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/25 17:43:03 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "minishell.h"
 

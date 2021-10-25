@@ -6,13 +6,13 @@
 /*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 19:04:45 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/25 17:20:58 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/10/25 17:44:45 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-
+// BUG: Leaks after executing empty command or invalid env var etc: $HOME
 int	run_minishell(char **envp, char **av, int ac)
 {
 	char *line;
