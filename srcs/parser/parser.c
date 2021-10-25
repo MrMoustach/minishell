@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 19:04:15 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/24 19:04:18 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/25 17:20:34 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,11 @@ t_list	*parser(char	*line)
 	t_syntax	syntax;
 
 	split = spliter(line);
+	if (g_shell.error)
+	{
+		// TODO: print syntax error
+		return (split.tokens);
+	}
 	tokenizer(split.tokens);
 	syntax = syntax_analysis(split.tokens);
 	if (syntax.error)
