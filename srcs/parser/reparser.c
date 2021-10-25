@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 19:09:46 by omimouni          #+#    #+#             */
-/*   Updated: 2021/10/24 18:51:43 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/25 16:09:22 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,14 @@ void
 	int		i;
 	char	**tab;
 
+	i = 0;
+	while ((*token)->str[i])
+	{
+		if ((*token)->str[i++] != ' ')
+			break ;
+	}
+	if ((*token)->str[i] == '\0')
+		return ;
 	if (ft_strchr((*token)->str, ' '))
 	{
 		tab = ft_split((*token)->str, ' ');
