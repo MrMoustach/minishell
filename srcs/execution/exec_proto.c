@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 13:34:59 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/24 19:03:43 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/25 13:41:13 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,6 +162,8 @@ int	execute_command(t_token command)
 		// NOTE: testing $?
 		g_shell.exit_code = 127;
 		printf("Binary doesnt exist : %s\n", binary.name);
+		free (binary.name);
+		return (0);
 	}
 	free (binary.path);
 	free (binary.name);
