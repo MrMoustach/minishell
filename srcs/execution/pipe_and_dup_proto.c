@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 13:05:07 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/22 14:37:39 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/25 16:20:13 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,6 @@ t_list	*assign_io(t_list *tokens)
 					queue.current->fds[0] = create_or_open_file(*(queue.next));
 				else
 					queue.current->fds[1] = create_or_open_file(*(queue.next));
-				printf ("test %d", queue.current->fds[1]);
 				// BUG: might not export correctly
 				queue.current->in_pipe = 1;
 			}

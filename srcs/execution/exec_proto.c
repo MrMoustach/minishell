@@ -6,11 +6,19 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 13:34:59 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/25 13:41:13 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/25 16:40:50 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	execute_twice(t_token token)
+{
+	if (is_builtin(token) && (!ft_strncmp(token.str, "export", 7) ||
+		!ft_strncmp(token.str, "unset", 6)) && token.arg_count)
+		return (1);
+	return (0);
+}
 
 void	execute_line(t_list	*tokens)
 {
@@ -24,6 +32,13 @@ void	execute_line(t_list	*tokens)
 		token = *((t_token *)tmp->content);
 		if (token.type == COMMAND)
 		{
+			// BUG: export and unset doesnt work when executed in redirect
+			if(execute_twice(token))
+			{
+				token.in_pipe = 0;
+				builtin_execute(token);
+				token.in_pipe = 1;
+			}
 			if (!is_builtin(token))
 				execute_command(token);
 			else
@@ -159,7 +174,6 @@ int	execute_command(t_token command)
 	}
 	else
 	{
-		// NOTE: testing $?
 		g_shell.exit_code = 127;
 		printf("Binary doesnt exist : %s\n", binary.name);
 		free (binary.name);
