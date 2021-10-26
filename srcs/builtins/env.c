@@ -6,14 +6,14 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 12:17:00 by iharchi           #+#    #+#             */
-/*   Updated: 2021/09/27 12:58:40 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/26 14:20:16 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "minishell.h"
 
-void builtin_env(t_token command)
+int builtin_env(t_token command)
 {
 	int i;
 
@@ -21,7 +21,7 @@ void builtin_env(t_token command)
 	if (command.arg_count)
 	{
 		printf("env : Too many arguments\n");
-		return ;
+		return (1);
 	}
 	while (g_shell.envp[i])
 	{
@@ -29,4 +29,5 @@ void builtin_env(t_token command)
 			printf("%s\n", g_shell.envp[i]);
 		i++;		
 	}
+	return (0);
 }

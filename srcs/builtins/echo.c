@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/20 09:35:17 by omimouni          #+#    #+#             */
-/*   Updated: 2021/10/17 10:05:27 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/10/26 14:18:16 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	builtin_echo(t_token command)
+int	builtin_echo(t_token command)
 {
 	int	new_line;
 	int	i;
@@ -31,4 +31,5 @@ void	builtin_echo(t_token command)
 	}
 	if (new_line)
 		printf("\n");
+	return (0);
 }

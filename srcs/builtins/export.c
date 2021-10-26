@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 13:13:02 by iharchi           #+#    #+#             */
-/*   Updated: 2021/09/27 13:38:21 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/26 14:24:13 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	print_env()
 	}
 }
 
-void	builtin_export(t_token command)
+int	builtin_export(t_token command)
 {
 	int	i;
 	t_var	var;
@@ -73,6 +73,11 @@ void	builtin_export(t_token command)
 		i = 0;
 		while (command.args[i])
 		{
+			if (command.args[i][0] == '=')
+			{
+				printf("minishell: %s is not a valid identifier\n", command.args[i]);
+				return (1);
+			}
 			var = var_line(command.args[i]);
 			if ((tab = get_address(var.name)))
 			{
@@ -87,4 +92,5 @@ void	builtin_export(t_token command)
 	}
 	else
 		print_env();
+	return (0);
 }

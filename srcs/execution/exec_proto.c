@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 13:34:59 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/25 17:04:49 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/26 14:49:04 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	execute_twice(t_token token)
 {
 	if (is_builtin(token) && (!ft_strncmp(token.str, "export", 7) ||
-		!ft_strncmp(token.str, "unset", 6)) && token.arg_count)
+		!ft_strncmp(token.str, "unset", 6)) && token.arg_count && token.in_pipe)
 		return (1);
 	return (0);
 }

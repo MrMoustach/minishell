@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 19:03:35 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/25 16:44:40 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/26 14:22:28 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 
 
 // (issam) TODO : fix this segfault
-void	builtin_unset(t_token command)
+int	builtin_unset(t_token command)
 {
 	int		i;
 	char	*tmp;
+	int		ret;
 
 	i = 0;
+	ret = 0;
 	if (command.arg_count)
 	{
 		while (command.args[i])
@@ -35,5 +37,9 @@ void	builtin_unset(t_token command)
 		}
 	}
 	else
+	{
+		ret = 1;
 		printf("unset: not enough arguments\n");
+	}
+	return (ret);
 }

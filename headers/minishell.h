@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:13:22 by zed               #+#    #+#             */
-/*   Updated: 2021/10/23 15:54:26 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/26 14:20:45 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,13 @@ int		parse_switch_arg(t_parser *parser, t_list **list, t_token *tmp_token,
 ** Builtins
 **/
 void	builtin_execute(t_token command);
-void	builtin_echo(t_token command);
-void	builtin_pwd(t_token command);
-void	builtin_env(t_token command);
+int		builtin_echo(t_token command);
+int		builtin_pwd(t_token command);
+int		builtin_env(t_token command);
 void	builtin_exit(t_token command);
-void	builtin_export(t_token command);
-void	builtin_unset(t_token command);
-void	builtin_cd(t_token command);
+int		builtin_export(t_token command);
+int		builtin_unset(t_token command);
+int		builtin_cd(t_token command);
 int		is_builtin(t_token command);
 
 char	*ft_getenv(char *name);
