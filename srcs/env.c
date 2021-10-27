@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omimouni <omimouni@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 11:38:32 by iharchi           #+#    #+#             */
-/*   Updated: 2021/09/28 18:13:14 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/10/27 15:45:20 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,13 @@ char	*ft_getenv(char *name)
 	i = 0;
 	while (g_shell.envp[i])
 	{
-		sp = ft_split(g_shell.envp[i], '=');
-		if (!ft_strncmp(sp[0], name, ft_strlen(sp[0])))
+		if (compare_env(name, g_shell.envp[i]))
 		{
-			ret = ft_strdup(sp[1]);
-			free_tab(sp);
-			return (ret);
+			sp = split_equals(g_shell.envp[i]);
+			free (sp[0]);
+			free (sp);
+			return (sp[1]);
 		}
-		free_tab(sp);
 		i++;
 	}
 	return (NULL);
@@ -74,7 +73,7 @@ void	ft_delenv(char *var)
 		table[i - flag] = ft_strdup(g_shell.envp[i]);
 		i++;
 	}
-	table[i] = NULL;
+	table[i - flag] = NULL;
 	free_tab(g_shell.envp);
 	g_shell.envp = table;
 }

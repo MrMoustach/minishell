@@ -6,25 +6,13 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 19:03:35 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/27 14:40:52 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/27 15:38:40 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 // BUG: segfaults
-void	find_and_delete(char *env)
-{
-	char	*tmp;
-
-	tmp = ft_getenv(env);
-	if (tmp != NULL)
-	{
-		ft_delenv(env);
-		free (tmp);
-	}
-}
-
 int	builtin_unset(t_token command)
 {
 	int		i;
@@ -41,7 +29,7 @@ int	builtin_unset(t_token command)
 			else
 			{
 				ret = 0;
-				find_and_delete(command.args[i]);
+				ft_delenv(command.args[i]);
 			}
 			i++;
 		}
