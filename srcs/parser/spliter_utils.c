@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   spliter_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 19:04:22 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/25 17:43:03 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/10/27 13:21:45 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,7 @@ int	split_end(t_spliter *spliter, char *line)
 int	split_append(t_spliter *spliter, char *line)
 {
 	if (line[spliter->i] == '>' || line[spliter->i] == '<'
-		|| line[spliter->i] == '|' || line[spliter->i] == ';'
-		|| line[spliter->i] == '&')
+		|| line[spliter->i] == '|')
 	{
 		spliter = split_extra(spliter, line, line[spliter->i]);
 		return (1);

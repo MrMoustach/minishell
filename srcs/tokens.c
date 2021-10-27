@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 16:45:17 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/23 14:40:40 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/27 13:39:53 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 t_token	*create_token(char *str)
 {
-	t_token *token;
-	
+	t_token	*token;
+
 	token = (t_token *)malloc(sizeof(t_token));
 	token->str = str;
 	token->empty = 0;
@@ -33,7 +33,7 @@ void	free_token(void *t)
 	free(token->str);
 	if (token->arg_count > 0)
 		free_tab(token->args);
-	free (token);	
+	free (token);
 }
 
 void	add_token(t_token *token, t_list **tokens)
@@ -41,7 +41,36 @@ void	add_token(t_token *token, t_list **tokens)
 	ft_lstadd_back(tokens, ft_lstnew(token));
 }
 
-// (issam) TODO : Clean up this shit
+int	append_or_redirect(t_token *token)
+{
+	char	*str;
+
+	str = token->str;
+	if (!ft_strncmp(str, ">", ft_strlen(str)))
+	{
+		token->type = REDIRECTION;
+		token->direction = RIGHT;
+	}
+	else if (!ft_strncmp(str, ">>", ft_strlen(str)))
+	{
+		token->type = APPEND;
+		token->direction = RIGHT;
+	}
+	else if (!ft_strncmp(str, "<", ft_strlen(str)))
+	{
+		token->type = REDIRECTION;
+		token->direction = LEFT;
+	}
+	else if (!ft_strncmp(str, "<<", ft_strlen(str)))
+	{
+		token->type = APPEND;
+		token->direction = LEFT;
+	}
+	else
+		return (0);
+	return (1);
+}
+
 void	tokenizer(t_list *tokens)
 {
 	int	context;
@@ -53,71 +82,29 @@ void	tokenizer(t_list *tokens)
 	tmp = tokens;
 	while (tmp) 
 	{
-		str = ((t_token *)tmp->content)->str;
 		token = ((t_token *)tmp->content);
-		if (!ft_strncmp(str, "|", ft_strlen(str)))
-		{
-			((t_token *)tmp->content)->type = PIPE;
-			context = 0;
-		}
-		else if (!ft_strncmp(str, ";", ft_strlen(str)))
-		{
-			((t_token *)tmp->content)->type = END;
-			context = 0;
-		}
-		else if (!ft_strncmp(str, "&&", ft_strlen(str) ))
-		{
-			((t_token *)tmp->content)->type = RANDOM;
-			context = 0;
-		}
-		else if (!ft_strncmp(str, "||", ft_strlen(str)))
-		{
-			((t_token *)tmp->content)->type = RANDOM;
-			context = 0;
-		}
-		else if (!ft_strncmp(str, "&", ft_strlen(str)))
-		{
-			((t_token *)tmp->content)->type = AND;
-			context = 0;
-		}
-		else if (!ft_strncmp(str, ">", ft_strlen(str)))
-		{
-			token->type = REDIRECTION;
-			token->direction = RIGHT;
+		str = token->str;
+		if (append_or_redirect(token))
 			context = 3;
-		}
-		else if (!ft_strncmp(str, ">>", ft_strlen(str)))
+		else if (!ft_strncmp(str, "|", ft_strlen(str)))
 		{
-			((t_token *)tmp->content)->type = APPEND;
-			((t_token *)tmp->content)->direction = RIGHT;
-			context = 3;
-		}
-		else if (!ft_strncmp(str, "<", ft_strlen(str)))
-		{
-			((t_token *)tmp->content)->type = REDIRECTION;
-			((t_token *)tmp->content)->direction = LEFT;
-			context = 3;
-		}
-		else if (!ft_strncmp(str, "<<", ft_strlen(str)))
-		{
-			((t_token *)tmp->content)->type = APPEND;
-			((t_token *)tmp->content)->direction = LEFT;
-			context = 3;
+			token->type = PIPE;
+			context = 0;
 		}
 		else
 		{
 			if (context == 0)
 			{
 				context = 1;
-				((t_token *)tmp->content)->type = COMMAND;
+				token->type = COMMAND;
 			}
 			else if (context == 1)
 			{
-				((t_token *)tmp->content)->type = ARG;
+				token->type = ARG;
 			}
 			else
 			{
-				((t_token *)tmp->content)->type = FILES;
+				token->type = FILES;
 			}
 		}
 		tmp = tmp->next;

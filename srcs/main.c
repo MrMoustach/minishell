@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 19:04:45 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/27 13:06:47 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/27 14:12:56 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	run_minishell(char **envp, char **av, int ac)
 		if (!line)
 		{
 			printf("BYE CRUEL WORLD\n");
-			return (1);
+			exit (g_shell.last_status);
 		}
 		line = trim_starting_whitespaces(line);
 		if (!*line)
@@ -72,17 +72,31 @@ int	run_minishell(char **envp, char **av, int ac)
 
 void	intSigHandler(int sig)
 {
-	printf("\n");
-    rl_on_new_line();
-    rl_replace_line("", 0);
-    rl_redisplay();
+	if (g_shell.pid == 1)
+	{
+		printf("\n");
+		rl_on_new_line();
+		rl_replace_line("", 0);
+		rl_redisplay();
+		g_shell.last_status = 1;
+	}
+}
+void	quitSigHandler(int sig)
+{
+	if (g_shell.pid == 1)
+	{
+		rl_on_new_line();
+		rl_redisplay();
+	}
 }
 
 // BUG: cat + (ctrl + c) cause problemg
 int	main(int ac, char **av, char **envp)
 {
 	g_shell.last_status = 0;
+	g_shell.pid = 1;
 	init_shell(envp, av, ac);
 	signal(SIGINT, intSigHandler);
+	signal(SIGQUIT, quitSigHandler);
 	run_minishell(envp, av, ac);
 }

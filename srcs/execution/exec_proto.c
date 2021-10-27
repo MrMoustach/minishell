@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 13:34:59 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/27 13:18:12 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/27 14:03:36 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ void	execute_line(t_list	*tokens)
 	tmp = tokens;
 	while (tmp)
 	{
-		if (g_shell.exit_code)
-			return ;
 		token = *((t_token *)tmp->content);
 		if (token.type == COMMAND)
 		{
@@ -48,13 +46,25 @@ void	execute_line(t_list	*tokens)
 		else if (token.type == APPEND && token.direction == LEFT)
 				unlink("/tmp/lmao");
 		tmp = tmp->next;
-		stat = 0;
-		while (waitpid(-1, &stat, 0) > 0)
+	}
+	stat = 0;
+	g_shell.pid = 5;
+	while (waitpid(-1, &stat, 0) > 0)
+	{
+		if (WIFEXITED(stat))
+			g_shell.exit_code = WEXITSTATUS(stat);
+		if (WIFSIGNALED(stat))
 		{
-			if (WIFEXITED(stat))
-				g_shell.exit_code = WEXITSTATUS(stat);
+			if (WTERMSIG(stat) == SIGINT)
+				g_shell.exit_code = 130;
+			else if (WTERMSIG(stat) == SIGQUIT)
+			{
+				g_shell.exit_code = 131;
+				dprintf(2, "QUIT\n");
+			}
 		}
 	}
+	g_shell.pid = 1;
 }
 
 int			bin_exist_in_path(t_binary binary)
