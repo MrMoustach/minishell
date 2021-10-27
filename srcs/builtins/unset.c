@@ -6,13 +6,12 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 19:03:35 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/27 15:38:40 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/27 16:26:44 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// BUG: segfaults
 int	builtin_unset(t_token command)
 {
 	int		i;

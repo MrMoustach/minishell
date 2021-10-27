@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 19:04:45 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/27 14:23:25 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/27 16:26:57 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,7 @@ void	quitSigHandler(int sig)
 		rl_redisplay();
 	}
 }
-
-// BUG: cat + (ctrl + c) cause problemg
+// TODO: needs error handling properly
 int	main(int ac, char **av, char **envp)
 {
 	g_shell.last_status = 0;
