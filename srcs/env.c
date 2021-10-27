@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 11:38:32 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/27 15:45:20 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/27 20:00:15 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,7 +175,7 @@ int	compare_env(char *name, char *var)
 	
 	tab = split_equals(var);
 	ret = 0;
-	if (!ft_strncmp(tab[0], name, ft_strlen(tab[0])))
+	if (!ft_strncmp(tab[0], name, ft_strlen(tab[0]) + 1))
 		ret = 1;
 	free_tab(tab);
 	return (ret);
