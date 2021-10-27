@@ -6,13 +6,11 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 10:28:32 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/26 14:50:00 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/27 13:19:05 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-// TODO : remove leaks from built-ins
 
 int		is_builtin(t_token command)
 {
@@ -58,7 +56,8 @@ int		builtin_pipe_handler(t_token command)
 		if (command.fds[1] != 1)
 		{
 			dup2(command.fds[1], 1);
-			close (command.fds[1] - 1);
+			if (command.to_close)
+			close (command.to_close);
 		}
 		if (command.fds[0] != 0)
 			dup2(command.fds[0], 0);

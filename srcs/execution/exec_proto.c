@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 13:34:59 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/27 13:05:27 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/27 13:18:12 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,8 +142,8 @@ int	execute_binary(t_binary binary, t_token command)
 		if (command.fds[1] != 1)
 		{
 			dup2(command.fds[1], 1);
-			// BUG : might cause problems, needs to be assigned
-			close (command.fds[1] - 1);
+			if (command.to_close)
+				close (command.to_close);
 		}
 		if (command.fds[0] != 0)
 			dup2(command.fds[0], 0);

@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 12:33:37 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/26 14:20:35 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/27 13:19:13 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 t_shell	g_shell;
 
-// TODO: work on exit (task 2)
 
 void	builtin_exit(t_token command)
 {
@@ -35,7 +34,6 @@ void	builtin_exit(t_token command)
 		else
 			printf("exit: %s: numeric argument required\n", command.args[0]);
 	}
-	// TODO : free stuff
 	free_tab(g_shell.envp);
 	exit (exit_code);
 }

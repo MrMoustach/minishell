@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:13:22 by zed               #+#    #+#             */
-/*   Updated: 2021/10/26 14:20:45 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/27 13:09:40 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,11 @@ int		execute_command(t_token command);
  * Pipes
 */
 t_list	*assign_io(t_list *tokens);
+/***
+ * Redirect append
+*/
+void	heredoc(t_token redirect);
+int		create_or_open_file(t_token redirect);
 
 /***
  * shell

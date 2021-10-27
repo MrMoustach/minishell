@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 19:04:52 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/25 16:13:39 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/27 13:18:56 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,10 +106,6 @@ char	**add_to_top_array(char **array, char *str, int count)
 		i++;
 	}
 	tmp[i + 1] = NULL;
-
-	// FIXME: this fuckedup the reparser
-	// if (count != 1)
-	// 	free (array);
 	return (tmp);
 }
 

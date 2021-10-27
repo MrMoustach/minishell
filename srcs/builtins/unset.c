@@ -6,14 +6,13 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 19:03:35 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/26 14:22:28 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/27 13:19:34 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 
-// (issam) TODO : fix this segfault
 int	builtin_unset(t_token command)
 {
 	int		i;

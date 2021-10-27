@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 13:13:02 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/26 14:24:13 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/27 13:19:24 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ static t_var	var_line(char *line)
 	char	**tab;
 	t_var	var;
 	
-	//TODO : free this split
 	tab = split_equals(line);
 	var.name = ft_strdup(tab[0]);
 	var.line = ft_strdup(line);
