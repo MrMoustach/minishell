@@ -6,15 +6,12 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 19:09:46 by omimouni          #+#    #+#             */
-/*   Updated: 2021/10/25 16:09:22 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/27 14:46:22 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/**
- * Potential leak in splits
- */
 void
 	reparse_command(t_token **token)
 {
@@ -23,10 +20,8 @@ void
 
 	i = 0;
 	while ((*token)->str[i])
-	{
 		if ((*token)->str[i++] != ' ')
 			break ;
-	}
 	if ((*token)->str[i] == '\0')
 		return ;
 	if (ft_strchr((*token)->str, ' '))
