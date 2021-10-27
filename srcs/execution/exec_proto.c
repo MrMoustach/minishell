@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 13:34:59 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/26 14:49:04 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/27 13:05:27 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void	execute_line(t_list	*tokens)
 	tmp = tokens;
 	while (tmp)
 	{
+		if (g_shell.exit_code)
+			return ;
 		token = *((t_token *)tmp->content);
 		if (token.type == COMMAND)
 		{
@@ -46,12 +48,12 @@ void	execute_line(t_list	*tokens)
 		else if (token.type == APPEND && token.direction == LEFT)
 				unlink("/tmp/lmao");
 		tmp = tmp->next;
-	}
-	stat = 0;
-	while (waitpid(-1, &stat, 0) > 0)
-	{
-		if (WIFEXITED(stat))
-			g_shell.exit_code = WEXITSTATUS(stat);
+		stat = 0;
+		while (waitpid(-1, &stat, 0) > 0)
+		{
+			if (WIFEXITED(stat))
+				g_shell.exit_code = WEXITSTATUS(stat);
+		}
 	}
 }
 
@@ -89,6 +91,8 @@ t_binary	locate_bin(char	*str)
 		binary.path = ft_substr(str, 0, ft_strlen(str) - ft_strlen(tmp));
 		if (bin_exist_in_path(binary))
 			binary.exist = 1;
+		else
+			free (binary.path);
 	}
 	else
 	{
@@ -135,8 +139,6 @@ int	execute_binary(t_binary binary, t_token command)
 	}
 	else if (pid == 0)
 	{
-		if (g_shell.exit_code != 0)
-			exit (0);
 		if (command.fds[1] != 1)
 		{
 			dup2(command.fds[1], 1);
@@ -146,10 +148,9 @@ int	execute_binary(t_binary binary, t_token command)
 		if (command.fds[0] != 0)
 			dup2(command.fds[0], 0);
 		g_shell.exit_code = execve (path, command.args, g_shell.envp);
-		exit (0);
+		exit (g_shell.exit_code);
 	}
 	free (path);
-	// BUG: this might fail
 	if (command.arg_count)
 		free (command.args[command.arg_count]);
 	else
@@ -170,15 +171,13 @@ int	execute_command(t_token command)
 	if (binary.exist)
 	{
 		execute_binary(binary, command);
+		free (binary.path);
 	}
 	else
 	{
 		g_shell.exit_code = 127;
 		printf("Binary doesnt exist : %s\n", binary.name);
-		free (binary.name);
-		return (0);
 	}
-	free (binary.path);
 	free (binary.name);
 	return (1);
 }
