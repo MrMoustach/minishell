@@ -6,10 +6,9 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 19:03:13 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/26 14:16:28 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/27 14:21:38 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "minishell.h"
 
@@ -25,7 +24,7 @@ int	builtin_cd(t_token command)
 		path = ft_getenv("HOME");
 	if (chdir(path))
 	{
-		ret = 1;	
+		ret = 1;
 		printf ("Mate the dir %s is no more\n", path);
 	}
 	free (path);

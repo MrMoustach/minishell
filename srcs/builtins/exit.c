@@ -6,18 +6,15 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 12:33:37 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/27 13:19:13 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/27 14:23:54 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_shell	g_shell;
-
-
 void	builtin_exit(t_token command)
 {
-	int exit_code;
+	int			exit_code;
 	long long	ret;
 
 	exit_code = 0;

@@ -6,11 +6,13 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 19:04:45 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/27 14:12:56 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/27 14:23:25 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+t_shell	g_shell;
 
 int	run_minishell(char **envp, char **av, int ac)
 {

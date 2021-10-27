@@ -6,20 +6,18 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 13:13:02 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/27 13:19:24 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/27 14:30:40 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-// t_shell	g_shell;
 
 static t_var	var_line(char *line)
 {
 	char	*ret;
 	char	**tab;
 	t_var	var;
-	
+
 	tab = split_equals(line);
 	var.name = ft_strdup(tab[0]);
 	var.line = ft_strdup(line);
@@ -41,7 +39,7 @@ char	**get_address(char *var)
 	return (NULL);
 }
 
-void	print_env()
+void	print_env(void)
 {
 	int		i;
 	char	**tab;
@@ -61,12 +59,25 @@ void	print_env()
 	}
 }
 
+void	add_or_modify_var(t_var var)
+{
+	char	**tab;
+
+	tab = get_address(var.name);
+	if (tab)
+	{
+		free (*tab);
+		*tab = var.line;
+	}
+	else
+		ft_addenv(var.line);
+}
+
 int	builtin_export(t_token command)
 {
-	int	i;
+	int		i;
 	t_var	var;
-	char	**tab;
-	
+
 	if (command.arg_count)
 	{
 		i = 0;
@@ -74,19 +85,14 @@ int	builtin_export(t_token command)
 		{
 			if (command.args[i][0] == '=')
 			{
-				printf("minishell: %s is not a valid identifier\n", command.args[i]);
+				printf("minishell: %s is not a valid identifier\n",
+					command.args[i]);
 				return (1);
 			}
 			var = var_line(command.args[i]);
-			if ((tab = get_address(var.name)))
-			{
-				free (*tab);
-				*tab = var.line;
-			}
-			else
-				ft_addenv(var.line);
-			i++;
+			add_or_modify_var(var);
 			free(var.name);
+			i++;
 		}
 	}
 	else

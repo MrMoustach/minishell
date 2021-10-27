@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/20 09:35:17 by omimouni          #+#    #+#             */
-/*   Updated: 2021/10/26 14:18:16 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/27 14:21:56 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	builtin_echo(t_token command)
 		i = 0;
 		if (!ft_strncmp(command.args[0], "-n", 3))
 		{
-			i++;	
+			i++;
 			new_line = 0;
 		}
 		while (command.args[i])
