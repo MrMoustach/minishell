@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exp_str.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 14:11:43 by omimouni          #+#    #+#             */
-/*   Updated: 2021/10/24 19:03:57 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/27 18:15:54 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void
 	exp_str_set_var(char *str, size_t *i, size_t *count, char *dest)
 {
 	char	*tmp;
+	char	*itoa_tmp;
 	size_t	beg;
 	size_t	j;
 
@@ -44,12 +45,14 @@ void
 	{
 		j = 0;
 		(*i)++;
-		while (j < ft_strlen(ft_itoa(g_shell.last_status)))
+		itoa_tmp = ft_itoa(g_shell.last_status);
+		while (j < ft_strlen(itoa_tmp))
 		{
-			dest[(*count)] = ft_itoa(g_shell.last_status)[j];
+			dest[(*count)] = itoa_tmp[j];
 			(*count)++;
 			j++;
 		}
+		free(itoa_tmp);
 	}
 	else
 	{

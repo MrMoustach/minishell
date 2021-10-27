@@ -6,7 +6,7 @@
 /*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 11:12:26 by omimouni          #+#    #+#             */
-/*   Updated: 2021/10/17 11:12:33 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/10/27 18:19:49 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,14 @@ void
 {
 	size_t	beg;
 	char	*tmp;
+	char	*itoa_tmp;
 
 	beg = ++(*i);
 	if (str[(*i)] == '?')
 	{
-		(*count) = ft_strlen(ft_itoa(g_shell.last_status));
+		itoa_tmp = ft_itoa(g_shell.last_status);
+		(*count) = ft_strlen(itoa_tmp);
+		free(itoa_tmp);
 	}
 	else
 	{
