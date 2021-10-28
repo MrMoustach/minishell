@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 13:05:07 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/28 16:35:00 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/28 17:33:39 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,11 @@ t_queue	init_case_commant(t_queue queue)
 	queue.current->to_close = 0;
 	if (!queue.prev)
 		queue.current->fds[0] = 0;
-	if (!queue.next)
-		queue.current->fds[1] = 1;
+	queue.current->fds[1] = 1;
 	return (queue);
 }
 
-t_queue	pipe_after_commant(t_queue queue)
+t_queue	pipe_after_command(t_queue queue)
 {
 	if (queue.next && queue.next->type == PIPE)
 	{
@@ -41,7 +40,7 @@ t_queue	case_command(t_queue queue)
 	if (queue.current->type == COMMAND)
 	{
 		queue = init_case_commant(queue);
-		queue = pipe_after_commant(queue);
+		queue = pipe_after_command(queue);
 		if (queue.next
 			&& (queue.next->type == REDIRECTION || queue.next->type == APPEND))
 		{
@@ -105,7 +104,7 @@ t_queue	case_append_redirect(t_queue queue)
 	}
 	return (queue);
 }
-
+// BUG: cat < file break it
 t_list	*assign_io(t_list *tokens)
 {
 	t_list	*tmp;
