@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+         #
+#    By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/17 14:26:01 by zed               #+#    #+#              #
-#    Updated: 2021/10/24 15:56:42 by iharchi          ###   ########.fr        #
+#    Updated: 2021/10/28 09:26:02 by omimouni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ fclean: clean
 re: fclean all
 
 $(NAME): $(OBJS) $(LIBFT)
-	gcc $(OBJS) $(LIBFT) $(FLAGS) -o $(NAME) -fsanitize=address
+	gcc $(OBJS) $(LIBFT) $(FLAGS) -o $(NAME) # -fsanitize=address
 
 $(LIBFT):
 	make -sC ./libft
