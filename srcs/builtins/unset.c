@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 19:03:35 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/27 16:26:44 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/28 15:50:01 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	builtin_unset(t_token command)
 {
 	int		i;
 	int		ret;
+	char	*tmp;
 
 	i = 0;
 	ret = 1;
@@ -23,13 +24,18 @@ int	builtin_unset(t_token command)
 	{
 		while (command.args[i])
 		{
-			if (ft_strchr(command.args[i], '='))
-				printf("unset: %s invalid parameter name", command.args[i]);
-			else
+			tmp = ft_getenv(command.args[i]);
+			if (tmp != NULL)
 			{
-				ret = 0;
-				ft_delenv(command.args[i]);
+				if (ft_strchr(command.args[i], '='))
+					printf("unset: %s invalid parameter name", command.args[i]);
+				else
+				{
+					ret = 0;
+					ft_delenv(command.args[i]);
+				}
 			}
+			free (tmp);
 			i++;
 		}
 	}

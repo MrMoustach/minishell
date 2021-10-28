@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 16:18:57 by zed               #+#    #+#             */
-/*   Updated: 2021/10/27 14:03:07 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/28 15:25:23 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ typedef struct	s_queue
 	t_token		*current;
 	t_token		*prev;
 	t_token		*next;
+	t_token		*last_command;
+	int			p[2];
 }				t_queue;
 
 typedef	struct	s_parser
