@@ -6,7 +6,7 @@
 /*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 08:04:44 by omimouni          #+#    #+#             */
-/*   Updated: 2021/10/28 16:11:16 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/10/28 16:21:09 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ char
 	j = 0;
 	while (str[i])
 		exp_stripe_con(str, tmp, &i, &j);
-	tmp2 = malloc(sizeof(char) * (j + 1));
+	tmp2 = malloc(sizeof(char) * (j));
+	printf("-> %d\n", j);
 	i = 0;
 	while (i < j)
 	{

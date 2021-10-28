@@ -6,7 +6,7 @@
 /*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 08:06:58 by omimouni          #+#    #+#             */
-/*   Updated: 2021/10/28 16:09:32 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/10/28 16:21:49 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void
 	expand_command_token(t_token *command)
 {
-	size_t	size;
+	// size_t	size;
 	char	*tmp;
 	int		i;
 
