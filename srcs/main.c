@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 19:04:45 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/27 16:26:57 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/28 10:00:02 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ int	run_minishell(char **envp, char **av, int ac)
 		if (g_shell.debug_mode == 2)
 			print_helper(tokens);
 		tokens = assign_io(tokens);
+		if (g_shell.debug_mode == 4)
+			print_helper(tokens);
 		if (g_shell.error)
 		{
 			printf("error: %d\n", g_shell.error);
@@ -62,8 +64,6 @@ int	run_minishell(char **envp, char **av, int ac)
 			refresh_shell();
 			continue ;
 		}
-		if (g_shell.debug_mode == 4)
-			print_helper(tokens);
 		execute_line(tokens);
 		ft_lstclear(&tokens, free_token);
 		free(line);
