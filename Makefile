@@ -6,7 +6,7 @@
 #    By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/17 14:26:01 by zed               #+#    #+#              #
-#    Updated: 2021/10/28 15:58:02 by iharchi          ###   ########.fr        #
+#    Updated: 2021/10/28 16:13:02 by iharchi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ fclean: clean
 re: fclean all
 
 $(NAME): $(OBJS) $(LIBFT)
-	gcc $(OBJS) $(LIBFT) $(FLAGS) -o $(NAME)  -fsanitize=address
+	gcc $(OBJS) $(LIBFT) $(FLAGS) -o $(NAME) -fsanitize=address
 
 $(LIBFT):
 	make -sC ./libft
