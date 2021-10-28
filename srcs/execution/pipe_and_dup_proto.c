@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 13:05:07 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/28 17:33:39 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/28 17:39:35 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,17 @@ t_queue	case_append_redirect(t_queue queue)
 	}
 	return (queue);
 }
-// BUG: cat < file break it
+
+t_queue	assignment_logic(t_queue queue)
+{
+	queue = case_command(queue);
+	queue = case_pipe(queue);
+	queue = case_append_redirect(queue);
+	queue.prev = queue.current;
+	queue.current = queue.next;
+	return (queue);
+}
+
 t_list	*assign_io(t_list *tokens)
 {
 	t_list	*tmp;
@@ -120,9 +130,7 @@ t_list	*assign_io(t_list *tokens)
 			queue.next = ((t_token *)(tmp->next->content));
 		else
 			queue.next = NULL;
-		queue = case_command(queue);
-		queue = case_pipe(queue);
-		queue = case_append_redirect(queue);
+		queue = assignment_logic(queue);
 		if (g_shell.error)
 		{
 			if (queue.last_command->fds[1] != 1)
@@ -131,8 +139,6 @@ t_list	*assign_io(t_list *tokens)
 				close (queue.last_command->fds[0]);
 			break ;
 		}
-		queue.prev = queue.current;
-		queue.current = queue.next;
 		tmp = tmp->next;
 	}
 	return (tokens);
