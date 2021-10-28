@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:13:22 by zed               #+#    #+#             */
-/*   Updated: 2021/10/27 13:09:40 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/28 17:46:16 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,12 @@ int		execute_command(t_token command);
  * Pipes
 */
 t_list	*assign_io(t_list *tokens);
+t_queue	init_case_commant(t_queue queue);
+t_queue	assignment_logic(t_queue queue);
+t_queue	pipe_after_command(t_queue queue);
+t_queue	case_append_redirect(t_queue queue);
+t_queue	case_pipe(t_queue queue);
+t_queue	case_command(t_queue queue);
 /***
  * Redirect append
 */

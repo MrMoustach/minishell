@@ -1,26 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipe_and_dup_proto.c                               :+:      :+:    :+:   */
+/*   pipe_and_redirect.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 13:05:07 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/28 17:39:35 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/28 17:45:45 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-t_queue	init_case_commant(t_queue queue)
-{
-	queue.last_command = queue.current;
-	queue.current->to_close = 0;
-	if (!queue.prev)
-		queue.current->fds[0] = 0;
-	queue.current->fds[1] = 1;
-	return (queue);
-}
 
 t_queue	pipe_after_command(t_queue queue)
 {
@@ -102,16 +92,6 @@ t_queue	case_append_redirect(t_queue queue)
 				g_shell.error = 4;
 		}
 	}
-	return (queue);
-}
-
-t_queue	assignment_logic(t_queue queue)
-{
-	queue = case_command(queue);
-	queue = case_pipe(queue);
-	queue = case_append_redirect(queue);
-	queue.prev = queue.current;
-	queue.current = queue.next;
 	return (queue);
 }
 
