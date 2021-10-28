@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 13:05:07 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/28 10:56:47 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/28 12:52:06 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,13 +88,19 @@ t_list	*assign_io(t_list *tokens)
 				{
 					p[0] = create_or_open_file (*(queue.current));
 				}
-					// TODO: needs to include filename in error handling
-					if (last_command->fds[1] < 0 || p[0] < 0)
-					{
-						g_shell.error = 4;
-						break ;	
-					}
-					// TODO : close fds here
+				if (p[0] != 0)
+					close (p[0]);
+				// TODO: needs to include filename in error handling
+				if (last_command->fds[1] < 0 || p[0] < 0)
+				{
+					g_shell.error = 4;
+					if (last_command->fds[1] != 1)
+						close (last_command->fds[1]);
+					if (last_command->fds[0] != 0)
+						close (last_command->fds[0]);
+					break ;	
+				}
+
 			}
 		}
 		queue.prev = queue.current;
