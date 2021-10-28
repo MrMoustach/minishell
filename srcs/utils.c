@@ -6,13 +6,13 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 19:04:52 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/27 13:18:56 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/28 17:49:34 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void free_tab(char **tab)
+void	free_tab(char **tab)
 {
 	int	i;
 
@@ -77,7 +77,7 @@ char	**add_to_array(char **array, char *str, int count)
 {
 	char	**tmp;
 	int		i;
-	
+
 	tmp = malloc(sizeof(char *) * (count + 1));
 	i = 0;
 	while (i < count - 1)
@@ -89,35 +89,5 @@ char	**add_to_array(char **array, char *str, int count)
 	tmp[i] = NULL;
 	if (count != 1)
 		free (array);
-	return (tmp);
-}
-
-char	**add_to_top_array(char **array, char *str, int count)
-{
-	char	**tmp;
-	int		i;
-	
-	tmp = malloc(sizeof(char *) * (count + 2));
-	i = 0;
-	tmp[0] = str;
-	while (i < count)
-	{
-		tmp[i + 1] = array[i];
-		i++;
-	}
-	tmp[i + 1] = NULL;
-	return (tmp);
-}
-
-char	*trim_starting_whitespaces(char *str)
-{
-	int		i;
-	char	*tmp;
-	
-	i = 0;
-	while (str[i] && (str[i] == ' ' || str[i] == '\t' || str[i] == '\r'))
-		i++;
-	tmp = ft_strdup(&str[i]);
-	free (str);
 	return (tmp);
 }
