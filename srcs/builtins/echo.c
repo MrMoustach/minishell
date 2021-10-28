@@ -6,7 +6,7 @@
 /*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/20 09:35:17 by omimouni          #+#    #+#             */
-/*   Updated: 2021/10/28 09:36:00 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/10/28 16:29:41 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	builtin_echo(t_token command)
 
 	new_line = 1;
 	i = 0;
-	while (1)
+	while (i < command.arg_count)
 	{
 		if (is_n_flag(command.args[i]))
 		{
@@ -47,13 +47,13 @@ int	builtin_echo(t_token command)
 		}
 		else
 			break ;
-		i++;
 	}
 	while (i < command.arg_count)
 	{
-		printf("%s", command.args[i++]);
-		if (i != command.arg_count)
-		printf(" ");
+		printf("%s", command.args[i]);
+		if (i != command.arg_count - 1)
+			printf(" ");
+		i++;
 	}
 
 	if (new_line)

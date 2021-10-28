@@ -6,7 +6,7 @@
 /*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 11:12:26 by omimouni          #+#    #+#             */
-/*   Updated: 2021/10/27 18:19:49 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/10/28 16:33:26 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void
 	else
 	{
 		while (exp_is_var(str[(*i)]))
-			i++;
+			(*i)++;
 		tmp = exp_current_var(str + beg, (*i) - beg);
 		if (tmp)
 		{
