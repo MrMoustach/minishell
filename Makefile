@@ -6,7 +6,7 @@
 #    By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/17 14:26:01 by zed               #+#    #+#              #
-#    Updated: 2021/10/28 16:36:08 by iharchi          ###   ########.fr        #
+#    Updated: 2021/10/29 17:13:33 by iharchi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,8 @@ SRCS = $(wildcard srcs/*.c srcs/**/*.c src/**/**/*.c)
 
 # Objs config ---
 OBJS = $(subst srcs/,build/, $(patsubst %.c,%.o,$(SRCS)))
-OBJ_FLAG = -c -I./headers -I$(HOME_BREW)/opt/readline/include
-FLAGS =  -L $(HOME_BREW)/opt/readline/lib -lreadline -g
+OBJ_FLAG = -c -I./headers -I$(HOME_BREW)/opt/readline/include -Wall -Wextra -Werror
+FLAGS =  -L $(HOME_BREW)/opt/readline/lib -lreadline -g -Wall -Wextra -Werror
 
 LIBFT = libs/libft.a
 
