@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 19:03:01 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/29 20:25:10 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/29 20:47:21 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,11 @@ void	refresh_shell(void)
 		ft_modenv("PWD", cwd);
 	}
 	unlink("/tmp/lmao");
+}
+
+void	clean_shell(t_list *tokens, char *line)
+{
+	ft_lstclear(&tokens, free_token);
+	free(line);
+	refresh_shell();
 }

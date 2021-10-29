@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 19:04:45 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/29 19:39:10 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/29 20:47:58 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,91 +14,69 @@
 
 t_shell	g_shell;
 
+int	catch_errors(t_list *tokens, char *line)
+{
+	if (g_shell.error)
+	{
+		clean_shell(tokens, line);
+		return (1);
+	}
+	return (0);
+}
+
+t_list	*use_tokens(t_list	*tokens)
+{
+	tokens = expand_tokens(tokens);
+	reparse_commands(tokens);
+	tokens = assign_io(tokens);
+	return (tokens);
+}
+
+char	*get_line(void)
+{
+	char	*line;
+
+	line = readline(g_shell.prompt);
+	if (!line)
+	{
+		printf("BYE CRUEL WORLD\n");
+		exit (g_shell.last_status);
+	}
+	line = trim_starting_whitespaces(line);
+	return (line);
+}
+
 int	run_minishell(void)
 {
-	char *line;
-	t_list *tokens;
-	
+	char	*line;
+	t_list	*tokens;
+
 	while (1)
 	{
-		line = readline(g_shell.prompt);
-		if (!line)
-		{
-			printf("BYE CRUEL WORLD\n");
-			exit (g_shell.last_status);
-		}
-		line = trim_starting_whitespaces(line);
+		line = get_line();
 		if (!*line)
 		{
-			free (line);	
-			continue;
+			free (line);
+			continue ;
 		}
 		add_history(line);
 		tokens = parser(line);
-		if (g_shell.error)
-		{
-			ft_lstclear(&tokens, free_token);
-			free(line);
-			refresh_shell();
+		if (catch_errors(tokens, line))
 			continue ;
-		}
-		if (g_shell.debug_mode == 2)
-			print_helper(tokens);
-		tokens = expand_tokens(tokens);
-		if (g_shell.debug_mode == 1)
-		{
-			print_helper(tokens);
-			printf("reparsed commands\n");
-		}
-		reparse_commands(tokens);
-		if (g_shell.debug_mode == 2)
-			print_helper(tokens);
-		tokens = assign_io(tokens);
-		if (g_shell.debug_mode == 4)
-			print_helper(tokens);
-		if (g_shell.error)
-		{
-			ft_lstclear(&tokens, free_token);
-			free(line);
-			refresh_shell();
+		tokens = use_tokens(tokens);
+		if (catch_errors(tokens, line))
 			continue ;
-		}
 		execute_line(tokens);
-		ft_lstclear(&tokens, free_token);
-		free(line);
-		refresh_shell();
+		clean_shell(tokens, line);
 	}
 }
 
-
-void	intSigHandler(int sig)
-{
-	(void)sig;
-	if (g_shell.pid == 1)
-	{
-		printf("\n");
-		rl_on_new_line();
-		rl_replace_line("", 0);
-		rl_redisplay();
-		g_shell.last_status = 1;
-	}
-}
-void	quitSigHandler(int sig)
-{
-	(void)sig;
-	if (g_shell.pid == 1)
-	{
-		rl_on_new_line();
-		rl_redisplay();
-	}
-}
-// TODO: needs error handling properly
 int	main(int ac, char **av, char **envp)
 {
 	g_shell.last_status = 0;
 	g_shell.pid = 1;
 	init_shell(envp, av, ac);
-	signal(SIGINT, intSigHandler);
-	signal(SIGQUIT, quitSigHandler);
+	signal(SIGINT, int_sig_handler);
+	signal(SIGQUIT, quit_sig_handler);
 	run_minishell();
 }
