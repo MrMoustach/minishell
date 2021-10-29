@@ -6,7 +6,7 @@
 /*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 10:34:41 by omimouni          #+#    #+#             */
-/*   Updated: 2021/10/25 17:43:56 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/10/29 17:27:14 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@ static t_token
 	return (token);
 }
 
+
+// BUG: Expansion bug 
+// Command: echo "$HOME/desktop////" "test 'te'st"
 t_list
 	*expand_tokens(t_list *tokens)
 {
