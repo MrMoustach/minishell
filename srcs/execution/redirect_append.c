@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 13:08:37 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/27 13:11:35 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/29 21:28:55 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ int	create_or_open_file(t_token redirect)
 	int	fd;
 	int	flag;
 
-	if (redirect.direction == RIGHT)
+	if (redirect.direction == e_right)
 	{
 		flag = O_CREAT;
-		if (redirect.type == APPEND)
+		if (redirect.type == e_append)
 			flag = O_CREAT | O_WRONLY | O_APPEND;
 		else
 			flag = flag | O_WRONLY | O_TRUNC;
@@ -53,9 +53,9 @@ int	create_or_open_file(t_token redirect)
 	}
 	else
 	{
-		if (redirect.type == REDIRECTION)
+		if (redirect.type == e_redirection)
 			fd = open(redirect.args[0], O_RDONLY, 0644);
-		if (redirect.type == APPEND)
+		if (redirect.type == e_append)
 		{
 			heredoc(redirect);
 			fd = open("/tmp/lmao", O_RDONLY);

@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 19:09:46 by omimouni          #+#    #+#             */
-/*   Updated: 2021/10/27 14:46:22 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/29 21:26:36 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	reparse_commands(t_list	*tokens)
 	while (tmp)
 	{
 		token = (t_token *)tmp->content;
-		if (token->type == COMMAND)
+		if (token->type == e_command)
 			reparse_command(&token);
 		tmp = tmp->next;
 	}

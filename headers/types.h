@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 16:18:57 by zed               #+#    #+#             */
-/*   Updated: 2021/10/29 21:14:25 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/29 21:25:05 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # define FT_PROMPT "minishell> "
 
-enum e_type	{COMMAND, ARG, REDIRECTION,APPEND, PIPE, FILES};
-enum e_dir	{LEFT, RIGHT};
+enum e_type	{e_command, e_arg, e_redirection,e_append, e_pipe, e_files};
+enum e_dir	{e_left, e_right};
 typedef struct s_token
 {
 	enum e_type	type;

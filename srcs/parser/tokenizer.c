@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 14:19:00 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/27 14:19:20 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/29 21:28:01 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,23 @@ int	append_or_redirect(t_token *token)
 {
 	if (!ft_strncmp(token->str, ">", ft_strlen(token->str)))
 	{
-		token->type = REDIRECTION;
-		token->direction = RIGHT;
+		token->type = e_redirection;
+		token->direction = e_right;
 	}
 	else if (!ft_strncmp(token->str, ">>", ft_strlen(token->str)))
 	{
-		token->type = APPEND;
-		token->direction = RIGHT;
+		token->type = e_append;
+		token->direction = e_right;
 	}
 	else if (!ft_strncmp(token->str, "<", ft_strlen(token->str)))
 	{
-		token->type = REDIRECTION;
-		token->direction = LEFT;
+		token->type = e_redirection;
+		token->direction = e_left;
 	}
 	else if (!ft_strncmp(token->str, "<<", ft_strlen(token->str)))
 	{
-		token->type = APPEND;
-		token->direction = LEFT;
+		token->type = e_append;
+		token->direction = e_left;
 	}
 	else
 		return (0);
@@ -44,12 +44,12 @@ int	command_or_arg(t_token *token, int context)
 	if (context == 0)
 	{
 		context = 1;
-		token->type = COMMAND;
+		token->type = e_command;
 	}
 	else if (context == 1)
-		token->type = ARG;
+		token->type = e_arg;
 	else
-		token->type = FILES;
+		token->type = e_files;
 	return (context);
 }
 
@@ -70,7 +70,7 @@ void	tokenizer(t_list *tokens)
 			context = 3;
 		else if (!ft_strncmp(str, "|", ft_strlen(str)))
 		{
-			token->type = PIPE;
+			token->type = e_pipe;
 			context = 0;
 		}
 		else
