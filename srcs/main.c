@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 19:04:45 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/29 17:21:13 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/10/29 19:39:10 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_shell	g_shell;
 
-int	run_minishell()
+int	run_minishell(void)
 {
 	char *line;
 	t_list *tokens;

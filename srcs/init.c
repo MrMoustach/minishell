@@ -3,19 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 19:03:01 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/29 17:17:51 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/10/29 20:25:10 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-
 void	debug_mode(char **av, int ac)
 {
-	int i;
+	int	i;
 	// TODO: delete this for prod
 	if (ac > 1)
 	{
@@ -25,20 +24,19 @@ void	debug_mode(char **av, int ac)
 			if (!ft_strncmp(av[i], "-d", 3))
 			{
 				g_shell.debug_mode = 1;
-				if (av[i + 1])	
+				if (av[i + 1])
 					g_shell.debug_mode = ft_atoi(av[i + 1]);
 			}
 			i++;
 		}
 	}
 	if (g_shell.debug_mode)
-		printf("\e[41m!!Verbose debug mode level %d enabled!!\e[49m\n", g_shell.debug_mode);
+		printf("\e[41m!!Verbose debug mode level %d enabled!!\e[49m\n",
+			g_shell.debug_mode);
 }
 
-void init_shell(char	**envp, char **av, int ac)
+void	init_shell(char	**envp, char **av, int ac)
 {
-
-
 	g_shell.run = 1;
 	g_shell.error = 0;
 	g_shell.envp = dup_env(envp);
@@ -51,7 +49,7 @@ void init_shell(char	**envp, char **av, int ac)
 	debug_mode(av, ac);
 }
 
-void refresh_shell()
+void	refresh_shell(void)
 {
 	char	*cwd;
 	char	*tmp;
@@ -67,4 +65,5 @@ void refresh_shell()
 		free (tmp);
 		ft_modenv("PWD", cwd);
 	}
+	unlink("/tmp/lmao");
 }
