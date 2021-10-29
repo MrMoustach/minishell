@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 10:28:32 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/29 17:58:16 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/29 18:03:57 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	builtin_pipe_handler(t_token command)
 {
 	int	pid;
 
+	pid = -1;
 	if (command.in_pipe)
 	{
 		pid = fork();
