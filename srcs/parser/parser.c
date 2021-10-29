@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 19:04:15 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/25 17:21:09 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/10/29 15:12:48 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,16 +88,17 @@ t_list	*parser(char	*line)
 	split = spliter(line);
 	if (g_shell.error)
 	{
-		// TODO: print syntax error
+		g_shell.exit_code = 1;
+		handle_errors(NULL, NULL);
 		return (split.tokens);
 	}
 	tokenizer(split.tokens);
 	syntax = syntax_analysis(split.tokens);
 	if (syntax.error)
 	{
-		printf("minishell: Syntax error code : %d near %s\n",
-			syntax.error, syntax.err_token.str);
 		g_shell.error = 2;
+		g_shell.exit_code = 1;
+		handle_errors(&syntax.err_token, NULL);
 		return (split.tokens);
 	}
 	return (parse_tokens(split.tokens));

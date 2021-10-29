@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 13:34:59 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/27 14:03:36 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/29 15:46:04 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ void	execute_line(t_list	*tokens)
 			else if (WTERMSIG(stat) == SIGQUIT)
 			{
 				g_shell.exit_code = 131;
-				dprintf(2, "QUIT\n");
+				g_shell.error = 10;
+				handle_errors(NULL, "QUIT\n");
 			}
 		}
 	}
@@ -145,7 +146,8 @@ int	execute_binary(t_binary binary, t_token command)
 	command.arg_count++;
 	if ((pid = fork ()) == -1)
 	{
-		printf("Error: fork error\n");
+		g_shell.error = 10;
+		handle_errors(NULL, "Error: fork error\n");
 	}
 	else if (pid == 0)
 	{
@@ -186,7 +188,8 @@ int	execute_command(t_token command)
 	else
 	{
 		g_shell.exit_code = 127;
-		printf("Binary doesnt exist : %s\n", binary.name);
+		g_shell.error = 11;
+		handle_errors(NULL, binary.name);
 	}
 	free (binary.name);
 	return (1);

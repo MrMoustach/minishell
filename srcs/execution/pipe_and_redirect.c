@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 13:05:07 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/28 17:45:45 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/29 15:19:53 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,10 @@ t_queue	case_command(t_queue queue)
 			else
 				queue.current->fds[1] = create_or_open_file(*(queue.next));
 			if (queue.current->fds[0] < 0 || queue.current->fds[1] < 0)
+			{
 				g_shell.error = 3;
+				handle_errors(queue.next, NULL);
+			}
 			queue.current->in_pipe = 1;
 		}
 	}
@@ -87,9 +90,11 @@ t_queue	case_append_redirect(t_queue queue)
 			}
 			if (queue.p[0] != 0)
 				close (queue.p[0]);
-			// TODO: needs to include filename in error handling
 			if (queue.last_command->fds[1] < 0 || queue.p[0] < 0)
-				g_shell.error = 4;
+			{
+				g_shell.error = 3;
+				handle_errors(queue.current, NULL);
+			}
 		}
 	}
 	return (queue);

@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 19:04:45 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/28 10:00:02 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/29 15:24:35 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ int	run_minishell(char **envp, char **av, int ac)
 			print_helper(tokens);
 		if (g_shell.error)
 		{
-			printf("error: %d\n", g_shell.error);
 			ft_lstclear(&tokens, free_token);
 			free(line);
 			refresh_shell();

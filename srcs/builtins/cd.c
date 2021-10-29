@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 19:03:13 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/27 14:21:38 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/29 15:43:09 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ int	builtin_cd(t_token command)
 	if (chdir(path))
 	{
 		ret = 1;
-		printf ("Mate the dir %s is no more\n", path);
+		g_shell.error = 4;
+		handle_errors(&command, path);
 	}
 	free (path);
 	return (ret);

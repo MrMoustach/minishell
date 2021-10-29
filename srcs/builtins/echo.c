@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/20 09:35:17 by omimouni          #+#    #+#             */
-/*   Updated: 2021/10/28 16:29:41 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/10/29 17:06:02 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	is_n_flag(char *s)
 		while (s[i])
 		{
 			if (s[i] != 'n')
-				return (0) ;
+				return (0);
 			i++;
 		}
 		return (1);
@@ -51,11 +51,9 @@ int	builtin_echo(t_token command)
 	while (i < command.arg_count)
 	{
 		printf("%s", command.args[i]);
-		if (i != command.arg_count - 1)
+		if (i++ != command.arg_count - 1)
 			printf(" ");
-		i++;
 	}
-
 	if (new_line)
 		printf("\n");
 	return (0);

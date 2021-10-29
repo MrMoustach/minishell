@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 13:13:02 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/27 14:30:40 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/29 15:42:50 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,8 @@ int	builtin_export(t_token command)
 		{
 			if (command.args[i][0] == '=')
 			{
-				printf("minishell: %s is not a valid identifier\n",
-					command.args[i]);
+				g_shell.error = 7;
+				handle_errors(NULL, command.args[i]);
 				return (1);
 			}
 			var = var_line(command.args[i]);

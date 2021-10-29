@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 12:33:37 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/27 14:23:54 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/29 15:47:01 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@ void	builtin_exit(t_token command)
 	printf("exit\n");
 	if (command.arg_count > 1)
 	{
-		printf("exit: too many arguments\n");
+		g_shell.exit_code = 1;
+		g_shell.error = 10;
+		handle_errors(NULL, "exit: too many arguments\n");
 		return ;
 	}
 	if (command.arg_count)
@@ -29,7 +31,10 @@ void	builtin_exit(t_token command)
 		if (ft_is_number(command.args[0]))
 			exit_code = (int)ft_atol(command.args[0]);
 		else
-			printf("exit: %s: numeric argument required\n", command.args[0]);
+		{
+			g_shell.error = 6;
+			handle_errors(NULL, command.args[0]);
+		}
 	}
 	free_tab(g_shell.envp);
 	exit (exit_code);

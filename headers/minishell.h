@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:13:22 by zed               #+#    #+#             */
-/*   Updated: 2021/10/28 17:46:16 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/29 15:03:56 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,10 @@ int		create_or_open_file(t_token redirect);
 */
 void init_shell(char	**envp, char **av, int ac);
 void refresh_shell();
+/***
+ * errors
+*/
+void	handle_errors(t_token	*token, char	*message);
 
 extern t_shell	g_shell;
 #endif
