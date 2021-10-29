@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 13:13:02 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/29 17:22:14 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/10/29 19:15:55 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	print_env(void)
 		if (ft_strchr(g_shell.envp[i], '='))
 		{
 			tab = split_equals(g_shell.envp[i]);
-			printf("export %s=\"%s\"\n", tab[0], tab[1]);
+			printf("declare -x %s=\"%s\"\n", tab[0], tab[1]);
 			free_tab(tab);
 		}
 		else

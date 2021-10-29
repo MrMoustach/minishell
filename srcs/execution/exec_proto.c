@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_proto.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 13:34:59 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/29 17:23:05 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/10/29 19:24:58 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,8 @@ t_binary	locate_bin(char	*str)
 		binary.name = ft_strdup(str);
 		binary.path = NULL;
 		tmp = ft_getenv("PATH");
+		if (!tmp)
+			return (binary);
 		paths = ft_split(tmp, ':');
 		i = 0;
 		while (paths[i])
@@ -186,9 +188,9 @@ int	execute_command(t_token command)
 	}
 	else
 	{
-		g_shell.exit_code = 127;
 		g_shell.error = 11;
 		handle_errors(NULL, binary.name);
+		g_shell.exit_code = 127;
 	}
 	free (binary.name);
 	return (1);
