@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 13:05:07 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/29 15:19:53 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/29 20:59:49 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,30 +71,27 @@ t_queue	case_pipe(t_queue queue)
 
 t_queue	case_append_redirect(t_queue queue)
 {
-	if (queue.current->type == APPEND || queue.current->type == REDIRECTION)
+	if ((queue.prev->type == APPEND || queue.prev->type == REDIRECTION))
 	{
-		if (queue.prev->type == APPEND || queue.prev->type == REDIRECTION)
+		queue.p[0] = 0;
+		if (queue.prev->direction == LEFT)
 		{
-			queue.p[0] = 0;
-			if (queue.prev->direction == LEFT)
-			{
-				if (queue.current->direction == RIGHT)
-					queue.last_command->fds[1]
-						= create_or_open_file(*(queue.current));
-				else
-					queue.p[0] = create_or_open_file(*(queue.current));
-			}
+			if (queue.current->direction == RIGHT)
+				queue.last_command->fds[1]
+					= create_or_open_file(*(queue.current));
 			else
-			{
-				queue.p[0] = create_or_open_file (*(queue.current));
-			}
-			if (queue.p[0] != 0)
-				close (queue.p[0]);
-			if (queue.last_command->fds[1] < 0 || queue.p[0] < 0)
-			{
-				g_shell.error = 3;
-				handle_errors(queue.current, NULL);
-			}
+				queue.p[0] = create_or_open_file(*(queue.current));
+		}
+		else
+		{
+			queue.p[0] = create_or_open_file (*(queue.current));
+		}
+		if (queue.p[0] != 0)
+			close (queue.p[0]);
+		if (queue.last_command->fds[1] < 0 || queue.p[0] < 0)
+		{
+			g_shell.error = 3;
+			handle_errors(queue.current, NULL);
 		}
 	}
 	return (queue);

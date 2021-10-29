@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 19:04:45 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/29 20:47:58 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/29 20:52:39 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,11 @@ int	run_minishell(void)
 
 int	main(int ac, char **av, char **envp)
 {
+	(void)ac;
+	(void)av;
 	g_shell.last_status = 0;
 	g_shell.pid = 1;
-	init_shell(envp, av, ac);
+	init_shell(envp);
 	signal(SIGINT, int_sig_handler);
 	signal(SIGQUIT, quit_sig_handler);
 	run_minishell();

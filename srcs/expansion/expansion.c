@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 10:34:41 by omimouni          #+#    #+#             */
-/*   Updated: 2021/10/29 20:31:31 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/29 21:02:14 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_list
 	while (curr != NULL)
 	{
 		if (!(((t_token *)curr->content)->type == APPEND
-			&& ((t_token *)curr->content)->direction == LEFT))
+				&& ((t_token *)curr->content)->direction == LEFT))
 			expand_token((t_token *)curr->content);
 		curr = curr->next;
 	}
