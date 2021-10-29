@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 13:13:02 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/29 15:42:50 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/29 17:22:14 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static t_var	var_line(char *line)
 {
-	char	*ret;
 	char	**tab;
 	t_var	var;
 

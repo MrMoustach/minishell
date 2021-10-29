@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 10:28:32 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/27 14:44:06 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/29 17:21:52 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int	builtin_pipe_handler(t_token command)
 {
 	int	pid;
 
+	// TODO: Not sure of this init is right
+	pid = 0;
 	if (command.in_pipe)
 	{
 		pid = fork();

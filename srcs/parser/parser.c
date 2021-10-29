@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 19:04:15 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/29 15:12:48 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/29 17:24:07 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ t_list	*parse_tokens(t_list *tokens)
 	t_parser	parser;
 	t_list		*list[4];
 
+	tmp_token = NULL;
 	parser_init(&parser, (t_list **)list, &tokens);
 	while (list[0])
 	{

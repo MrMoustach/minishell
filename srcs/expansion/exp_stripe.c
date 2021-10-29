@@ -6,7 +6,7 @@
 /*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 08:04:44 by omimouni          #+#    #+#             */
-/*   Updated: 2021/10/28 16:35:10 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/10/29 17:23:41 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void
 	int	con;
 	int	end_con;
 
+	con = 0;
 	con = exp_create_context(str[(*i)], con);
 	end_con = con;
 	end_con = exp_create_context(str[(*i)], con);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 19:03:01 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/24 19:03:06 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/29 17:17:51 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,7 @@ void	debug_mode(char **av, int ac)
 
 void init_shell(char	**envp, char **av, int ac)
 {
-	char	*tmp;
-	char	*tmp2;
+
 
 	g_shell.run = 1;
 	g_shell.error = 0;
@@ -57,6 +56,7 @@ void refresh_shell()
 	char	*cwd;
 	char	*tmp;
 
+	tmp = NULL;
 	tmp = getcwd(tmp, 0);
 	g_shell.error = 0;
 	g_shell.last_status = g_shell.exit_code;

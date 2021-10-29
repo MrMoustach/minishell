@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exp_str.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 14:11:43 by omimouni          #+#    #+#             */
-/*   Updated: 2021/10/29 16:40:41 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/29 17:23:11 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ char
 	*exp_str_set(char *str, size_t count, size_t *length)
 {
 	char	*dest;
-	char	*tmp;
 	int		con;
 	size_t	num[3];
 

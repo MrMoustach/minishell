@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_proto.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 13:34:59 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/29 15:46:04 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/29 17:23:05 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,6 @@ int	execute_binary(t_binary binary, t_token command)
 	char	*path;
 	char	*tmp;
 	pid_t	pid;
-	int		i;
 	
 	tmp = ft_strjoin(binary.path, "/");
 	path = ft_strjoin(tmp, binary.name);

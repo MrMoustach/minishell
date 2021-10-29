@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 14:54:22 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/29 16:59:13 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/29 17:22:56 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	handle_errors_helper(t_token *token, char *message)
+void	handle_errors_helper(char *message)
 {
 	if (g_shell.error == 4)
 	{
@@ -36,7 +36,7 @@ void	handle_errors_helper(t_token *token, char *message)
 		write (2, "pwd: Too many arguments\n", 24);
 }
 
-void	handle_errors_helper2(t_token *token, char *message)
+void	handle_errors_helper2(char *message)
 {
 	if (g_shell.error == 9)
 	{
@@ -71,6 +71,6 @@ void	handle_errors(t_token	*token, char	*message)
 		write (2, token->args[0], ft_strlen(token->args[0]));
 		write (2, " not found.\n", 12);
 	}
-	handle_errors_helper(token, message);
-	handle_errors_helper2(token, message);
+	handle_errors_helper(message);
+	handle_errors_helper2(message);
 }

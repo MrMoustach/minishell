@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 19:04:45 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/29 15:24:35 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/29 17:21:13 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_shell	g_shell;
 
-int	run_minishell(char **envp, char **av, int ac)
+int	run_minishell()
 {
 	char *line;
 	t_list *tokens;
@@ -73,6 +73,7 @@ int	run_minishell(char **envp, char **av, int ac)
 
 void	intSigHandler(int sig)
 {
+	(void)sig;
 	if (g_shell.pid == 1)
 	{
 		printf("\n");
@@ -84,6 +85,7 @@ void	intSigHandler(int sig)
 }
 void	quitSigHandler(int sig)
 {
+	(void)sig;
 	if (g_shell.pid == 1)
 	{
 		rl_on_new_line();
@@ -98,5 +100,5 @@ int	main(int ac, char **av, char **envp)
 	init_shell(envp, av, ac);
 	signal(SIGINT, intSigHandler);
 	signal(SIGQUIT, quitSigHandler);
-	run_minishell(envp, av, ac);
+	run_minishell();
 }

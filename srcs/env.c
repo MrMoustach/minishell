@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 11:38:32 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/28 17:52:18 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/29 17:16:54 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,8 @@
 
 char	*ft_getenv(char *name)
 {
-	char	*tmp;
 	int		i;
 	char	**sp;
-	char	*ret;
 
 	i = 0;
 	while (g_shell.envp[i])
@@ -80,7 +78,6 @@ void	ft_delenv(char *var)
 
 void	ft_modenv(char *name, char *line)
 {
-	char	*tmp;
 	int		i;
 
 	i = 0;

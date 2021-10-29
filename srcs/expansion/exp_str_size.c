@@ -6,7 +6,7 @@
 /*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 11:12:26 by omimouni          #+#    #+#             */
-/*   Updated: 2021/10/28 16:33:26 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/10/29 17:23:25 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,8 @@ void
 size_t
 	exp_str_size(char *str)
 {
-	char	*tmp;
 	size_t	i;
 	size_t	count;
-	size_t	beg;
 	int		con;
 
 	i = 0;
