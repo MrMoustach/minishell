@@ -6,28 +6,26 @@
 /*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 08:04:44 by omimouni          #+#    #+#             */
-/*   Updated: 2021/10/29 17:23:41 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/10/29 17:55:07 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 void
-	exp_stripe_con(char *str, char *tmp, int *i, int *j)
+	exp_stripe_con(char *str, char *tmp, int p[])
 {
-	int	con;
 	int	end_con;
 
-	con = 0;
-	con = exp_create_context(str[(*i)], con);
-	end_con = con;
-	end_con = exp_create_context(str[(*i)], con);
-	if ((str[(*i)] != '\'' && str[(*i)] != '\"') || (con && end_con))
+	p[2] = exp_create_context(str[p[0]], p[2]);
+	end_con = p[2];
+	end_con = exp_create_context(str[p[0]], p[2]);
+	if ((str[p[0]] != '\'' && str[p[0]] != '\"') || (p[2] && end_con))
 	{
-		tmp[(*j)] = str[(*i)];
-		(*j)++;
+		tmp[p[1]] = str[p[0]];
+		p[1]++;
 	}
-	(*i)++;
+	p[0]++;
 }
 
 char
@@ -35,22 +33,22 @@ char
 {
 	char	*tmp;
 	char	*tmp2;
-	int		i;
-	int		j;
+	int		p[3];
 
 	tmp = malloc(sizeof(char) * (*length + 1));
-	i = 0;
-	j = 0;
-	while (str[i])
-		exp_stripe_con(str, tmp, &i, &j);
-	tmp2 = malloc(sizeof(char) * (j + 1));
-	i = 0;
-	while (i < j)
+	p[0] = 0;
+	p[1] = 0;
+	p[2] = 0;
+	while (str[p[0]])
+		exp_stripe_con(str, tmp, p);
+	tmp2 = malloc(sizeof(char) * (p[1] + 1));
+	p[0] = 0;
+	while (p[0] < p[1])
 	{
-		tmp2[i] = tmp[i];
-		i++;
+		tmp2[p[0]] = tmp[p[0]];
+		p[0]++;
 	}
 	free(tmp);
-	tmp2[j] = '\0';
+	tmp2[p[1]] = '\0';
 	return (tmp2);
 }
