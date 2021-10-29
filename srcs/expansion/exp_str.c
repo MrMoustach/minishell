@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exp_str.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 14:11:43 by omimouni          #+#    #+#             */
-/*   Updated: 2021/10/29 21:03:58 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/29 21:47:56 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,20 +37,19 @@ void
 {
 	char	*tmp;
 	char	*itoa_tmp;
-	size_t	beg;
-	size_t	j;
+	size_t	c[2];
 
-	beg = ++(*i);
+	c[0] = ++(*i);
 	if (str[(*i)] == '?')
 	{
-		j = 0;
+		c[1] = 0;
 		(*i)++;
 		itoa_tmp = ft_itoa(g_shell.last_status);
-		while (j < ft_strlen(itoa_tmp))
+		while (c[1] < ft_strlen(itoa_tmp))
 		{
-			dest[(*count)] = itoa_tmp[j];
+			dest[(*count)] = itoa_tmp[c[1]];
 			(*count)++;
-			j++;
+			c[1]++;
 		}
 		free(itoa_tmp);
 	}
@@ -58,7 +57,7 @@ void
 	{
 		while (exp_is_var(str[(*i)]))
 			(*i)++;
-		tmp = exp_current_var(str + beg, (*i) - beg);
+		tmp = exp_current_var(str + c[0], (*i) - c[0]);
 		exp_str_set_dest(tmp, dest, count);
 	}
 }
