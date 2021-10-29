@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:13:22 by zed               #+#    #+#             */
-/*   Updated: 2021/10/29 15:03:56 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/29 21:00:01 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,9 @@ size_t	exp_str_size(char *str);
 */
 void	execute_line(t_list	*tokens);
 int		execute_command(t_token command);
+t_binary	locate_bin(char	*str);
+int	bin_exist_in_path(t_binary binary);
+int	execute_binary(t_binary binary, t_token command);
 
 /***
  * Pipes
