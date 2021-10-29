@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 13:05:07 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/29 21:28:01 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/29 21:33:34 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ t_queue	case_command(t_queue queue)
 		queue = init_case_commant(queue);
 		queue = pipe_after_command(queue);
 		if (queue.next
-			&& (queue.next->type == e_redirection || queue.next->type == e_append))
+			&& (queue.next->type == e_redirect || queue.next->type == e_append))
 		{
-			if ((queue.next->type == e_redirection || queue.next->type == e_append)
+			if ((queue.next->type == e_redirect || queue.next->type == e_append)
 				&& queue.next->direction == e_left)
 				queue.current->fds[0] = create_or_open_file(*(queue.next));
 			else
@@ -54,7 +54,7 @@ t_queue	case_pipe(t_queue queue)
 {
 	if (queue.current->type == e_pipe)
 	{
-		if (queue.prev->type == e_redirection || queue.prev->type == e_append)
+		if (queue.prev->type == e_redirect || queue.prev->type == e_append)
 		{
 			pipe(queue.p);
 			queue.current->fds[0] = queue.p[0];
@@ -71,7 +71,7 @@ t_queue	case_pipe(t_queue queue)
 
 t_queue	case_append_redirect(t_queue queue)
 {
-	if ((queue.prev->type == e_append || queue.prev->type == e_redirection))
+	if ((queue.prev->type == e_append || queue.prev->type == e_redirect))
 	{
 		queue.p[0] = 0;
 		if (queue.prev->direction == e_left)

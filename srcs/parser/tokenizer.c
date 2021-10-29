@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 14:19:00 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/29 21:28:01 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/29 21:33:34 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	append_or_redirect(t_token *token)
 {
 	if (!ft_strncmp(token->str, ">", ft_strlen(token->str)))
 	{
-		token->type = e_redirection;
+		token->type = e_redirect;
 		token->direction = e_right;
 	}
 	else if (!ft_strncmp(token->str, ">>", ft_strlen(token->str)))
@@ -26,7 +26,7 @@ int	append_or_redirect(t_token *token)
 	}
 	else if (!ft_strncmp(token->str, "<", ft_strlen(token->str)))
 	{
-		token->type = e_redirection;
+		token->type = e_redirect;
 		token->direction = e_left;
 	}
 	else if (!ft_strncmp(token->str, "<<", ft_strlen(token->str)))

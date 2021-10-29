@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 19:04:15 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/29 21:27:31 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/29 21:33:34 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	parse_token_type(t_parser *parser, t_list **list)
 		parser->context = 0;
 		parser->last_command = NULL;
 	}
-	if (parser->current->type == e_redirection
+	if (parser->current->type == e_redirect
 		|| parser->current->type == e_append)
 	{
 		parser->last_redirect = parser->current;

@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 13:08:37 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/29 21:28:55 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/29 21:33:34 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	create_or_open_file(t_token redirect)
 	}
 	else
 	{
-		if (redirect.type == e_redirection)
+		if (redirect.type == e_redirect)
 			fd = open(redirect.args[0], O_RDONLY, 0644);
 		if (redirect.type == e_append)
 		{

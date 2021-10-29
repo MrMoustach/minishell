@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 18:24:59 by omimouni          #+#    #+#             */
-/*   Updated: 2021/10/29 21:27:31 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/29 21:33:34 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ int
 int
 	syntax_is_arrow(t_syntax *syntax)
 {
-	if (syntax->current.type == e_redirection || syntax->current.type == e_append)
+	if (syntax->current.type == e_redirect
+		|| syntax->current.type == e_append)
 	{
 		if (syntax->next.empty)
 		{
