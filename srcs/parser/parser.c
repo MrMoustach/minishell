@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 19:04:15 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/29 17:24:07 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/10/29 21:10:29 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	parse_token_type(t_parser *parser, t_list **list)
 		parser->context = 0;
 		parser->last_command = parser->current;
 	}
-	if (parser->current->type == PIPE || parser->current->type == RANDOM)
+	if (parser->current->type == PIPE)
 	{
 		list[3] = list[0];
 		parser->context = 0;
