@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 13:05:07 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/29 15:19:53 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/29 21:33:34 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_queue	pipe_after_command(t_queue queue)
 {
-	if (queue.next && queue.next->type == PIPE)
+	if (queue.next && queue.next->type == e_pipe)
 	{
 		pipe(queue.p);
 		queue.current->fds[1] = queue.p[1];
@@ -27,15 +27,15 @@ t_queue	pipe_after_command(t_queue queue)
 
 t_queue	case_command(t_queue queue)
 {
-	if (queue.current->type == COMMAND)
+	if (queue.current->type == e_command)
 	{
 		queue = init_case_commant(queue);
 		queue = pipe_after_command(queue);
 		if (queue.next
-			&& (queue.next->type == REDIRECTION || queue.next->type == APPEND))
+			&& (queue.next->type == e_redirect || queue.next->type == e_append))
 		{
-			if ((queue.next->type == REDIRECTION || queue.next->type == APPEND)
-				&& queue.next->direction == LEFT)
+			if ((queue.next->type == e_redirect || queue.next->type == e_append)
+				&& queue.next->direction == e_left)
 				queue.current->fds[0] = create_or_open_file(*(queue.next));
 			else
 				queue.current->fds[1] = create_or_open_file(*(queue.next));
@@ -52,14 +52,14 @@ t_queue	case_command(t_queue queue)
 
 t_queue	case_pipe(t_queue queue)
 {
-	if (queue.current->type == PIPE)
+	if (queue.current->type == e_pipe)
 	{
-		if (queue.prev->type == REDIRECTION || queue.prev->type == APPEND)
+		if (queue.prev->type == e_redirect || queue.prev->type == e_append)
 		{
 			pipe(queue.p);
 			queue.current->fds[0] = queue.p[0];
 			queue.current->fds[1] = 1;
-			if (queue.prev->direction == LEFT)
+			if (queue.prev->direction == e_left)
 				queue.last_command->fds[1] = queue.p[1];
 		}
 		queue.next->fds[0] = queue.current->fds[0];
@@ -71,30 +71,27 @@ t_queue	case_pipe(t_queue queue)
 
 t_queue	case_append_redirect(t_queue queue)
 {
-	if (queue.current->type == APPEND || queue.current->type == REDIRECTION)
+	if ((queue.prev->type == e_append || queue.prev->type == e_redirect))
 	{
-		if (queue.prev->type == APPEND || queue.prev->type == REDIRECTION)
+		queue.p[0] = 0;
+		if (queue.prev->direction == e_left)
 		{
-			queue.p[0] = 0;
-			if (queue.prev->direction == LEFT)
-			{
-				if (queue.current->direction == RIGHT)
-					queue.last_command->fds[1]
-						= create_or_open_file(*(queue.current));
-				else
-					queue.p[0] = create_or_open_file(*(queue.current));
-			}
+			if (queue.current->direction == e_right)
+				queue.last_command->fds[1]
+					= create_or_open_file(*(queue.current));
 			else
-			{
-				queue.p[0] = create_or_open_file (*(queue.current));
-			}
-			if (queue.p[0] != 0)
-				close (queue.p[0]);
-			if (queue.last_command->fds[1] < 0 || queue.p[0] < 0)
-			{
-				g_shell.error = 3;
-				handle_errors(queue.current, NULL);
-			}
+				queue.p[0] = create_or_open_file(*(queue.current));
+		}
+		else
+		{
+			queue.p[0] = create_or_open_file (*(queue.current));
+		}
+		if (queue.p[0] != 0)
+			close (queue.p[0]);
+		if (queue.last_command->fds[1] < 0 || queue.p[0] < 0)
+		{
+			g_shell.error = 3;
+			handle_errors(queue.current, NULL);
 		}
 	}
 	return (queue);

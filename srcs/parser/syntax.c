@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omimouni <omimouni@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 18:24:59 by omimouni          #+#    #+#             */
-/*   Updated: 2021/10/07 19:07:10 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/10/29 21:33:34 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int
 	syntax_is_pipe(t_syntax *syntax)
 {
-	if (syntax->current.type == PIPE)
+	if (syntax->current.type == e_pipe)
 	{
 		if (syntax->prev.empty || syntax->next.empty)
 		{
@@ -30,7 +30,8 @@ int
 int
 	syntax_is_arrow(t_syntax *syntax)
 {
-	if (syntax->current.type == REDIRECTION || syntax->current.type == APPEND)
+	if (syntax->current.type == e_redirect
+		|| syntax->current.type == e_append)
 	{
 		if (syntax->next.empty)
 		{
@@ -38,7 +39,7 @@ int
 			syntax->error = 2;
 			return (1);
 		}
-		if (syntax->next.type != FILES)
+		if (syntax->next.type != e_files)
 		{
 			syntax->err_token = syntax->current;
 			syntax->error = 3;

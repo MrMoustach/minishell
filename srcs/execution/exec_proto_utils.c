@@ -6,7 +6,7 @@
 /*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 20:46:35 by omimouni          #+#    #+#             */
-/*   Updated: 2021/10/29 21:34:05 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/10/29 21:46:25 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,9 @@ void	execute_line(t_list	*tokens)
 	while (tmp)
 	{
 		token = *((t_token *)tmp->content);
-		if (token.type == COMMAND)
+		if (token.type == e_command)
 			execute_line_builtin(&token);
-		else if (token.type == APPEND && token.direction == LEFT)
+		else if (token.type == e_append && token.direction == e_left)
 			unlink("/tmp/lmao");
 		tmp = tmp->next;
 	}

@@ -1,23 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/20 19:19:54 by yfarini           #+#    #+#             */
-/*   Updated: 2019/10/27 17:56:42 by iharchi          ###   ########.fr       */
+/*   Created: 2021/10/29 20:48:01 by iharchi           #+#    #+#             */
+/*   Updated: 2021/10/29 20:48:17 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h" 
-#include <stdio.h>
-# include <stddef.h>
-# include <signal.h>
-# include <stdbool.h>
-#include <string.h>
+#include "minishell.h"
 
-int 	main()
+void	int_sig_handler(int sig)
 {
-	ft_strlcat(NULL,"",0);
+	(void)sig;
+	if (g_shell.pid == 1)
+	{
+		printf("\n");
+		rl_on_new_line();
+		rl_replace_line("", 0);
+		rl_redisplay();
+		g_shell.last_status = 1;
+	}
+}
+
+void	quit_sig_handler(int sig)
+{
+	(void)sig;
+	if (g_shell.pid == 1)
+	{
+		rl_on_new_line();
+		rl_redisplay();
+	}
 }

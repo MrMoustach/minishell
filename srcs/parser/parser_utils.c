@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 18:02:16 by omimouni          #+#    #+#             */
-/*   Updated: 2021/10/25 17:42:41 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/10/29 21:27:31 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	parser_last_command(t_token **tmp_token,
 	t_list **tokens, t_parser *parser, t_list **list)
 {
 	(*tmp_token) = create_token((*parser).current->str);
-	(*tmp_token)->type = COMMAND;
+	(*tmp_token)->type = e_command;
 	list[2] = ft_lstnew((*tmp_token));
 	list[2]->next = list[1];
 	list[1]->next = list[0]->next;
@@ -47,8 +47,8 @@ int	parse_switch_arg(t_parser *parser, t_list **list, t_token *tmp_token,
 		t_list **tokens)
 {
 	parser->current = ((t_token *)list[0]->content);
-	if (parser->current->type == ARG
-		|| (parser->current->type == FILES && parser->context == 2))
+	if (parser->current->type == e_arg
+		|| (parser->current->type == e_files && parser->context == 2))
 	{
 		if (!parser->last_command)
 		{

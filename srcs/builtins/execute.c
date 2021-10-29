@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 10:28:32 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/29 18:03:57 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/29 20:55:42 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,16 @@ int	is_builtin(t_token command)
 	return (0);
 }
 
+int	do_fork(void)
+{
+	int	pid;
+
+	pid = fork();
+	if (pid == -1)
+		perror("fork error");
+	return (pid);
+}
+
 int	builtin_pipe_handler(t_token command)
 {
 	int	pid;
@@ -38,10 +48,8 @@ int	builtin_pipe_handler(t_token command)
 	pid = -1;
 	if (command.in_pipe)
 	{
-		pid = fork();
-		if (pid == -1)
-			perror("fork error");
-		else if (pid != 0)
+		pid = do_fork();
+		if (pid != 0)
 		{
 			if (command.fds[0] != 0)
 				close (command.fds[0]);

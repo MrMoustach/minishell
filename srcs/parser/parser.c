@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 19:04:15 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/29 17:24:07 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/10/29 21:33:34 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,24 +35,24 @@ void	parse_files(t_parser *parser, t_list **list)
 
 int	parse_token_type(t_parser *parser, t_list **list)
 {
-	if (parser->current->type == COMMAND)
+	if (parser->current->type == e_command)
 	{
 		parser->context = 0;
 		parser->last_command = parser->current;
 	}
-	if (parser->current->type == PIPE || parser->current->type == RANDOM)
+	if (parser->current->type == e_pipe)
 	{
 		list[3] = list[0];
 		parser->context = 0;
 		parser->last_command = NULL;
 	}
-	if (parser->current->type == REDIRECTION
-		|| parser->current->type == APPEND)
+	if (parser->current->type == e_redirect
+		|| parser->current->type == e_append)
 	{
 		parser->last_redirect = parser->current;
 		parser->context = 1;
 	}
-	if (parser->current->type == FILES && parser->context == 1)
+	if (parser->current->type == e_files && parser->context == 1)
 	{
 		parse_files(parser, (t_list **)list);
 		return (1);

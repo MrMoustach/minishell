@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 17:43:58 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/28 17:45:27 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/10/29 21:33:34 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ t_queue	assignment_logic(t_queue queue)
 {
 	queue = case_command(queue);
 	queue = case_pipe(queue);
-	queue = case_append_redirect(queue);
+	if (queue.current->type == e_append || queue.current->type == e_redirect)
+	{
+		queue = case_append_redirect(queue);
+	}
 	queue.prev = queue.current;
 	queue.current = queue.next;
 	return (queue);
