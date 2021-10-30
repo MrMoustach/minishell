@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+         #
+#    By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/17 14:26:01 by zed               #+#    #+#              #
-#    Updated: 2021/10/30 14:16:58 by omimouni         ###   ########.fr        #
+#    Updated: 2021/10/30 14:19:37 by iharchi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -114,12 +114,6 @@ $(LIBFT):
 	make -sC ./libft clean
 	mkdir -p ./libs
 	cp libft/libft.a libs/
-
-files:
-	@echo $(OBJS)
-
-test: $(OBJS) $(LIBFT)
-	gcc $(OBJS) $(LIBFT)  $(FLAGS) -o $(NAME) 
 
 build/%.o: srcs/%.c
 	@mkdir -p $(dir $@)
