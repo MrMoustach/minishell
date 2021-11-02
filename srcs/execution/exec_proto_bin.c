@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_proto_bin.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 20:54:09 by omimouni          #+#    #+#             */
-/*   Updated: 2021/10/29 21:38:40 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/11/02 14:24:40 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,9 @@ int	execute_bin_exit(t_token *command, char *path)
 		close (command->fds[0]);
 	if (command->fds[1] != 1)
 		close (command->fds[1]);
+	// BUG: wtf???
+	// if (command->to_close)
+	// 	close (command->to_close);
 	return (0);
 }
 
