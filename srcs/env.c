@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 11:38:32 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/29 17:16:54 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/11/02 10:01:48 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ char	*ft_getenv(char *name)
 {
 	int		i;
 	char	**sp;
+	char	*tmp;
 
 	i = 0;
 	while (g_shell.envp[i])
@@ -23,9 +24,9 @@ char	*ft_getenv(char *name)
 		if (compare_env(name, g_shell.envp[i]))
 		{
 			sp = split_equals(g_shell.envp[i]);
-			free (sp[0]);
-			free (sp);
-			return (sp[1]);
+			tmp = ft_strdup(sp[1]);
+			free_tab(sp);
+			return (tmp);
 		}
 		i++;
 	}

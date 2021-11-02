@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 13:05:07 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/29 21:33:34 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/11/02 10:52:31 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_queue	case_command(t_queue queue)
 {
 	if (queue.current->type == e_command)
 	{
-		queue = init_case_commant(queue);
+		queue = init_case_command(queue);
 		queue = pipe_after_command(queue);
 		if (queue.next
 			&& (queue.next->type == e_redirect || queue.next->type == e_append))
@@ -106,6 +106,7 @@ t_list	*assign_io(t_list *tokens)
 	queue.current = ((t_token *)(tmp->content));
 	queue.prev = NULL;
 	queue.next = NULL;
+	queue.last_command = NULL;
 	while (tmp)
 	{
 		if (tmp->next)
@@ -113,7 +114,7 @@ t_list	*assign_io(t_list *tokens)
 		else
 			queue.next = NULL;
 		queue = assignment_logic(queue);
-		if (g_shell.error)
+		if (g_shell.error && queue.last_command)
 		{
 			if (queue.last_command->fds[1] != 1)
 				close (queue.last_command->fds[1]);

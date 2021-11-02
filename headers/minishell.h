@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:13:22 by zed               #+#    #+#             */
-/*   Updated: 2021/10/29 21:44:34 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/11/02 14:01:36 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ int			compare_env(char *name, char *var);
 void		ft_modenv(char *name, char *line);
 void		split_quotes(t_spliter *spliter, char *line);
 int			split_append(t_spliter *spliter, char *line);
-int			split_end(t_spliter *spliter, char *line);
 t_spliter	*split_extra(t_spliter *spliter, char *line, char delim);
 void		free_tab(char **tab);
 int			ft_is_number(char *s);
@@ -83,7 +82,7 @@ size_t		exp_str_size(char *str);
 void		execute_line(t_list	*tokens);
 int			execute_command(t_token command);
 t_list		*assign_io(t_list *tokens);
-t_queue		init_case_commant(t_queue queue);
+t_queue		init_case_command(t_queue queue);
 t_queue		assignment_logic(t_queue queue);
 t_queue		pipe_after_command(t_queue queue);
 t_queue		case_append_redirect(t_queue queue);
