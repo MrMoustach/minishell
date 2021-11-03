@@ -6,7 +6,7 @@
 #    By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/17 14:26:01 by zed               #+#    #+#              #
-#    Updated: 2021/11/02 14:02:06 by iharchi          ###   ########.fr        #
+#    Updated: 2021/11/03 21:05:48 by iharchi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,8 +86,8 @@ OBJS = 	build/env.o\
 		build/parser/spliter_utils.o\
 		build/parser/syntax.o\
 		build/parser/tokenizer.o
-OBJ_FLAG = -c -I./headers -I$(HOME_BREW)/opt/readline/include -Wall -Wextra -Werror -fsanitize=address
-FLAGS =  -L $(HOME_BREW)/opt/readline/lib -lreadline -Wall -Wextra -Werror -fsanitize=address
+OBJ_FLAG = -c -I./headers -I$(HOME_BREW)/opt/readline/include -Wall -Wextra -Werror #-fsanitize=address
+FLAGS =  -L $(HOME_BREW)/opt/readline/lib -lreadline -Wall -Wextra -Werror #-fsanitize=address
 
 LIBFT = libs/libft.a
 

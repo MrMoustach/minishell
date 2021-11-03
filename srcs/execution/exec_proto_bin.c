@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 20:54:09 by omimouni          #+#    #+#             */
-/*   Updated: 2021/11/03 12:23:44 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/11/03 21:15:43 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ t_binary	locate_bin(char	*str)
 
 void	execute_bin_child(t_token *command, char *path)
 {
+	printf("wtf lll %d\n", fcntl(command->fds[0], F_GETFD));
 	if (command->fds[1] != 1)
 	{
 		dup2(command->fds[1], 1);
@@ -71,7 +72,10 @@ void	execute_bin_child(t_token *command, char *path)
 			close (command->to_close);
 	}
 	if (command->fds[0] != 0)
+	{
 		dup2(command->fds[0], 0);
+		close (command->fds[0]);
+	}
 	if (command->exist)
 		g_shell.exit_code = execve (path, command->args, g_shell.envp);
 	exit (g_shell.exit_code);
@@ -79,6 +83,10 @@ void	execute_bin_child(t_token *command, char *path)
 
 int	execute_bin_exit(t_token *command, char *path)
 {
+	if (command->fds[0] != 0)
+		close (command->fds[0]);
+	if (command->fds[1] != 1)
+		close (command->fds[1]);
 	free (path);
 	if (command->exist)
 	{
@@ -88,10 +96,6 @@ int	execute_bin_exit(t_token *command, char *path)
 			free (command->args[0]);
 		free(command->args);
 	}
-	if (command->fds[0] != 0)
-		close (command->fds[0]);
-	if (command->fds[1] != 1)
-		close (command->fds[1]);
 	// BUG: wtf???
 	if (command->to_close && command->arg_count == 1 && command->exist)
 		close (command->to_close);

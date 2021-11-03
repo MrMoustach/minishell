@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 13:05:07 by iharchi           #+#    #+#             */
-/*   Updated: 2021/11/03 12:42:08 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/11/03 20:47:13 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,10 @@ t_queue	case_pipe(t_queue queue)
 			queue.current->fds[0] = queue.p[0];
 			queue.current->fds[1] = 1;
 			if (queue.prev->direction == e_left && queue.last_command)
+			{
 				queue.last_command->fds[1] = queue.p[1];
+				queue.last_command->to_close = queue.p[0];
+			}
 		}
 		queue.next->fds[0] = queue.current->fds[0];
 		queue.next->fds[1] = queue.current->fds[1];

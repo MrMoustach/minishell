@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 19:04:45 by iharchi           #+#    #+#             */
-/*   Updated: 2021/11/02 09:49:49 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/11/03 20:16:18 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,26 @@ int	catch_errors(t_list *tokens, char *line)
 
 t_list	*use_tokens(t_list	*tokens)
 {
+	t_list	*tmp;
+	t_token	token;
+
 	tokens = expand_tokens(tokens);
 	reparse_commands(tokens);
 	tokens = assign_io(tokens);
+	tmp = tokens;
+	while (tmp)
+	{
+		token = *((t_token *)(tmp->content));
+		if (token.type == e_command)
+		{			
+			printf("---------------------\n");
+			printf("%s\n IO : \n %d %d\n", token.str, token.fds[0], token.fds[1]);
+			printf("to close :\n %d\n", token.to_close);
+			printf("command exist :\n %d\n", token.exist);
+			printf("---------------------\n");
+		}
+		tmp = tmp->next;
+	}
 	return (tokens);
 }
 

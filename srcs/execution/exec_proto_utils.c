@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 20:46:35 by omimouni          #+#    #+#             */
-/*   Updated: 2021/11/03 11:42:39 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/11/03 20:58:30 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,17 @@ void	execute_line(t_list	*tokens)
 			unlink("/tmp/lmao");
 		tmp = tmp->next;
 	}
+	// tmp = tokens;
+	// while (tmp)
+	// {
+	// 	token = *((t_token *)tmp->content);
+	// 	if (token.type == e_command && token.to_close != 0)
+	// 	{
+	// 		printf("wtf\n");
+	// 		close(token.to_close);
+	// 	}
+	// 	tmp = tmp->next;
+	// }
 	stat = 0;
 	g_shell.pid = 5;
 	while (waitpid(-1, &stat, 0) > 0)
