@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 16:45:17 by iharchi           #+#    #+#             */
-/*   Updated: 2021/11/03 11:42:45 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/11/03 12:17:13 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ t_token	*create_token(char *str)
 	token->arg_count = 0;
 	token->in_pipe = 0;
 	token->redirects = 0;
+	token->exist = 1;
 	return (token);
 }
 

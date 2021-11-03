@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 20:54:09 by omimouni          #+#    #+#             */
-/*   Updated: 2021/11/03 12:07:07 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/11/03 12:23:44 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,24 +72,28 @@ void	execute_bin_child(t_token *command, char *path)
 	}
 	if (command->fds[0] != 0)
 		dup2(command->fds[0], 0);
-	g_shell.exit_code = execve (path, command->args, g_shell.envp);
+	if (command->exist)
+		g_shell.exit_code = execve (path, command->args, g_shell.envp);
 	exit (g_shell.exit_code);
 }
 
 int	execute_bin_exit(t_token *command, char *path)
 {
 	free (path);
-	if (command->arg_count)
-		free (command->args[command->arg_count]);
-	else
-		free (command->args[0]);
-	free(command->args);
+	if (command->exist)
+	{
+		if (command->arg_count)
+			free (command->args[command->arg_count]);
+		else
+			free (command->args[0]);
+		free(command->args);
+	}
 	if (command->fds[0] != 0)
 		close (command->fds[0]);
 	if (command->fds[1] != 1)
 		close (command->fds[1]);
 	// BUG: wtf???
-	if (command->to_close && command->arg_count == 1)
+	if (command->to_close && command->arg_count == 1 && command->exist)
 		close (command->to_close);
 	return (0);
 }
@@ -100,15 +104,23 @@ int	execute_binary(t_binary binary, t_token command)
 	char	*tmp;
 	pid_t	pid;
 
-	tmp = ft_strjoin(binary.path, "/");
-	path = ft_strjoin(tmp, binary.name);
-	free (tmp);
-	if (command.arg_count)
-		command.args = add_to_top_array(command.args, path,
-				table_count(command.args));
+	if (binary.exist)
+	{
+		tmp = ft_strjoin(binary.path, "/");
+		path = ft_strjoin(tmp, binary.name);
+		free (tmp);
+		if (command.arg_count)
+			command.args = add_to_top_array(command.args, path,
+					table_count(command.args));
+		else
+			command.args = add_to_array(command.args, path, 1);
+		command.arg_count++;
+	}
 	else
-		command.args = add_to_array(command.args, path, 1);
-	command.arg_count++;
+	{
+		path = ft_strdup("");
+		command.exist = 0;
+	}
 	pid = fork ();
 	if (pid == -1)
 	{

@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 16:18:57 by zed               #+#    #+#             */
-/*   Updated: 2021/11/03 11:42:49 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/11/03 12:16:54 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_token
 	char		in_pipe;
 	char		redirects;
 	char		to_close;
+	char		exist;
 }				t_token;
 
 typedef struct s_spliter

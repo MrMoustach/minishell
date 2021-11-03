@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 13:05:07 by iharchi           #+#    #+#             */
-/*   Updated: 2021/11/03 12:08:27 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/11/03 12:42:08 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ t_queue	case_pipe(t_queue queue)
 			pipe(queue.p);
 			queue.current->fds[0] = queue.p[0];
 			queue.current->fds[1] = 1;
-			if (queue.prev->direction == e_left)
+			if (queue.prev->direction == e_left && queue.last_command)
 				queue.last_command->fds[1] = queue.p[1];
 		}
 		queue.next->fds[0] = queue.current->fds[0];
@@ -102,12 +102,25 @@ t_list	*assign_io(t_list *tokens)
 {
 	t_list	*tmp;
 	t_queue	queue;
+	t_token	*token;
+	t_list	*tmp2;
 
 	tmp = tokens;
-	queue.current = ((t_token *)(tmp->content));
 	queue.prev = NULL;
 	queue.next = NULL;
 	queue.last_command = NULL;
+	queue.current = ((t_token *)(tmp->content));
+	if (queue.current->type != e_command)
+	{
+		token = create_token(ft_strdup("lmao"));
+		token->exist = 0; 
+		token->type = e_command; 
+		tmp2 = ft_lstnew(token);
+		tmp2->next = tokens;
+		tokens = tmp2;
+		tmp = tokens;
+	}
+	queue.current = ((t_token *)(tmp->content));
 	while (tmp)
 	{
 		if (tmp->next)

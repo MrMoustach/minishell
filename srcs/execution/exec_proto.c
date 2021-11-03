@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 13:34:59 by iharchi           #+#    #+#             */
-/*   Updated: 2021/11/03 11:42:46 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/11/03 12:33:55 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,17 @@ int	execute_command(t_token command)
 	t_binary	binary;
 
 	binary = locate_bin(command.str);
+	execute_binary(binary, command);
 	if (binary.exist)
-	{
-		execute_binary(binary, command);
 		free (binary.path);
-	}
 	else
 	{
-		g_shell.error = 11;
-		handle_errors(NULL, binary.name);
-		g_shell.exit_code = 127;
+		if (command.exist)
+		{
+			g_shell.error = 11;
+			handle_errors(NULL, binary.name);
+			g_shell.exit_code = 127;
+		}
 	}
 	free (binary.name);
 	return (1);
