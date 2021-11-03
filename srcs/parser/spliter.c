@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 19:04:33 by iharchi           #+#    #+#             */
-/*   Updated: 2021/11/02 14:24:29 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/11/03 11:27:24 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,20 +50,21 @@ t_spliter	*split_extra(t_spliter *spliter, char *line, char delim)
 t_spliter	spliter(char *line)
 {
 	t_spliter	spliter;
-	// BUG cat |ls doesn't work
+	int			flag;
+
 	spliter.i = 0;
 	spliter.in_quotes = 0;
 	spliter.word_start = 0;
 	spliter.tokens = NULL;
+	flag = 0;
 	while (line[spliter.i])
 	{
-		spliter.i++;
+		if (!flag)
+			spliter.i++;
+		flag = 0;
 		split_quotes(&spliter, line);
 		if (!spliter.in_quotes)
-		{
-			if (split_append(&spliter, line))
-				continue ;
-		}
+			flag = split_append(&spliter, line);
 	}
 	if (spliter.in_quotes)
 		g_shell.error = 1;
