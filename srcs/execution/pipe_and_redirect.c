@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 13:05:07 by iharchi           #+#    #+#             */
-/*   Updated: 2021/11/02 10:52:31 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/11/03 12:08:27 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ t_queue	case_command(t_queue queue)
 
 t_queue	case_pipe(t_queue queue)
 {
+	//BUG: < file | rev segfault
 	if (queue.current->type == e_pipe)
 	{
 		if (queue.prev->type == e_redirect || queue.prev->type == e_append)
