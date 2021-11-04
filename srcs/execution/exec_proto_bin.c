@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 20:54:09 by omimouni          #+#    #+#             */
-/*   Updated: 2021/11/04 13:15:15 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/11/04 15:25:57 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,36 +95,15 @@ int	execute_bin_exit(t_token *command, char *path)
 			free (command->args[0]);
 		free(command->args);
 	}
-	// BUG: wtf???
-	// if (command->to_close && command->arg_count == 1 && command->exist)
-	// 	close (command->to_close);
 	return (0);
 }
 
 int	execute_binary(t_binary binary, t_token command)
 {
 	char	*path;
-	char	*tmp;
 	pid_t	pid;
 
-	if (binary.exist)
-	{
-		tmp = ft_strjoin(binary.path, "/");
-		path = ft_strjoin(tmp, binary.name);
-		free (tmp);
-		if (command.arg_count)
-			command.args = add_to_top_array(command.args, path,
-					table_count(command.args));
-		else
-			command.args = add_to_array(command.args, path, 1);
-		command.arg_count++;
-	}
-	else
-	{
-		path = ft_strdup("");
-		command.exist = 0;
-	}
-	
+	path = get_path(binary, &command);
 	pid = fork ();
 	if (pid == -1)
 	{

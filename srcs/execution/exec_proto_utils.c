@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 20:46:35 by omimouni          #+#    #+#             */
-/*   Updated: 2021/11/04 13:55:05 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/11/04 15:17:33 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,7 @@ t_list	*next_pipe(t_list *tokens)
 	t_queue	queue;
 
 	tmp = tokens;
-	queue.current = ((t_token *)tmp->content);
-	queue.prev = NULL;
-	queue.next = NULL;
-	queue.last_command = NULL;
+	queue = init_queue(&tokens);
 	while (tmp)
 	{
 		if (tmp->next)
@@ -70,13 +67,7 @@ t_list	*next_pipe(t_list *tokens)
 			queue.last_command = queue.current;
 		if (queue.current->type == e_pipe)
 		{
-			pipe (queue.p);
-			if (queue.last_command->fds[1] == 1)
-			{
-				queue.last_command->to_close = queue.p[0];
-				queue.last_command->fds[1] = queue.p[1];
-			}
-			queue.next->fds[0] = queue.p[0];
+			queue = handle_pipe(queue);
 			break ;
 		}
 		queue.prev = queue.current;
@@ -91,14 +82,13 @@ void	execute_line(t_list	*tokens)
 	t_list	*tmp;
 	t_token	*token;
 	int		stat;
-	
+
 	tmp = tokens;
 	while (tmp)
 	{
 		token = ((t_token *)tmp->content);
 		if (token->type == e_command)
 		{
-
 			tmp = next_pipe(tmp);
 			execute_line_builtin(token);
 		}

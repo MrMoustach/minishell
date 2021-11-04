@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:13:22 by zed               #+#    #+#             */
-/*   Updated: 2021/11/03 11:42:51 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/11/04 15:25:25 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,9 @@ void		handle_errors(t_token	*token, char	*message);
 t_binary	locate_bin(char	*str);
 int			execute_binary(t_binary binary, t_token command);
 int			bin_exist_in_path(t_binary binary);
+t_queue		init_queue(t_list **tokens);
+t_queue		handle_pipe(t_queue queue);
+char		*get_path(t_binary binary, t_token *command);
 
 extern t_shell	g_shell;
 #endif

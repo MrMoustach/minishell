@@ -6,12 +6,11 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 13:05:07 by iharchi           #+#    #+#             */
-/*   Updated: 2021/11/04 14:56:46 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/11/04 15:10:47 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
 
 t_queue	case_command(t_queue queue)
 {
@@ -51,14 +50,14 @@ t_queue	case_append_redirect(t_queue queue)
 	return (queue);
 }
 
-t_list	*assign_io(t_list *tokens)
+t_queue	init_queue(t_list **tokens)
 {
 	t_list	*tmp;
-	t_queue	queue;
-	t_token	*token;
 	t_list	*tmp2;
+	t_token	*token;
+	t_queue	queue;
 
-	tmp = tokens;
+	tmp = *tokens;
 	queue.prev = NULL;
 	queue.next = NULL;
 	queue.last_command = NULL;
@@ -66,13 +65,22 @@ t_list	*assign_io(t_list *tokens)
 	if (queue.current->type != e_command)
 	{
 		token = create_token(ft_strdup("lmao"));
-		token->exist = 0; 
-		token->type = e_command; 
+		token->exist = 0;
+		token->type = e_command;
 		tmp2 = ft_lstnew(token);
-		tmp2->next = tokens;
-		tokens = tmp2;
-		tmp = tokens;
+		tmp2->next = *tokens;
+		*tokens = tmp2;
 	}
+	return (queue);
+}
+
+t_list	*assign_io(t_list *tokens)
+{
+	t_list	*tmp;
+	t_queue	queue;
+
+	queue = init_queue(&tokens);
+	tmp = tokens;
 	queue.current = ((t_token *)(tmp->content));
 	while (tmp)
 	{
