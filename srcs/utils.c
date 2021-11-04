@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 19:04:52 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/28 17:49:34 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/11/04 19:52:01 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	free_tab(char **tab)
 	}
 }
 
+// TODO: fix this motherfucker
 int	ft_is_number(char *s)
 {
 	int	i;

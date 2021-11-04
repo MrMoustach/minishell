@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 20:46:35 by omimouni          #+#    #+#             */
-/*   Updated: 2021/11/04 15:17:33 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/11/04 19:46:05 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,8 @@ void	execute_line(t_list	*tokens)
 	}
 	stat = 0;
 	g_shell.pid = 5;
-	while (waitpid(-1, &stat, 0) > 0)
-		execute_line_exit(stat);
+	if (g_shell.exit_code != 127)
+		while (waitpid(-1, &stat, 0) > 0)
+			execute_line_exit(stat);
 	g_shell.pid = 1;
 }

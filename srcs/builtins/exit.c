@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 12:33:37 by iharchi           #+#    #+#             */
-/*   Updated: 2021/10/29 17:22:04 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/11/04 19:49:52 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ void	builtin_exit(t_token command)
 	int			exit_code;
 
 	exit_code = 0;
-	printf("exit\n");
+	if (!command.in_pipe)
+		printf("exit\n");
 	if (command.arg_count > 1)
 	{
 		g_shell.exit_code = 1;

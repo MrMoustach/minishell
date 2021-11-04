@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 19:04:33 by iharchi           #+#    #+#             */
-/*   Updated: 2021/11/03 11:27:24 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/11/04 19:34:37 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ t_spliter	spliter(char *line)
 	spliter.in_quotes = 0;
 	spliter.word_start = 0;
 	spliter.tokens = NULL;
-	flag = 0;
+	flag = 1;
 	while (line[spliter.i])
 	{
 		if (!flag)
