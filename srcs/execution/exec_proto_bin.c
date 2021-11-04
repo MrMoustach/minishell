@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 20:54:09 by omimouni          #+#    #+#             */
-/*   Updated: 2021/11/03 21:15:43 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/11/04 13:15:15 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,10 @@ t_binary	locate_bin(char	*str)
 
 void	execute_bin_child(t_token *command, char *path)
 {
-	printf("wtf lll %d\n", fcntl(command->fds[0], F_GETFD));
 	if (command->fds[1] != 1)
 	{
 		dup2(command->fds[1], 1);
-		if (command->to_close)
+		if (command->to_close != 0)
 			close (command->to_close);
 	}
 	if (command->fds[0] != 0)
@@ -97,8 +96,8 @@ int	execute_bin_exit(t_token *command, char *path)
 		free(command->args);
 	}
 	// BUG: wtf???
-	if (command->to_close && command->arg_count == 1 && command->exist)
-		close (command->to_close);
+	// if (command->to_close && command->arg_count == 1 && command->exist)
+	// 	close (command->to_close);
 	return (0);
 }
 
@@ -125,6 +124,7 @@ int	execute_binary(t_binary binary, t_token command)
 		path = ft_strdup("");
 		command.exist = 0;
 	}
+	
 	pid = fork ();
 	if (pid == -1)
 	{

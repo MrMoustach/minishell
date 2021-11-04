@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 17:43:58 by iharchi           #+#    #+#             */
-/*   Updated: 2021/11/02 10:16:51 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/11/04 13:07:49 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_queue	case_append_redirect_no_command(t_queue queue)
 t_queue	assignment_logic(t_queue queue)
 {
 	queue = case_command(queue);
-	queue = case_pipe(queue);
+	// queue = case_pipe(queue);
 	if ((queue.current->type == e_append || queue.current->type == e_redirect)
 		&& queue.last_command)
 		queue = case_append_redirect(queue);
