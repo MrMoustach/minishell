@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_and_redirect.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: zed <zed@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 13:05:07 by iharchi           #+#    #+#             */
-/*   Updated: 2021/11/04 15:10:47 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/11/04 16:20:26 by zed              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ t_queue	case_append_redirect(t_queue queue)
 		queue.last_command->fds[0] = create_or_open_file(*(queue.current));
 	else
 		queue.last_command->fds[1] = create_or_open_file(*(queue.current));
+	queue.last_command->in_pipe = 1;
 	if (queue.last_command->fds[0] < 0 || queue.last_command->fds[1] < 0)
 	{
 		g_shell.error = 3;
