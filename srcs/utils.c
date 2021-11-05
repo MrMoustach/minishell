@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 19:04:52 by iharchi           #+#    #+#             */
-/*   Updated: 2021/11/04 19:52:01 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/11/05 08:58:06 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,16 @@ void	free_tab(char **tab)
 	}
 }
 
-// TODO: fix this motherfucker
 int	ft_is_number(char *s)
 {
 	int	i;
 
 	i = 0;
+	if (s[0] == '-' || s[0] == '+')
+		i++;
 	while (s[i])
-	{
-		if (s[i] == '-' || s[i] == '+' || ft_isdigit(s[i]))
-			i++;
-		else
+		if (!ft_isdigit((int)s[i++]))
 			return (0);
-	}
 	return (1);
 }
 
