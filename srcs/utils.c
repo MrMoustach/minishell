@@ -6,7 +6,7 @@
 /*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 19:04:52 by iharchi           #+#    #+#             */
-/*   Updated: 2021/11/05 08:58:06 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/11/05 09:59:02 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ long long	ft_atol(const char *str)
 	}
 	while (str[i] == '0')
 		i++;
-	if (ft_strlen(&str[i]) > 13)
+	if (ft_strlen(&str[i]) > 19) // ?? You mean 19?
 		return (255 * signe);
 	while (str[i] >= '0' && (str[i] <= '9') && str[i] != '\0')
 		n = (n * 10) + (str[i++] - '0');

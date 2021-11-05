@@ -6,7 +6,7 @@
 /*   By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 12:33:37 by iharchi           #+#    #+#             */
-/*   Updated: 2021/11/05 09:01:09 by omimouni         ###   ########.fr       */
+/*   Updated: 2021/11/05 09:59:57 by omimouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,23 @@
 
 
 // TODO: Test "exit abcd"
+// TODO: Fix number overflow
+// TODO: Make ltoa
+
+int	builtin_exit_overflow(char *str) {
+	long long	number;
+	char		*tmp;
+	int			flag;
+
+	flag = 1;
+	number = ft_atol(str);
+	tmp	   = ft_ltoa(number);
+	if (strncmp(str, tmp, ft_strlen(str)))
+		flag = 0;	
+	free(tmp);
+	return (flag);
+}
+
 void	builtin_exit(t_token command)
 {
 	int			exit_code;
@@ -30,7 +47,7 @@ void	builtin_exit(t_token command)
 	}
 	if (command.arg_count)
 	{
-		if (ft_is_number(command.args[0]))
+		if (ft_is_number(command.args[0]) && builtin_exit_overflow(command.args[0]))
 			exit_code = (int)ft_atol(command.args[0]);
 		else
 		{

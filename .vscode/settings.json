@@ -21,6 +21,7 @@
         "twig": "html",
         "__config": "c",
         "minishell.h": "c",
-        "typeinfo": "c"
+        "typeinfo": "c",
+        "libft.h": "c"
     },
 }

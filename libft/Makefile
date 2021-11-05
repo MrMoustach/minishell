@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+         #
+#    By: omimouni <omimouni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/11 15:27:14 by iharchi           #+#    #+#              #
-#    Updated: 2020/03/09 18:26:13 by iharchi          ###   ########.fr        #
+#    Updated: 2021/11/05 09:44:10 by omimouni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ SRC = 	ft_memset.c 		\
 		ft_strtrim.c		\
 		ft_split.c			\
 		ft_itoa.c			\
+		ft_ltoa.c			\
 		ft_strmapi.c		\
 		ft_putchar_fd.c		\
 		ft_putstr_fd.c		\
