@@ -6,7 +6,7 @@
 /*   By: iharchi <iharchi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 20:54:09 by omimouni          #+#    #+#             */
-/*   Updated: 2021/11/04 15:25:57 by iharchi          ###   ########.fr       */
+/*   Updated: 2021/11/05 12:55:26 by iharchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,7 @@ void	execute_bin_child(t_token *command, char *path)
 			close (command->to_close);
 	}
 	if (command->fds[0] != 0)
-	{
 		dup2(command->fds[0], 0);
-		close (command->fds[0]);
-	}
 	if (command->exist)
 		g_shell.exit_code = execve (path, command->args, g_shell.envp);
 	exit (g_shell.exit_code);
